@@ -29,6 +29,8 @@ public class TextManager : MonoBehaviour {
     public MakeTextAppear textDisplay;
     public Actions[] actions;
 
+    public int power = 2;
+
     float clickDelay = 0.25f;
     float delayCounter = 0.0f;
 
@@ -57,8 +59,26 @@ public class TextManager : MonoBehaviour {
     void Update()
     {
         delayCounter += Time.deltaTime;
-
         ManageInputAskCrew();
+        HideActions();
+    }
+
+    void HideActions()
+    {
+        if (talkingWith == TYPES.none || textDisplay.working == true || characters[talkingWith].doneForToday == true)
+        {
+            foreach (Actions c in actions)
+            {
+                c.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach (Actions c in actions)
+            {
+                c.gameObject.SetActive(true);
+            }
+        }
     }
 
     void GenerateCharacters()
@@ -99,10 +119,11 @@ public class TextManager : MonoBehaviour {
 
     void BeginDay()
     {
+        power = 2;
         foreach (Character pnj in CharacterGOs)
         {
             pnj.active = true;
-            pnj.activeLastFrame = !pnj.active;
+            pnj.activeLastFrame = true;
             pnj.doneForToday = false;
         }
     }
@@ -176,15 +197,27 @@ public class TextManager : MonoBehaviour {
     //Began talking with someone
     void StartedTalking(Character pnj)
     {
+        if(pnj.type == talkingWith)
+        {
+            return;
+        }
+
        foreach(Character t in CharacterGOs)
         {
             t.active = false;
         }
         pnj.active = true;
-
         talkingWith = pnj.type;
         talkingWith_name = pnj.name;
-        CreateText(pnj, pnj.bubbles[question].text);
+
+        if (pnj.doneForToday == false)
+        {
+            CreateText(pnj, pnj.bubbles[question].text);
+        }
+        else
+        {
+            CreateText(pnj, pnj.bubbles[question].busy);
+        }
     }
 
     //Stopped talking with someone
@@ -203,25 +236,35 @@ public class TextManager : MonoBehaviour {
     {
         if (delayCounter > clickDelay)
         {
-            delayCounter = 0.0f;
-            actionMade = actionN;
-            MakeAnswer();
+            if (characters[talkingWith].doneForToday == false)
+            {
+                delayCounter = 0.0f;
+                actionMade = actionN;
+                MakeAnswer();
+            }
+            else
+            {
+                StoppedTalking();
+            }
         }
     }
 
     void MakeAnswer()
     {
-        Character pnj = characters[talkingWith];
-        pnj.doneForToday = true;
+        if (talkingWith != TYPES.none)
+        {
+            Character pnj = characters[talkingWith];
+            pnj.doneForToday = true;
 
-        if(pnj.type == TYPES.sea_wolf && actionMade != PLAYER_ACTIONS.PEACEFUL)
-        {
-            pnj.angryCount++;
-            CreateText(pnj, pnj.bubbles[question].answers[actionMade]);
-        }
-        else
-        {
-            CreateText(pnj, pnj.bubbles[question].answers[actionMade]);
+            if (pnj.type == TYPES.sea_wolf && actionMade != PLAYER_ACTIONS.PEACEFUL)
+            {
+                pnj.angryCount++;
+                CreateText(pnj, pnj.bubbles[question].answers[actionMade]);
+            }
+            else
+            {
+                CreateText(pnj, pnj.bubbles[question].answers[actionMade]);
+            }
         }
     }
 
