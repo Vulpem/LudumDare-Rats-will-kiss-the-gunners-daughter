@@ -8,7 +8,7 @@ public class MakeTextAppear : MonoBehaviour {
     public string text;
     int currentPosition = 0;
     public float delayWithinLetters = 0.1f;
-    bool working = false;
+    public bool working = false;
 
     Text UIText;
 
@@ -16,8 +16,7 @@ public class MakeTextAppear : MonoBehaviour {
 	void Start () {
         UIText = GetComponent<Text>();
         working = false;
-
-        Begin("Ughhh why u not work");
+        UIText.text = "";
 	}
 
     public void Begin(string _text)
@@ -56,6 +55,12 @@ public class MakeTextAppear : MonoBehaviour {
     {
         UIText.text = text;
         working = false;
+    }
+
+    public void Clean()
+    {
+        Skip();
+        UIText.text = "";
     }
 	
 	// Update is called once per frame
