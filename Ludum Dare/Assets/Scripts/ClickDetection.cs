@@ -8,6 +8,13 @@ public class ClickDetection : MonoBehaviour {
     Vector3 end;
     bool hitSomething;
 
+    public enum MouseButtons
+    {
+        MOUSE_BUTTON_LEFT = 0,
+        MOUSE_BUTTON_RIGHT = 1,
+        MOUSE_BUTTON_WHEEL = 2
+    }
+
 	// Use this for initialization
 	void Start () {
 		
