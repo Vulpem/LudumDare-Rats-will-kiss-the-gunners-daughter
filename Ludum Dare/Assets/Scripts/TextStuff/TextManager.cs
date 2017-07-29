@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TURN_STATE
+{
+    STATE_WAITING,
+    STATE_TEXT,
+    STATE_ACTION,
+    STATE_ANSWER,
+    STATE_RESULT,
+    STATE_LAST
+}
+
 [System.Serializable]
 public class Name
 {
@@ -21,6 +31,7 @@ public class TextManager : MonoBehaviour {
 
     [Header(" ")]
     [Header(" -- Designers, do not go below this point! -- ")]
+    public TURN_STATE turn_state = TURN_STATE.STATE_WAITING;
     public MakeTextAppear textDisplay;
     public MakeTextAppear[] textOptions;
 
@@ -59,7 +70,7 @@ public class TextManager : MonoBehaviour {
 
     void ManageInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonUp(0))
         {
             if (textDisplay.working)
             {
@@ -80,10 +91,19 @@ public class TextManager : MonoBehaviour {
             if(talkingWith == -1)
             {
                 talkingWith = pnj.characterN;
-                textDisplay.Begin(pnj.bubbles[0].text);
+                CreateText(pnj, pnj.bubbles[0].text);
             }
         }
 
+    }
+
+    void CreateText(Character character, string text)
+    {
+        string tmp = character.name;
+        tmp += " : ";
+        tmp += text;
+
+        textDisplay.Begin(tmp);
     }
 
     void Advance()

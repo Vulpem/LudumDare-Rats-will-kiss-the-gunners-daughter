@@ -2,17 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+1 turn:
+
+    text appears
+    player action
+    answer (text)
+    result (change in stats)
+
+    */
+
+public enum PLAYER_ACTIONS
+{
+    ACTION_1,
+    ACTION_2,
+    ACTION_3,
+    ACTION_4,
+    ACTION_5
+}
+
+public enum STATS
+{
+    S_MUTINY = 0,
+    S_TRUST,
+
+    //Keep this at the end
+    S_LAST
+}
+
+public enum RELATIONSHIP
+{
+    GREATER_THAN,
+    SMALLER_THAN
+}
+
+
+
+[System.Serializable]
+public class Answer
+{
+    [Tooltip("Text that will appear after the player makes a certain action")]
+    public string text;
+    [Tooltip("How the values will change because of this")]
+    public Result[] result; 
+}
+
+[System.Serializable]
+public class Result
+{
+    [Tooltip("The stat that will change")]
+    public STATS stat;
+    [Tooltip("The amount it will change")]
+    public int amount;
+}
+
+[System.Serializable]
+public class Condition
+{
+    public STATS stat;
+    public RELATIONSHIP relationship;
+    public int value;
+}
+
+
+
 [System.Serializable]
 public class SpeechBubble
 {
-    string name;
+    [Tooltip("Text that will appear when this speech bubble is chosen")]
     public string text;
+    [Tooltip("Answers to your actions. There must be 5 of them")]
+    public Answer[] answers;
+    [Header("Conditions for this speech bubble to appear")]
+    public Condition[] conditions;
+    
 }
+
+
+
 
 public class Character : MonoBehaviour {
 
+    //The name of the Character is the name of the GameObject
     public string descrpition;
     public SpeechBubble[] bubbles;
+
+    public int[] Stats = new int [(int)(STATS.S_LAST)];
 
     [HideInInspector]
     public TextManager manager;
@@ -33,8 +108,45 @@ public class Character : MonoBehaviour {
         manager.ClickedOnMe(gameObject, buttonN);
     }
 
-    void SetNames()
+    public int ChooseSpeechBubble()
     {
-      
+        int n = 0;
+
+        foreach (SpeechBubble bubble in bubbles)
+        {
+
+            bool selectable = true;
+            foreach(Condition condition in bubble.conditions)
+            {
+                if(condition.relationship == RELATIONSHIP.SMALLER_THAN)
+                {
+                    Stats[(int)(condition.stat)] *= -1;
+                    condition.value *= -1;
+                }
+
+                if(Stats[(int)(condition.stat)] < condition.value)
+                {
+                    selectable = false;
+                    break;
+                }
+
+                if (condition.relationship == RELATIONSHIP.SMALLER_THAN)
+                {
+                    Stats[(int)(condition.stat)] *= -1;
+                    condition.value *= -1;
+                }
+
+            }
+
+            if (selectable == true)
+            {
+                return n;
+            }
+
+            n++;
+        }
+
+        return 0;
     }
+
 }
