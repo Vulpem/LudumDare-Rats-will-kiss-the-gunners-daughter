@@ -22,12 +22,14 @@ public class TextManager : MonoBehaviour {
     public TYPES talkingWith;
     public string talkingWith_name;
 
-    [Header(" ")]
-    [Header(" -- Designers, do not go below this point! -- ")]
+    [Header("More stuff")]
     public TODAYS_QUESTION question;
+    public int day = 0;
 
     public MakeTextAppear textDisplay;
     public Actions[] actions;
+
+    public EventManager eventManager;
 
     public int power = 2;
 
@@ -36,6 +38,8 @@ public class TextManager : MonoBehaviour {
 
     float advanceTimer = -0.1f;
     bool wantToAdvance = false;
+
+    public bool blockInteraction = false;
 
     PLAYER_ACTIONS actionMade = 0;
 
@@ -58,8 +62,11 @@ public class TextManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        delayCounter += Time.deltaTime;
-        ManageInputAskCrew();
+        if (blockInteraction == false)
+        {
+            delayCounter += Time.deltaTime;
+            ManageInputAskCrew();
+        }
         HideActions();
     }
 
@@ -119,12 +126,18 @@ public class TextManager : MonoBehaviour {
 
     void BeginDay()
     {
+        day++;
         power = 2;
         foreach (Character pnj in CharacterGOs)
         {
-            pnj.active = true;
+            if(pnj.doneForToday ? pnj.active = false : pnj.active = true);
             pnj.activeLastFrame = true;
             pnj.doneForToday = false;
+        }
+        if(day >= 2 && question != TODAYS_QUESTION.LAST_DAY)
+        {
+            blockInteraction = true;
+            eventManager.LaunchEvent();
         }
     }
 
@@ -183,7 +196,7 @@ public class TextManager : MonoBehaviour {
     //A character has recieved a click
     public void ClickedOnMe(GameObject go, int button)
     {
-        if (delayCounter > clickDelay)
+        if (delayCounter > clickDelay && blockInteraction == false)
         {
             if (textDisplay.working == false)
             {
@@ -228,13 +241,13 @@ public class TextManager : MonoBehaviour {
         textDisplay.Clean();
         foreach (Character pnj in CharacterGOs)
         {
-            pnj.active = true;
+            if (pnj.doneForToday ? pnj.active = false : pnj.active = true);
         }
     }
 
     void MakeAction(PLAYER_ACTIONS actionN)
     {
-        if (delayCounter > clickDelay)
+        if (delayCounter > clickDelay && blockInteraction == false)
         {
             if (characters[talkingWith].doneForToday == false)
             {
