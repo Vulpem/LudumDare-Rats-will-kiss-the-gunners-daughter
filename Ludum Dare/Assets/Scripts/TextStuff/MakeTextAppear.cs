@@ -46,7 +46,7 @@ public class MakeTextAppear : MonoBehaviour {
                 UIText.text += text[currentPosition];
                 currentPosition++;
             }
-            
+
             yield return new WaitForSeconds(delayWithinLetters);
         }
     }

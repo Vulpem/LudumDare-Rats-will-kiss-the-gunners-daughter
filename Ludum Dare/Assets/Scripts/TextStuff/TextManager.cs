@@ -10,7 +10,6 @@ public class Name
     public bool chosen = false;
 }
 
-[ExecuteInEditMode]
 public class TextManager : MonoBehaviour {
 
     [Header(" -- List of characters -- ")]
@@ -28,13 +27,13 @@ public class TextManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	}
+        talkingWith = -1;
+        SecurityCheck();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Application.isPlaying)
-        {
             if (talkingWith != -1)
             {
                 talkingWith_name = characters[talkingWith].name;
@@ -44,26 +43,23 @@ public class TextManager : MonoBehaviour {
                 talkingWith_name = "No one";
             }
 
-            ManageInput();
-        }
-
-        SecurityCheck();
+            ManageInput();        
 	}
 
     void SecurityCheck()
     {
+        int n = 0;
         foreach ( Character pnj in characters)
         {
-            if (pnj.manager == null)
-            {
-                pnj.manager = this;
-            }
+            pnj.manager = this;
+            pnj.characterN = n;
+            n++;
         }
     }
 
     void ManageInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             if (textDisplay.working)
             {
@@ -78,13 +74,13 @@ public class TextManager : MonoBehaviour {
 
     public void ClickedOnMe(GameObject go, int button)
     {
-        Character clickedChar;
-        foreach(Character pnj in characters)
+        Character pnj = go.GetComponent<Character>();
+        if(pnj != null)
         {
-            if(pnj == go)
+            if(talkingWith == -1)
             {
-                clickedChar = go.GetComponent<Character>();
-                break;
+                talkingWith = pnj.characterN;
+                textDisplay.Begin(pnj.bubbles[0].text);
             }
         }
 
@@ -92,6 +88,10 @@ public class TextManager : MonoBehaviour {
 
     void Advance()
     {
-
+        if(textDisplay.working == false)
+        {
+            textDisplay.Clean();
+            talkingWith = -1;
+        }
     }
 }

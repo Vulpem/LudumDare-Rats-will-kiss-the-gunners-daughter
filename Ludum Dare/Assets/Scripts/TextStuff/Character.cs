@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpeechBubble
 {
     string name;
-    public string Text;
+    public string text;
 }
 
 public class Character : MonoBehaviour {
@@ -16,6 +16,8 @@ public class Character : MonoBehaviour {
 
     [HideInInspector]
     public TextManager manager;
+    [HideInInspector]
+    public int characterN = -1;
 
     // Use this for initialization
     void Start () {
