@@ -1,38 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public enum DAY_STATE
+public enum TODAYS_QUESTION
 {
-    DAY_DAWN,
-    DAY_CHOOSE_CREW,
-    DAY_ASK_CREW,
-    DAY_NIGHT
-}
-
-public enum TURN_STATE
-{
-    STATE_WAITING,
-    STATE_TEXT,
-    STATE_ACTION,
-    STATE_ANSWER,
-    STATE_RESULT,
-    STATE_LAST
+    WHOS_TRAITOR,
+    WHO_LIES,
+    WHO_TO_TRUST,
+    WOULD_YOU_LIE_TO_ME,
+    LAST_DAY
 }
 
 public class TextManager : MonoBehaviour {
 
     [Header(" -- List of characters -- ")]
-    public Character[] characters;
+    public Character[] CharacterGOs;
+    public SortedDictionary<TYPES, Character> characters;
 
     [Header(" -- Character you're currently talking with -- ")]
-    public int talkingWith;
+    public TYPES talkingWith;
     public string talkingWith_name;
 
     [Header(" ")]
     [Header(" -- Designers, do not go below this point! -- ")]
-    public TURN_STATE turn_state = TURN_STATE.STATE_WAITING;
-    public DAY_STATE day_state = DAY_STATE.DAY_DAWN;
+    public TODAYS_QUESTION question;
 
     public MakeTextAppear textDisplay;
     public Actions[] actions;
@@ -43,12 +35,11 @@ public class TextManager : MonoBehaviour {
     float advanceTimer = -0.1f;
     bool wantToAdvance = false;
 
-    int actionMade = 0;
-
-    Answer activeAnswer;
+    PLAYER_ACTIONS actionMade = 0;
 
     // Use this for initialization
     void Start () {
+        characters = new SortedDictionary<TYPES, Character>();
         clickDelay = 0.25f;
         delayCounter = 0.0f;
 
@@ -56,8 +47,10 @@ public class TextManager : MonoBehaviour {
         wantToAdvance = false;
 
         actionMade = 0;
-        talkingWith = -1;
+        talkingWith = TYPES.none;
         SecurityCheck();
+
+        GenerateCharacters();
     }
 
     // Update is called once per frame
@@ -65,81 +58,60 @@ public class TextManager : MonoBehaviour {
     {
         delayCounter += Time.deltaTime;
 
-        switch (day_state)
-        {
-            case DAY_STATE.DAY_DAWN: Dawn();  break;
-            case DAY_STATE.DAY_CHOOSE_CREW: ChooseCrew(); break;
-            case DAY_STATE.DAY_ASK_CREW: AskCrew(); break;
-            case DAY_STATE.DAY_NIGHT: day_state = DAY_STATE.DAY_DAWN; break;
-        }
-       
+        ManageInputAskCrew();
     }
 
-    void Dawn()
+    void GenerateCharacters()
     {
-        foreach(Character pnj in characters)
+        foreach (Character c in CharacterGOs)
         {
-            pnj.active = false;
-            pnj.activeLastTurn = !pnj.active;
-        }
-        day_state = DAY_STATE.DAY_CHOOSE_CREW;
-    }
+            TYPES type = new TYPES();
 
-    void ChooseCrew()
-    {
-        int active = 0;
-        foreach(Character pnj in characters)
-        {
-            if(pnj.active == true)
+           type = (TYPES)(UnityEngine.Random.Range(0, (float)(TYPES.none)));
+
+            while (characters.ContainsKey(type) || type == TYPES.none)
             {
-                active++;
+                type++;
+                if (type >= TYPES.none)
+                {
+                    type = 0;
+                }
             }
-        }
 
-        if (active == 3)
-        {
-            day_state = DAY_STATE.DAY_ASK_CREW;
+            c.type = type;
+
+            //TODO, to load speech bubbles
+            for(int q = 0; q <= (int)(TODAYS_QUESTION.LAST_DAY); q++)
+            {
+                SpeechBubble bubble = new SpeechBubble();
+                bubble.text = "Huh, what's up captain?";
+                bubble.busy = "Can't you see I'm busy now?";
+                bubble.answers.Add(PLAYER_ACTIONS.AGRESSION, "You won't get anything from me with violence. Not even <brute> scares me.");
+                bubble.answers.Add(PLAYER_ACTIONS.BRIVE, "I have no need for money. Try giving it to <stingy>.");
+                bubble.answers.Add(PLAYER_ACTIONS.PEACEFUL, "Sorry, i have nothing to say. Try asking <comrade>.");
+
+                c.bubbles.Add((TODAYS_QUESTION)(q), bubble);
+            }
+
+            characters.Add(type, c);
         }
     }
 
-    void AskCrew()
+    void BeginDay()
     {
-         ManageInputAskCrew();
-
-        if(turn_state == TURN_STATE.STATE_ACTION)
+        foreach (Character pnj in CharacterGOs)
         {
-            MakeActionAnimation();
+            pnj.active = true;
+            pnj.activeLastFrame = !pnj.active;
+            pnj.doneForToday = false;
         }
-        else if(turn_state == TURN_STATE.STATE_ANSWER)
-        {
-           
-        }
-        else if (turn_state == TURN_STATE.STATE_RESULT)
-        {
-            MakeResult();
-        }
-
-        bool dayOver = true;
-        foreach(Character pnj in characters)
-        {
-            if(pnj.active == true)
-            {
-                dayOver = false;
-                break;
-            }
-        }
-        if(dayOver == true)
-        {
-            day_state = DAY_STATE.DAY_NIGHT;
-        }
-
     }
 
     //Sets everything at start
     void SecurityCheck()
     {
         int n = 0;
-        foreach ( Character pnj in characters)
+        foreach (Character pnj in CharacterGOs)
         {
             pnj.manager = this;
             pnj.characterN = n;
@@ -148,7 +120,6 @@ public class TextManager : MonoBehaviour {
         n = 0;
         foreach (Actions act in actions)
         {
-            act.action_n = n;
             act.manager = this;
             n++;
         }
@@ -183,7 +154,7 @@ public class TextManager : MonoBehaviour {
             else
             {
                 wantToAdvance = false;
-                Advance();
+                Minimize();
             }
         }
     }
@@ -193,18 +164,11 @@ public class TextManager : MonoBehaviour {
     {
         if (delayCounter > clickDelay)
         {
-            Character pnj = go.GetComponent<Character>();
-            if (day_state == DAY_STATE.DAY_ASK_CREW)
+            if (textDisplay.working == false)
             {
-                if (talkingWith == -1 && turn_state == TURN_STATE.STATE_WAITING)
-                {
-                    delayCounter = 0.0f;
-                    StartedTalking(pnj);
-                }
-            }
-            else if (day_state == DAY_STATE.DAY_CHOOSE_CREW)
-            {
-                pnj.active = true;
+                Character pnj = go.GetComponent<Character>();
+                delayCounter = 0.0f;
+                StartedTalking(pnj);
             }
         }
     }
@@ -212,108 +176,77 @@ public class TextManager : MonoBehaviour {
     //Began talking with someone
     void StartedTalking(Character pnj)
     {
-        if (pnj.active)
+       foreach(Character t in CharacterGOs)
         {
-            turn_state = TURN_STATE.STATE_TEXT;
-            talkingWith = pnj.characterN;
-            talkingWith_name = characters[talkingWith].name;
-            CreateText(pnj, pnj.bubbles[pnj.activeBubble].text);
+            t.active = false;
         }
+        pnj.active = true;
+
+        talkingWith = pnj.type;
+        talkingWith_name = pnj.name;
+        CreateText(pnj, pnj.bubbles[question].text);
     }
 
     //Stopped talking with someone
     void StoppedTalking()
     {
-        turn_state = TURN_STATE.STATE_WAITING;
-        talkingWith = -1;
+        talkingWith = TYPES.none;
         talkingWith_name = "No one";
         textDisplay.Clean();
+        foreach (Character pnj in CharacterGOs)
+        {
+            pnj.active = true;
+        }
     }
 
-    void MakeAction(int actionN)
+    void MakeAction(PLAYER_ACTIONS actionN)
     {
         if (delayCounter > clickDelay)
         {
             delayCounter = 0.0f;
-            if (turn_state == TURN_STATE.STATE_TEXT)
-            {
-                actionMade = actionN;
-                turn_state = TURN_STATE.STATE_ACTION;
-            }
+            actionMade = actionN;
+            MakeAnswer();
         }
-    }
-
-    void MakeActionAnimation()
-    {
-
-        turn_state = TURN_STATE.STATE_ANSWER;
-        MakeAnswer();
     }
 
     void MakeAnswer()
     {
         Character pnj = characters[talkingWith];
-        switch (actionMade)
+        pnj.doneForToday = true;
+
+        if(pnj.type == TYPES.sea_wolf && actionMade != PLAYER_ACTIONS.PEACEFUL)
         {
-            case 0: activeAnswer = pnj.bubbles[pnj.activeBubble].Action1; break;
-            case 1: activeAnswer = pnj.bubbles[pnj.activeBubble].Action2; break;
-            case 2: activeAnswer = pnj.bubbles[pnj.activeBubble].Action3; break;
-            case 3: activeAnswer = pnj.bubbles[pnj.activeBubble].Action4; break;
-            case 4: activeAnswer = pnj.bubbles[pnj.activeBubble].Action5; break;
+            pnj.angryCount++;
+            CreateText(pnj, pnj.bubbles[question].answers[actionMade]);
         }
-        talkingWith = pnj.characterN;
-        talkingWith_name = pnj.name;
-        CreateText(pnj, activeAnswer.text);
+        else
+        {
+            CreateText(pnj, pnj.bubbles[question].answers[actionMade]);
+        }
     }
 
-    void MakeResult()
+    void CreateText(Character characterTalking, string text)
     {
-        foreach(Result res in activeAnswer.result)
-        {
-           if (res.whom != WHO_AFFECTS.OTHERS)
-            {
-                characters[talkingWith].Stats[(int)(res.stat)] += res.amount;
-                Mathf.Clamp(characters[talkingWith].Stats[(int)(res.stat)], 0, 30);
-            }
-
-            if (res.whom != WHO_AFFECTS.ME)
-            {
-                foreach(Character pnj in characters)
-                {
-                    if(pnj.characterN != talkingWith)
-                    {
-                        pnj.Stats[(int)(res.stat)] += res.amount;
-                        Mathf.Clamp(pnj.Stats[(int)(res.stat)], 0, 30);
-                    }
-                }
-            }
-        }
-
-        characters[talkingWith].active = false;
-
-        turn_state = TURN_STATE.STATE_WAITING;
-    }
-
-    void CreateText(Character character, string text)
-    {
-        string tmp = character.name;
+        string tmp = characterTalking.name;
         tmp += " : ";
         tmp += text;
+
+        tmp.Replace("<rioter>", characters[TYPES.rioter].name);
+        tmp.Replace("<brute>", characters[TYPES.brute].name);
+        tmp.Replace("<sea wolf>", characters[TYPES.sea_wolf].name);
+        tmp.Replace("<stingy>", characters[TYPES.stingy].name);
+        tmp.Replace("<comrade>", characters[TYPES.comrade].name);
 
         textDisplay.Begin(tmp);
     }
 
-    void Advance()
+    void Minimize()
     {
-        if(textDisplay.working == false && talkingWith != -1)
+        if(textDisplay.working == false && talkingWith != TYPES.none)
         {
             delayCounter = 0.0f;
             StoppedTalking();
-
-            if(turn_state == TURN_STATE.STATE_ANSWER)
-            {
-                turn_state = TURN_STATE.STATE_RESULT;
-            }
         }
     }
 }
+ 

@@ -6,8 +6,8 @@ public class Actions : MonoBehaviour {
 
     [HideInInspector]
     public TextManager manager;
-    [Range(0, 4)]
-    public int action_n;
+
+    public PLAYER_ACTIONS action_n;
 
     void ClickUp(int button)
     {
