@@ -77,6 +77,10 @@ public class TextManager : MonoBehaviour {
         HideActions();
 
         bool endDay = true;
+        if(textDisplay.text.Length > 3 || textDisplay.working == true )
+        {
+            endDay = false;
+        }
         foreach(Character pnj in CharacterGOs)
         {
             if(pnj.doneForToday == false) { endDay = false; }
