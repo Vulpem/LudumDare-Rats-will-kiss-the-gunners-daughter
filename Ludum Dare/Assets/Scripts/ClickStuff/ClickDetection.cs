@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class ClickDetection : MonoBehaviour {
 
-    Vector3 start;
-    Vector3 end;
-    bool hitSomething;
-
     public enum MouseButtons
     {
         MOUSE_BUTTON_LEFT = 0,
@@ -22,7 +18,6 @@ public class ClickDetection : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        hitSomething = false;
 		for(int n = 0; n < 3; n++)
         {
             if (Input.GetMouseButtonDown(n))
@@ -40,17 +35,10 @@ public class ClickDetection : MonoBehaviour {
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        start = ray.origin;
 
         if (Physics.Raycast(ray, out hit, 1000.0f))
         {
-            hit.collider.gameObject.SendMessage(function, button);
-            hitSomething = true;
-            end = hit.point;
-        }
-        else
-        {
-            end = ray.origin + ray.direction.normalized * 100;
+            hit.collider.gameObject.SendMessage(function, button, SendMessageOptions.DontRequireReceiver);
         }
     }
 }
