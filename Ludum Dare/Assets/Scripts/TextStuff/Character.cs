@@ -36,11 +36,17 @@ public enum RELATIONSHIP
     SMALLER_THAN
 }
 
-
+public enum WHO_AFFECTS
+{
+    ME,
+    EVERYONE,
+    OTHERS
+}
 
 [System.Serializable]
 public class Answer
 {
+    [TextArea(2, 10)]
     [Tooltip("Text that will appear after the player makes a certain action")]
     public string text;
     [Tooltip("How the values will change because of this")]
@@ -50,6 +56,7 @@ public class Answer
 [System.Serializable]
 public class Result
 {
+    WHO_AFFECTS whom;
     [Tooltip("The stat that will change")]
     public STATS stat;
     [Tooltip("The amount it will change")]
@@ -69,13 +76,18 @@ public class Condition
 [System.Serializable]
 public class SpeechBubble
 {
+    [Header(" --- Start of a Speech Bubble --- ")]
+    [TextArea(2, 10)]
     [Tooltip("Text that will appear when this speech bubble is chosen")]
     public string text;
-    [Tooltip("Answers to your actions. There must be 5 of them")]
-    public Answer[] answers;
+    [Header("Answer they will give to each of your actions")]
+    public Answer Action1;
+    public Answer Action2;
+    public Answer Action3;
+    public Answer Action4;
+    public Answer Action5;
     [Header("Conditions for this speech bubble to appear")]
     public Condition[] conditions;
-    
 }
 
 
@@ -84,9 +96,12 @@ public class SpeechBubble
 public class Character : MonoBehaviour {
 
     //The name of the Character is the name of the GameObject
+    [TextArea(1, 10)]
     public string descrpition;
+    [Header(" --- Speech bubbles --- ")]
     public SpeechBubble[] bubbles;
 
+    [Header(" --- Stats of the character --- ")]
     public int[] Stats = new int [(int)(STATS.S_LAST)];
 
     [HideInInspector]

@@ -35,6 +35,8 @@ public class TextManager : MonoBehaviour {
     public MakeTextAppear textDisplay;
     public MakeTextAppear[] textOptions;
 
+    float clickDelay = 0.25f;
+    float delayCounter = 0.0f;
 
     // Use this for initialization
     void Start () {
@@ -54,6 +56,7 @@ public class TextManager : MonoBehaviour {
                 talkingWith_name = "No one";
             }
 
+        delayCounter += Time.deltaTime;
             ManageInput();        
 	}
 
@@ -72,29 +75,36 @@ public class TextManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonUp(0))
         {
-            if (textDisplay.working)
+            if (delayCounter > clickDelay)
             {
-                textDisplay.Skip();
-            }
-            else
-            {
-                Advance();
+                if (textDisplay.working)
+                {
+                    textDisplay.Skip();
+                    delayCounter = 0.0f;
+                }
+                else
+                {
+                    Advance();
+                }
             }
         }
     }
 
     public void ClickedOnMe(GameObject go, int button)
     {
-        Character pnj = go.GetComponent<Character>();
-        if(pnj != null)
+        if (delayCounter > clickDelay)
         {
-            if(talkingWith == -1)
+            Character pnj = go.GetComponent<Character>();
+            if (pnj != null)
             {
-                talkingWith = pnj.characterN;
-                CreateText(pnj, pnj.bubbles[0].text);
+                if (talkingWith == -1)
+                {
+                    delayCounter = 0.0f;
+                    talkingWith = pnj.characterN;
+                    CreateText(pnj, pnj.bubbles[0].text);
+                }
             }
         }
-
     }
 
     void CreateText(Character character, string text)
@@ -108,8 +118,9 @@ public class TextManager : MonoBehaviour {
 
     void Advance()
     {
-        if(textDisplay.working == false)
+        if(textDisplay.working == false && talkingWith != -1)
         {
+            delayCounter = 0.0f;
             textDisplay.Clean();
             talkingWith = -1;
         }
