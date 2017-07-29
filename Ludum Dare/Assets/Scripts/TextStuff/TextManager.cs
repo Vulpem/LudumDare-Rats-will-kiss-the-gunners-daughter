@@ -54,7 +54,7 @@ public class TextManager : MonoBehaviour {
     {
         foreach ( Character pnj in characters)
         {
-            if (pnj == null)
+            if (pnj.manager == null)
             {
                 pnj.manager = this;
             }
