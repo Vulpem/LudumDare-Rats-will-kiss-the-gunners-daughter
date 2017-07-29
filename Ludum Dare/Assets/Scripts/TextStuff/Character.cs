@@ -99,6 +99,7 @@ public class Character : MonoBehaviour {
     [TextArea(1, 10)]
     public string descrpition;
     [Header(" --- Speech bubbles --- ")]
+    public int activeBubble = 0;
     public SpeechBubble[] bubbles;
 
     [Header(" --- Stats of the character --- ")]
@@ -109,21 +110,12 @@ public class Character : MonoBehaviour {
     [HideInInspector]
     public int characterN = -1;
 
-    // Use this for initialization
-    void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void ClickUp(int buttonN)
     {
         manager.ClickedOnMe(gameObject, buttonN);
     }
 
-    public int ChooseSpeechBubble()
+    public void ChooseSpeechBubble()
     {
         int n = 0;
 
@@ -155,13 +147,14 @@ public class Character : MonoBehaviour {
 
             if (selectable == true)
             {
-                return n;
+                activeBubble = n;
+                return;
             }
 
             n++;
         }
 
-        return 0;
+        activeBubble = 0;
     }
 
 }

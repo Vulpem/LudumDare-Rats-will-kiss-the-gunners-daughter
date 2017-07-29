@@ -12,14 +12,6 @@ public enum TURN_STATE
     STATE_LAST
 }
 
-[System.Serializable]
-public class Name
-{
-    public string name;
-    [HideInInspector]
-    public bool chosen = false;
-}
-
 public class TextManager : MonoBehaviour {
 
     [Header(" -- List of characters -- ")]
@@ -33,33 +25,29 @@ public class TextManager : MonoBehaviour {
     [Header(" -- Designers, do not go below this point! -- ")]
     public TURN_STATE turn_state = TURN_STATE.STATE_WAITING;
     public MakeTextAppear textDisplay;
-    public MakeTextAppear[] textOptions;
+    public Actions[] actions;
 
     float clickDelay = 0.25f;
     float delayCounter = 0.0f;
+
+    float advanceTimer = -0.1f;
+    bool wantToAdvance = false;
+
+    Answer activeAnswer;
 
     // Use this for initialization
     void Start () {
         talkingWith = -1;
         SecurityCheck();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-            if (talkingWith != -1)
-            {
-                talkingWith_name = characters[talkingWith].name;
-            }
-            else
-            {
-                talkingWith_name = "No one";
-            }
+        ManageInput();
+    }
 
-        delayCounter += Time.deltaTime;
-            ManageInput();        
-	}
-
+    //Sets everything at start
     void SecurityCheck()
     {
         int n = 0;
@@ -69,11 +57,21 @@ public class TextManager : MonoBehaviour {
             pnj.characterN = n;
             n++;
         }
+        n = 0;
+        foreach (Actions act in actions)
+        {
+            act.action_n = n;
+            act.manager = this;
+            n++;
+        }
     }
 
+    //Manages player input
     void ManageInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonUp(0))
+        delayCounter += Time.deltaTime;
+
+        if (Input.GetMouseButtonUp(0))
         {
             if (delayCounter > clickDelay)
             {
@@ -84,12 +82,27 @@ public class TextManager : MonoBehaviour {
                 }
                 else
                 {
-                    Advance();
+                    wantToAdvance = true;
+                    advanceTimer = 0.0f;
                 }
+            }
+        }
+
+        if(wantToAdvance)
+        {
+            if (advanceTimer < 0.25f)
+            {
+                advanceTimer += Time.deltaTime;
+            }
+            else
+            {
+                wantToAdvance = false;
+                Advance();
             }
         }
     }
 
+    //A character has recieved a click
     public void ClickedOnMe(GameObject go, int button)
     {
         if (delayCounter > clickDelay)
@@ -97,12 +110,53 @@ public class TextManager : MonoBehaviour {
             Character pnj = go.GetComponent<Character>();
             if (pnj != null)
             {
-                if (talkingWith == -1)
+                if (talkingWith == -1 && turn_state == TURN_STATE.STATE_WAITING)
                 {
                     delayCounter = 0.0f;
-                    talkingWith = pnj.characterN;
-                    CreateText(pnj, pnj.bubbles[0].text);
+                    StartedTalking(pnj);
                 }
+            }
+        }
+    }
+
+    //Began talking with someone
+    void StartedTalking(Character pnj)
+    {
+        turn_state = TURN_STATE.STATE_TEXT;
+        talkingWith = pnj.characterN;
+        talkingWith_name = characters[talkingWith].name;
+        CreateText(pnj, pnj.bubbles[pnj.activeBubble].text);
+    }
+
+    //Stopped talking with someone
+    void StoppedTalking()
+    {
+        turn_state = TURN_STATE.STATE_WAITING;
+        talkingWith = -1;
+        talkingWith_name = "No one";
+        textDisplay.Clean();
+    }
+
+    void MakeAction(int actionN)
+    {
+        if (delayCounter > clickDelay)
+        {
+            delayCounter = 0.0f;
+            if (turn_state == TURN_STATE.STATE_TEXT)
+            {
+                turn_state = TURN_STATE.STATE_ANSWER;
+                Character pnj = characters[talkingWith];
+                switch (actionN)
+                {
+                    case 0: activeAnswer = pnj.bubbles[pnj.activeBubble].Action1; break;
+                    case 1: activeAnswer = pnj.bubbles[pnj.activeBubble].Action2; break;
+                    case 2: activeAnswer = pnj.bubbles[pnj.activeBubble].Action3; break;
+                    case 3: activeAnswer = pnj.bubbles[pnj.activeBubble].Action4; break;
+                    case 4: activeAnswer = pnj.bubbles[pnj.activeBubble].Action5; break;
+                }
+                talkingWith = pnj.characterN;
+                talkingWith_name = pnj.name;
+                CreateText(pnj, activeAnswer.text);
             }
         }
     }
@@ -120,9 +174,9 @@ public class TextManager : MonoBehaviour {
     {
         if(textDisplay.working == false && talkingWith != -1)
         {
+            
             delayCounter = 0.0f;
-            textDisplay.Clean();
-            talkingWith = -1;
+            StoppedTalking();
         }
     }
 }
