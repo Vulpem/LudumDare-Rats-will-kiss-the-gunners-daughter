@@ -29,7 +29,8 @@ public class GenerateAspect : MonoBehaviour {
         bodyObject.transform.position = bodyPosition;
 
         Vector3 headPostition = headObject.transform.position;
-        headPostition.y = pivot.transform.position.y + bodySize;
+ 
+        headPostition.y = database.GetHeadPositionY(body.sprite);
         headObject.transform.position = headPostition;
     }
 	

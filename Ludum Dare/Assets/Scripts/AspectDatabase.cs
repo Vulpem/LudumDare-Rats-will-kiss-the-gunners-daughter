@@ -12,6 +12,7 @@ public class AspectDatabase : MonoBehaviour {
     public Sprite[] faces;
 
     public int[] bodySizes;
+    public int[] headPositions;
 
 	// Use this for initialization
 	void Awake ()
@@ -37,5 +38,17 @@ public class AspectDatabase : MonoBehaviour {
     {
         int index = Random.Range(0, faces.Length);
         return faces[index];
+    }
+
+    public float GetHeadPositionY(Sprite body)
+    {
+        for (int i = 0; i < bodySizes.Length; i++)
+        {
+            if (body.bounds.size.y == bodySizes[i])
+            {
+                return headPositions[i];
+            }
+        }
+        return headPositions[0]; //Just in case
     }
 }
