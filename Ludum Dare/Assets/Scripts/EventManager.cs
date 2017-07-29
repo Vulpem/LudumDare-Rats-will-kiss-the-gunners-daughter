@@ -43,7 +43,7 @@ public class EventManager : MonoBehaviour {
         responses[1] = Resources.LoadAll<TextAsset>(eventsPath + "/NegativeResp");
         responses[2] = Resources.LoadAll<TextAsset>(eventsPath + "/NeutralResp");
 
-        LaunchEvent();
+      //  LaunchEvent();
 
     }
 
