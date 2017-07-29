@@ -16,20 +16,36 @@ public class ClickDetection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         hitSomething = false;
-		if(Input.GetMouseButtonDown(0))
+		for(int n = 0; n < 3; n++)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            start = ray.origin;
-            end = ray.origin + ray.direction.normalized * 100;
-
-            if(Physics.Raycast(ray, out hit, 1000.0f))
+            if (Input.GetMouseButtonDown(n))
             {
-                hit.collider.gameObject.SendMessage("Click");
-                hitSomething = true;
+                SendRay("ClickDown", n);
+            }
+            if (Input.GetMouseButtonUp(n))
+            {
+                SendRay("ClickUp", n);
             }
         }
-	}
+    }
+
+    void SendRay (string function, int button)
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        start = ray.origin;
+
+        if (Physics.Raycast(ray, out hit, 1000.0f))
+        {
+            hit.collider.gameObject.SendMessage(function, button);
+            hitSomething = true;
+            end = hit.point;
+        }
+        else
+        {
+            end = ray.origin + ray.direction.normalized * 100;
+        }
+    }
 
     void OnDrawGizmos()
     {

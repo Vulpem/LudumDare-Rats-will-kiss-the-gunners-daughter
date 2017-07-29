@@ -14,8 +14,13 @@ public class OnClick : MonoBehaviour {
 		
 	}
 
-    public void Click()
+    public void ClickDown(int buttonN)
     {
-        gameObject.SetActive(false);
+        gameObject.GetComponent<Renderer>().material.color = new Color(0.3f * buttonN, 0, 0);
+    }
+
+    public void ClickUp(int buttonN)
+    {
+        gameObject.GetComponent<Renderer>().material.color = new Color(0, 0.3f * buttonN, 0);
     }
 }
