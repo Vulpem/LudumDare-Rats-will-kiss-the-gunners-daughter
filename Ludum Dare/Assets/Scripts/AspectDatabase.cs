@@ -42,13 +42,14 @@ public class AspectDatabase : MonoBehaviour {
 
     public float GetHeadPositionY(Sprite body)
     {
+        float size = body.bounds.size.y * 100;
         for (int i = 0; i < bodySizes.Length; i++)
         {
-            if (body.bounds.size.y == bodySizes[i])
+            if (size == bodySizes[i])
             {
-                return headPositions[i];
+                return (float)headPositions[i] / 100;
             }
         }
-        return headPositions[0]; //Just in case
+        return (float)headPositions[0]/100; //Just in case
     }
 }

@@ -28,10 +28,10 @@ public class GenerateAspect : MonoBehaviour {
         bodyPosition.y = pivot.transform.position.y + bodySize / 2;
         bodyObject.transform.position = bodyPosition;
 
-        Vector3 headPostition = headObject.transform.position;
+        Vector3 headPostition = headObject.transform.localPosition;
  
         headPostition.y = database.GetHeadPositionY(body.sprite);
-        headObject.transform.position = headPostition;
+        headObject.transform.localPosition = headPostition;
     }
 	
 	// Update is called once per frame
