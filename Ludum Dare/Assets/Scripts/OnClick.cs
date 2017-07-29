@@ -16,11 +16,11 @@ public class OnClick : MonoBehaviour {
 
     public void ClickDown(int buttonN)
     {
-        gameObject.GetComponent<Renderer>().material.color = new Color(0.3f * buttonN, 0, 0);
+        gameObject.GetComponent<Renderer>().material.color = new Color(0.4f * buttonN, 0, 0);
     }
 
     public void ClickUp(int buttonN)
     {
-        gameObject.GetComponent<Renderer>().material.color = new Color(0, 0.3f * buttonN, 0);
+        gameObject.GetComponent<Renderer>().material.color = new Color(0, 0.4f * buttonN, 0);
     }
 }
