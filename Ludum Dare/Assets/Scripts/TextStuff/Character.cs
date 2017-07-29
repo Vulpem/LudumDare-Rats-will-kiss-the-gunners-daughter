@@ -56,7 +56,7 @@ public class Answer
 [System.Serializable]
 public class Result
 {
-    WHO_AFFECTS whom;
+    public WHO_AFFECTS whom;
     [Tooltip("The stat that will change")]
     public STATS stat;
     [Tooltip("The amount it will change")]
@@ -113,6 +113,11 @@ public class Character : MonoBehaviour {
     public void ClickUp(int buttonN)
     {
         manager.ClickedOnMe(gameObject, buttonN);
+    }
+
+    void ChangeStat(STATS stat, int amount)
+    {
+        Stats[(int)(stat)] += amount;
     }
 
     public void ChooseSpeechBubble()

@@ -33,6 +33,8 @@ public class TextManager : MonoBehaviour {
     float advanceTimer = -0.1f;
     bool wantToAdvance = false;
 
+    int actionMade = 0;
+
     Answer activeAnswer;
 
     // Use this for initialization
@@ -45,6 +47,19 @@ public class TextManager : MonoBehaviour {
     void Update()
     {
         ManageInput();
+
+        if(turn_state == TURN_STATE.STATE_ACTION)
+        {
+            MakeActionAnimation();
+        }
+        else if(turn_state == TURN_STATE.STATE_ANSWER)
+        {
+            MakeAnswer();
+        }
+        else if (turn_state == TURN_STATE.STATE_RESULT)
+        {
+            MakeResult();
+        }
     }
 
     //Sets everything at start
@@ -144,21 +159,42 @@ public class TextManager : MonoBehaviour {
             delayCounter = 0.0f;
             if (turn_state == TURN_STATE.STATE_TEXT)
             {
-                turn_state = TURN_STATE.STATE_ANSWER;
-                Character pnj = characters[talkingWith];
-                switch (actionN)
-                {
-                    case 0: activeAnswer = pnj.bubbles[pnj.activeBubble].Action1; break;
-                    case 1: activeAnswer = pnj.bubbles[pnj.activeBubble].Action2; break;
-                    case 2: activeAnswer = pnj.bubbles[pnj.activeBubble].Action3; break;
-                    case 3: activeAnswer = pnj.bubbles[pnj.activeBubble].Action4; break;
-                    case 4: activeAnswer = pnj.bubbles[pnj.activeBubble].Action5; break;
-                }
-                talkingWith = pnj.characterN;
-                talkingWith_name = pnj.name;
-                CreateText(pnj, activeAnswer.text);
+                actionMade = actionN;
+                turn_state = TURN_STATE.STATE_ACTION;
             }
         }
+    }
+
+    void MakeActionAnimation()
+    {
+
+        turn_state = TURN_STATE.STATE_ANSWER;
+    }
+
+    void MakeAnswer()
+    {
+        Character pnj = characters[talkingWith];
+        switch (actionMade)
+        {
+            case 0: activeAnswer = pnj.bubbles[pnj.activeBubble].Action1; break;
+            case 1: activeAnswer = pnj.bubbles[pnj.activeBubble].Action2; break;
+            case 2: activeAnswer = pnj.bubbles[pnj.activeBubble].Action3; break;
+            case 3: activeAnswer = pnj.bubbles[pnj.activeBubble].Action4; break;
+            case 4: activeAnswer = pnj.bubbles[pnj.activeBubble].Action5; break;
+        }
+        talkingWith = pnj.characterN;
+        talkingWith_name = pnj.name;
+        CreateText(pnj, activeAnswer.text);
+    }
+
+    void MakeResult()
+    {
+        foreach(Result res in activeAnswer.result)
+        {
+           // res.
+        }
+
+        turn_state = TURN_STATE.STATE_WAITING;
     }
 
     void CreateText(Character character, string text)
@@ -174,9 +210,13 @@ public class TextManager : MonoBehaviour {
     {
         if(textDisplay.working == false && talkingWith != -1)
         {
-            
             delayCounter = 0.0f;
             StoppedTalking();
+
+            if(turn_state == TURN_STATE.STATE_ANSWER)
+            {
+                turn_state = TURN_STATE.STATE_RESULT;
+            }
         }
     }
 }
