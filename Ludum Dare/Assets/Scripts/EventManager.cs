@@ -20,6 +20,9 @@ public class EventManager : MonoBehaviour {
     public int[] answersOrder;
     public int eventIndex;
 
+    public GameObject finishEventButton;
+    public GameObject panel;
+
     public TextManager textManager;
 
     // Use this for initialization
@@ -57,6 +60,7 @@ public class EventManager : MonoBehaviour {
         GenerateAnswerOrders();
 
         //Activating UI texts
+        panel.SetActive(true);
         for (int i = 0; i < answersText.Length; i++)
         {
             answersText[i].transform.parent.gameObject.SetActive(true);
@@ -121,5 +125,15 @@ public class EventManager : MonoBehaviour {
             textManager.power++;
         else if (answersOrder[answer] == 1)
             textManager.power--;
+
+        finishEventButton.SetActive(true);
+    }
+
+    public void OnFinishEvent()
+    {
+        finishEventButton.SetActive(false);
+        eventResponse.gameObject.SetActive(false);
+        panel.SetActive(false);
+        textManager.blockInteraction = false;
     }
 }
