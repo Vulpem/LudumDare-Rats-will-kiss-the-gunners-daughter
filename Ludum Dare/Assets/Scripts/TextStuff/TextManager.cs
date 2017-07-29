@@ -94,6 +94,7 @@ public class TextManager : MonoBehaviour {
         {
             TYPES type = new TYPES();
 
+           c.name = GetComponent<NameBank>().GetName();
            type = (TYPES)(UnityEngine.Random.Range(0, (float)(TYPES.none)));
 
             while (characters.ContainsKey(type) || type == TYPES.none)
@@ -119,6 +120,8 @@ public class TextManager : MonoBehaviour {
 
                 c.bubbles.Add((TODAYS_QUESTION)(q), bubble);
             }
+
+
 
             characters.Add(type, c);
         }
