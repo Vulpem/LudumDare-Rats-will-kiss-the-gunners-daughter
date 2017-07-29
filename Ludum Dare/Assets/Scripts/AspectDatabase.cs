@@ -11,6 +11,8 @@ public class AspectDatabase : MonoBehaviour {
     public Sprite[] bodies;
     public Sprite[] faces;
 
+    public int[] bodySizes;
+
 	// Use this for initialization
 	void Awake ()
     {

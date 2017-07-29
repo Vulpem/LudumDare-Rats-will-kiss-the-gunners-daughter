@@ -8,6 +8,11 @@ public class GenerateAspect : MonoBehaviour {
     public SpriteRenderer body;
     public SpriteRenderer face;
 
+    public GameObject bodyObject;
+    public GameObject headObject;
+
+    public GameObject pivot;
+
     public AspectDatabase database;
 
     // Use this for initialization
@@ -16,10 +21,21 @@ public class GenerateAspect : MonoBehaviour {
         head.sprite = database.GetHead();
         body.sprite = database.GetBody();
         face.sprite = database.GetFace();
-	}
+
+        float bodySize = body.sprite.bounds.size.y;
+
+        Vector3 bodyPosition = bodyObject.transform.position;
+        bodyPosition.y = pivot.transform.position.y + bodySize / 2;
+        bodyObject.transform.position = bodyPosition;
+
+        Vector3 headPostition = headObject.transform.position;
+        headPostition.y = pivot.transform.position.y + bodySize;
+        headObject.transform.position = headPostition;
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 }
