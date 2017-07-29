@@ -41,10 +41,15 @@ public class TextManager : MonoBehaviour {
 
     public bool blockInteraction = false;
 
+    Dictionary<TODAYS_QUESTION, bool> questionsAsked;
+
     PLAYER_ACTIONS actionMade = 0;
 
     // Use this for initialization
     void Start () {
+        questionsAsked = new Dictionary<TODAYS_QUESTION, bool>();
+        questionsAsked.Add(TODAYS_QUESTION.LAST_DAY, true);
+
         characters = new SortedDictionary<TYPES, Character>();
         clickDelay = 0.25f;
         delayCounter = 0.0f;
@@ -57,6 +62,8 @@ public class TextManager : MonoBehaviour {
         SecurityCheck();
 
         GenerateCharacters();
+
+        BeginDay();
     }
 
     // Update is called once per frame
@@ -68,6 +75,16 @@ public class TextManager : MonoBehaviour {
             ManageInputAskCrew();
         }
         HideActions();
+
+        bool endDay = true;
+        foreach(Character pnj in CharacterGOs)
+        {
+            if(pnj.doneForToday == false) { endDay = false; }
+        }
+        if(endDay)
+        {
+            EndDay();
+        }
     }
 
     void HideActions()
@@ -127,6 +144,11 @@ public class TextManager : MonoBehaviour {
         }
     }
 
+    void EndDay()
+    {
+        BeginDay();
+    }
+
     void BeginDay()
     {
         day++;
@@ -141,6 +163,16 @@ public class TextManager : MonoBehaviour {
         {
             blockInteraction = true;
             eventManager.LaunchEvent();
+        }
+
+        if (day < 5)
+        {
+            int n = UnityEngine.Random.Range(0, 5);
+
+        }
+        else
+        {
+            question = TODAYS_QUESTION.LAST_DAY;
         }
     }
 
