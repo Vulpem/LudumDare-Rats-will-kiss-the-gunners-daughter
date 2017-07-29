@@ -9,22 +9,23 @@ public class EventManager : MonoBehaviour {
     public string eventsPath;
     public TextAsset[] events;
     public TextAsset[][] answers;
- //   public TextAsset[] positiveAnswers;
-  //  public TextAsset[] negativeAnswers;
-  //  public TextAsset[] neutralAnswers;
+    public TextAsset[][] responses;
 
     [Header(" -- UI variables --")]
     public Text eventText;
     public Text[] answersText;
+    public Text eventResponse;
 
     List<int> launchedEvents;
     public int[] answerOrders;
+    public int eventIndex;
 
     // Use this for initialization
     void Start ()
     {
         //Initializing arrays and lists
         answers = new TextAsset[3][];
+        responses = new TextAsset[3][];
         launchedEvents = new List<int>();
         answerOrders = new int[3];
 
@@ -32,6 +33,10 @@ public class EventManager : MonoBehaviour {
         answers[0] = Resources.LoadAll<TextAsset>(eventsPath + "/PositiveAsw");
         answers[1] = Resources.LoadAll<TextAsset>(eventsPath + "/NegativeAsw");
         answers[2] = Resources.LoadAll<TextAsset>(eventsPath + "/NeutralAsw");
+
+        responses[0] = Resources.LoadAll<TextAsset>(eventsPath + "/PositiveResp");
+        responses[1] = Resources.LoadAll<TextAsset>(eventsPath + "/NegativeResp");
+        responses[2] = Resources.LoadAll<TextAsset>(eventsPath + "/NeutralResp");
 
         LaunchEvent();
 
@@ -46,12 +51,18 @@ public class EventManager : MonoBehaviour {
     void LaunchEvent()
     {
         //Generating random content
-        int eventIndex = ChooseNewEvent();
+        eventIndex = ChooseNewEvent();
         GenerateAnswerOrders();
 
+        //Activating UI texts
+        for (int i = 0; i < answersText.Length; i++)
+        {
+            answersText[i].gameObject.SetActive(true);
+        }
+        eventText.gameObject.SetActive(true);
+         
         //Filling UI texts
-        eventText.text = events[eventIndex].text;
-        
+        eventText.text = events[eventIndex].text;       
         for (int i = 0; i < 3; i++)
         {
             answersText[i].text = answers[answerOrders[i]][eventIndex].text;
@@ -95,6 +106,13 @@ public class EventManager : MonoBehaviour {
 
     public void OnSelectAnswer(int answer)
     {
+        for (int i = 0; i < answersText.Length; i++)
+        {
+            answersText[i].gameObject.SetActive(false);
+        }
+        eventText.gameObject.SetActive(false);
 
+        eventResponse.text = responses[answerOrders[answer]][eventIndex].text;
+        eventResponse.gameObject.SetActive(true);
     }
 }
