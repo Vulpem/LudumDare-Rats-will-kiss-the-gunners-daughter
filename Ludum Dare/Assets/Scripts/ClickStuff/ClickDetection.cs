@@ -53,17 +53,4 @@ public class ClickDetection : MonoBehaviour {
             end = ray.origin + ray.direction.normalized * 100;
         }
     }
-
-    void OnDrawGizmos()
-    {
-        if (hitSomething)
-        {
-            Gizmos.color = Color.red;
-        }
-        else
-        {
-            Gizmos.color = Color.white;
-        }
-        Gizmos.DrawLine(start, end);
-    }
 }

@@ -2,23 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[System.Serializable]
-public class SpeechBubble
-{
-    string name;
-    public string Text;
-}
-
-[System.Serializable]
-public class Character
-{
-    public string name;
-    public string descrpition;
-    public SpeechBubble[] bubbles;
-    TextManager manager;
-}
-
 [System.Serializable]
 public class Name
 {
@@ -35,18 +18,16 @@ public class TextManager : MonoBehaviour {
 
     [Header(" -- Character you're currently talking with -- ")]
     public int talkingWith;
-    public string name_talking_with;
+    public string talkingWith_name;
 
     [Header(" ")]
     [Header(" -- Designers, do not go below this point! -- ")]
     public MakeTextAppear textDisplay;
-    public MakeTextAppear[] options;
+    public MakeTextAppear[] textOptions;
 
-    public string[] randomNames;
 
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -54,21 +35,28 @@ public class TextManager : MonoBehaviour {
     {
         if (Application.isPlaying)
         {
+            if (talkingWith != -1)
+            {
+                talkingWith_name = characters[talkingWith].name;
+            }
+            else
+            {
+                talkingWith_name = "No one";
+            }
+
             ManageInput();
         }
-        else
-        {
-            SetNames();
-        }
+
+        SecurityCheck();
 	}
 
-    void SetNames()
+    void SecurityCheck()
     {
-        foreach( Character pnj in characters)
+        foreach ( Character pnj in characters)
         {
-            if(pnj.name == "")
+            if (pnj == null)
             {
-                pnj.name = randomNames[Random.Range(0, randomNames.Length)];
+                pnj.manager = this;
             }
         }
     }
@@ -86,6 +74,20 @@ public class TextManager : MonoBehaviour {
                 Advance();
             }
         }
+    }
+
+    public void ClickedOnMe(GameObject go, int button)
+    {
+        Character clickedChar;
+        foreach(Character pnj in characters)
+        {
+            if(pnj == go)
+            {
+                clickedChar = go.GetComponent<Character>();
+                break;
+            }
+        }
+
     }
 
     void Advance()
