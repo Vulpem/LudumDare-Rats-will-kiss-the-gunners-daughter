@@ -98,6 +98,9 @@ public class Character : MonoBehaviour {
     //The name of the Character is the name of the GameObject
     [TextArea(1, 10)]
     public string descrpition;
+    public bool active = false;
+    public bool activeLastTurn = false;
+
     [Header(" --- Speech bubbles --- ")]
     public int activeBubble = 0;
     public SpeechBubble[] bubbles;
@@ -109,6 +112,31 @@ public class Character : MonoBehaviour {
     public TextManager manager;
     [HideInInspector]
     public int characterN = -1;
+
+    Vector3 scale;
+
+    void Start()
+    {
+        scale = gameObject.transform.localScale;
+    }
+
+    void Update()
+    {
+        if (active != activeLastTurn)
+        {
+            if (active == false)
+            {
+                GetComponent<Renderer>().material.color = new Color(0.6f, 0.6f, 0.6f);
+                gameObject.transform.localScale = scale * 0.6f;
+            }
+            else
+            {
+                GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f);
+                gameObject.transform.localScale = scale;
+            }
+            activeLastTurn = active;
+        }
+    }
 
     public void ClickUp(int buttonN)
     {

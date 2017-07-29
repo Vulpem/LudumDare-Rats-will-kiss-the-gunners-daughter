@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DAY_STATE
+{
+    DAY_DAWN,
+    DAY_CHOOSE_CREW,
+    DAY_ASK_CREW,
+    DAY_NIGHT
+}
+
 public enum TURN_STATE
 {
     STATE_WAITING,
@@ -24,6 +32,8 @@ public class TextManager : MonoBehaviour {
     [Header(" ")]
     [Header(" -- Designers, do not go below this point! -- ")]
     public TURN_STATE turn_state = TURN_STATE.STATE_WAITING;
+    public DAY_STATE day_state = DAY_STATE.DAY_DAWN;
+
     public MakeTextAppear textDisplay;
     public Actions[] actions;
 
@@ -39,6 +49,13 @@ public class TextManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        clickDelay = 0.25f;
+        delayCounter = 0.0f;
+
+        advanceTimer = -0.1f;
+        wantToAdvance = false;
+
+        actionMade = 0;
         talkingWith = -1;
         SecurityCheck();
     }
@@ -46,7 +63,48 @@ public class TextManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        ManageInput();
+        delayCounter += Time.deltaTime;
+
+        switch (day_state)
+        {
+            case DAY_STATE.DAY_DAWN: Dawn();  break;
+            case DAY_STATE.DAY_CHOOSE_CREW: ChooseCrew(); break;
+            case DAY_STATE.DAY_ASK_CREW: AskCrew(); break;
+            case DAY_STATE.DAY_NIGHT: day_state = DAY_STATE.DAY_DAWN; break;
+        }
+       
+    }
+
+    void Dawn()
+    {
+        foreach(Character pnj in characters)
+        {
+            pnj.active = false;
+            pnj.activeLastTurn = !pnj.active;
+        }
+        day_state = DAY_STATE.DAY_CHOOSE_CREW;
+    }
+
+    void ChooseCrew()
+    {
+        int active = 0;
+        foreach(Character pnj in characters)
+        {
+            if(pnj.active == true)
+            {
+                active++;
+            }
+        }
+
+        if (active == 3)
+        {
+            day_state = DAY_STATE.DAY_ASK_CREW;
+        }
+    }
+
+    void AskCrew()
+    {
+         ManageInputAskCrew();
 
         if(turn_state == TURN_STATE.STATE_ACTION)
         {
@@ -54,12 +112,27 @@ public class TextManager : MonoBehaviour {
         }
         else if(turn_state == TURN_STATE.STATE_ANSWER)
         {
-            MakeAnswer();
+           
         }
         else if (turn_state == TURN_STATE.STATE_RESULT)
         {
             MakeResult();
         }
+
+        bool dayOver = true;
+        foreach(Character pnj in characters)
+        {
+            if(pnj.active == true)
+            {
+                dayOver = false;
+                break;
+            }
+        }
+        if(dayOver == true)
+        {
+            day_state = DAY_STATE.DAY_NIGHT;
+        }
+
     }
 
     //Sets everything at start
@@ -82,10 +155,8 @@ public class TextManager : MonoBehaviour {
     }
 
     //Manages player input
-    void ManageInput()
+    void ManageInputAskCrew()
     {
-        delayCounter += Time.deltaTime;
-
         if (Input.GetMouseButtonUp(0))
         {
             if (delayCounter > clickDelay)
@@ -105,7 +176,7 @@ public class TextManager : MonoBehaviour {
 
         if(wantToAdvance)
         {
-            if (advanceTimer < 0.25f)
+            if (advanceTimer < 0.15f)
             {
                 advanceTimer += Time.deltaTime;
             }
@@ -123,7 +194,7 @@ public class TextManager : MonoBehaviour {
         if (delayCounter > clickDelay)
         {
             Character pnj = go.GetComponent<Character>();
-            if (pnj != null)
+            if (day_state == DAY_STATE.DAY_ASK_CREW)
             {
                 if (talkingWith == -1 && turn_state == TURN_STATE.STATE_WAITING)
                 {
@@ -131,16 +202,23 @@ public class TextManager : MonoBehaviour {
                     StartedTalking(pnj);
                 }
             }
+            else if (day_state == DAY_STATE.DAY_CHOOSE_CREW)
+            {
+                pnj.active = true;
+            }
         }
     }
 
     //Began talking with someone
     void StartedTalking(Character pnj)
     {
-        turn_state = TURN_STATE.STATE_TEXT;
-        talkingWith = pnj.characterN;
-        talkingWith_name = characters[talkingWith].name;
-        CreateText(pnj, pnj.bubbles[pnj.activeBubble].text);
+        if (pnj.active)
+        {
+            turn_state = TURN_STATE.STATE_TEXT;
+            talkingWith = pnj.characterN;
+            talkingWith_name = characters[talkingWith].name;
+            CreateText(pnj, pnj.bubbles[pnj.activeBubble].text);
+        }
     }
 
     //Stopped talking with someone
@@ -169,6 +247,7 @@ public class TextManager : MonoBehaviour {
     {
 
         turn_state = TURN_STATE.STATE_ANSWER;
+        MakeAnswer();
     }
 
     void MakeAnswer()
@@ -191,8 +270,26 @@ public class TextManager : MonoBehaviour {
     {
         foreach(Result res in activeAnswer.result)
         {
-           // res.
+           if (res.whom != WHO_AFFECTS.OTHERS)
+            {
+                characters[talkingWith].Stats[(int)(res.stat)] += res.amount;
+                Mathf.Clamp(characters[talkingWith].Stats[(int)(res.stat)], 0, 30);
+            }
+
+            if (res.whom != WHO_AFFECTS.ME)
+            {
+                foreach(Character pnj in characters)
+                {
+                    if(pnj.characterN != talkingWith)
+                    {
+                        pnj.Stats[(int)(res.stat)] += res.amount;
+                        Mathf.Clamp(pnj.Stats[(int)(res.stat)], 0, 30);
+                    }
+                }
+            }
         }
+
+        characters[talkingWith].active = false;
 
         turn_state = TURN_STATE.STATE_WAITING;
     }
