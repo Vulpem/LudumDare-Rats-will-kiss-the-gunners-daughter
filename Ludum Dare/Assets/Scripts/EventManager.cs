@@ -57,7 +57,7 @@ public class EventManager : MonoBehaviour {
         //Activating UI texts
         for (int i = 0; i < answersText.Length; i++)
         {
-            answersText[i].gameObject.SetActive(true);
+            answersText[i].transform.parent.gameObject.SetActive(true);
         }
         eventText.gameObject.SetActive(true);
          
@@ -108,7 +108,7 @@ public class EventManager : MonoBehaviour {
     {
         for (int i = 0; i < answersText.Length; i++)
         {
-            answersText[i].gameObject.SetActive(false);
+            answersText[i].transform.parent.gameObject.SetActive(false);
         }
         eventText.gameObject.SetActive(false);
 
