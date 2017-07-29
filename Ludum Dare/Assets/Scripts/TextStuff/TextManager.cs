@@ -274,11 +274,11 @@ public class TextManager : MonoBehaviour {
         tmp += " : ";
         tmp += text;
 
-        tmp.Replace("<rioter>", characters[TYPES.rioter].name);
-        tmp.Replace("<brute>", characters[TYPES.brute].name);
-        tmp.Replace("<sea wolf>", characters[TYPES.sea_wolf].name);
-        tmp.Replace("<stingy>", characters[TYPES.stingy].name);
-        tmp.Replace("<comrade>", characters[TYPES.comrade].name);
+        tmp = tmp.Replace("<rioter>", characters[TYPES.rioter].name);
+        tmp = tmp.Replace("<brute>", characters[TYPES.brute].name);
+        tmp = tmp.Replace("<sea wolf>", characters[TYPES.sea_wolf].name);
+        tmp = tmp.Replace("<stingy>", characters[TYPES.stingy].name);
+        tmp = tmp.Replace("<comrade>", characters[TYPES.comrade].name);
 
         textDisplay.Begin(tmp);
     }
