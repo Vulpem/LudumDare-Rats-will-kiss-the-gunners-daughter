@@ -35,6 +35,8 @@ public class TextManager : MonoBehaviour {
     public MakeTextAppear textDisplay;
     public Button[] actions;
 
+    bool dayOver = false;
+
     public EventManager eventManager;
 
     public int power = 2;
@@ -123,18 +125,21 @@ public class TextManager : MonoBehaviour {
 
         HideActions();
 
-        bool endDay = true;
-        if(textDisplay.UIText.text.Length > 3 || talkingWith != TYPES.none )
+        if (dayOver == false)
         {
-            endDay = false;
-        }
-        foreach(Character pnj in CharacterGOs)
-        {
-            if(pnj.doneForToday == false) { endDay = false; }
-        }
-        if(endDay)
-        {
-            EndDay();
+            bool endDay = true;
+            if (textDisplay.UIText.text.Length > 3 || talkingWith != TYPES.none)
+            {
+                endDay = false;
+            }
+            foreach (Character pnj in CharacterGOs)
+            {
+                if (pnj.doneForToday == false) { endDay = false; }
+            }
+            if (endDay)
+            {
+                EndDay();
+            }
         }
     }
 
@@ -286,6 +291,7 @@ public class TextManager : MonoBehaviour {
 
     void EndDay()
     {
+        dayOver = true;
         day++;
         textDisplay.Clean();
         FadeInOut.SetActive(true);
@@ -294,6 +300,7 @@ public class TextManager : MonoBehaviour {
 
     public void BeginDay()
     {
+        dayOver = false;
         power = 2;
         foreach (Character pnj in CharacterGOs)
         {
