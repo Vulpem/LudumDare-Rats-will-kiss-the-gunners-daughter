@@ -143,7 +143,7 @@ public class Character : MonoBehaviour {
         {
             if (manager.talkingWith == type)
             {
-                transporter.Transport(Random.Range(0.7f, 2.0f), originalPos, scale * 1.5f, new Color(1.0f, 1.0f, 1.0f));
+                transporter.Transport(Random.Range(0.5f, 1.2f), originalPos, scale * 1.5f, new Color(1.0f, 1.0f, 1.0f));
             }
             else
             {
