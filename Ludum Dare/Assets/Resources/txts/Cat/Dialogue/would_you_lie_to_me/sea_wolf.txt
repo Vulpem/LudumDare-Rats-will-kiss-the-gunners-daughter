@@ -1,17 +1,17 @@
-<sea_wolf>
+ï»¿<sea_wolf>
 #Would you lie to me
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Em necessita?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+No puc, em toca netejar la coberta.
 
 #Violent answer
 Resposta violenta
 
 #Peaceful answer
-He comès certes accions deshonroses a la meva vida, mai la de mentir. El codi del mar és clar: qui menteix, visita abans d'hora al Déu Ofegat. No és el meu destí.
+He comÃ¨s certes accions deshonroses a la meva vida, mai la de mentir. El codi del mar Ã©s clar: qui menteix, visita abans d'hora al DÃ©u Ofegat. No Ã©s el meu destÃ­.
 
 #Briving answer
 Resposta soborn

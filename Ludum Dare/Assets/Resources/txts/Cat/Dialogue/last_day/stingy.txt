@@ -1,22 +1,22 @@
-<stingy>
+ï»¿<stingy>
 #Last day
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+M'ha cridat?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Tinc feina per fer.
 
 #Violent answer
 Ei, calma, calma! 
-El més fidel? No sabria que dir-li. I a hores d'ara, ja m'hauria de conèixer.
+El mÃ©s fidel? No sabria que dir-li. I a hores d'ara, ja m'hauria de conÃ¨ixer.
 
 #Peaceful answer
-El més fidel? No sabria que dir-li. I a hores d'ara, ja m'hauria de conèixer.
+El mÃ©s fidel? No sabria que dir-li. I a hores d'ara, ja m'hauria de conÃ¨ixer.
 
 #Briving answer
 Money Money, baby!! 
-El més fidel és també el més estúpid. I el més estúpid és en <comrad>.
+El mÃ©s fidel Ã©s tambÃ© el mÃ©s estÃºpid. I el mÃ©s estÃºpid Ã©s en <comrad>.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

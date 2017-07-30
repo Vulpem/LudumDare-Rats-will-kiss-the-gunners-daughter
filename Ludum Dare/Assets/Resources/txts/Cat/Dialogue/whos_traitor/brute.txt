@@ -1,21 +1,21 @@
-<brute>
+ï»¿<brute>
 #Who's the traitor
 
 #Greetings
-Hmpf.
+Monsignore?
 
 #Busy
-Grrrrr...
+No puc, haig de recollir les nances.
 
 #Violent answer
-Ai, ai, mareta, mareta si us plau no! Faré el que sigui! 
-L'amotinat és en <rioter>.
+Ai, ai, mareta, mareta si us plau no! FarÃ© el que sigui! 
+L'amotinat Ã©s en <rioter>.
 
 #Peaceful answer
-Cap problema, capi! És en <comrad>! Es fa el burro i després va dient barbaritats sobre tu! Mata'l!
+Cap problema, capi! Ã‰s en <comrad>! Es fa el burro i desprÃ©s va dient barbaritats sobre tu! Mata'l!
 
 #Briving answer
-Doncs si m'ho demana tan bé, capi, li diré. L'amotinat és en <stingy>.
+Doncs si m'ho demana tan bÃ©, capi, li dirÃ©. L'amotinat Ã©s en <stingy>.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

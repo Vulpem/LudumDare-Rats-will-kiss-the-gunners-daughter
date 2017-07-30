@@ -1,22 +1,22 @@
-<stingy>
+ï»¿<stingy>
 #Who to trust
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Em necessita?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+No puc, em toca netejar la coberta.
 
 #Violent answer
-Prou de violència! 
-Confiar? No recordo la resposta... Ah no, aquesta sí que la recordo! Jo només confio en el poderós Sr.Diners!
+Prou de violÃ¨ncia! 
+Confiar? No recordo la resposta... Ah no, aquesta sÃ­ que la recordo! Jo nomÃ©s confio en el poderÃ³s Sr.Diners!
 
 #Peaceful answer
-Confiar? No recordo la resposta... Ah no, aquesta sí que la recordo! Jo només confio en el poderós Sr.Diners!
+Confiar? No recordo la resposta... Ah no, aquesta sÃ­ que la recordo! Jo nomÃ©s confio en el poderÃ³s Sr.Diners!
 
 #Briving answer
-Si em pagues t'ho diré...
-El Sr.Diners! Sí! En ell confio i només en ell.
+Si em pagues t'ho dirÃ©...
+El Sr.Diners! SÃ­! En ell confio i nomÃ©s en ell.
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!
 

@@ -1,22 +1,22 @@
-<brute>
+Ôªø<brute>
 #Who lies
 
 #Greetings
-Hmpf.
+Em necessita?
 
 #Busy
-Grrrrr...
+No puc, em toca netejar la coberta.
 
 #Violent answer
 No, no! Pari, pari! Em fa maaaaaal! 
-En <rioter> el menteix, perÚ no em faci mal.
+En <rioter> el menteix, per√≤ no em faci mal.
 
 #Peaceful answer
-No est‡ clar? En <sea-wolf> Ès molt llest! No pensa que vostË sigui un capit‡ en condicions. 
+No est√† clar? En <sea-wolf> √©s molt llest! No pensa que vost√® sigui un capit√† en condicions. 
 
 #Briving answer
-Si m'ho paga aixÌ de bÈ, li explico tot sense falta de detalls! 
-En <sea-wolf> pretÈn quedar-se amb el poder d'aquÌ a 4 dies. Acabi amb ell si vol sobreviure.
+Si m'ho paga aix√≠ de b√©, li explico tot sense falta de detalls! 
+En <sea-wolf> pret√©n quedar-se amb el poder d'aqu√≠ a 4 dies. Acabi amb ell si vol sobreviure.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

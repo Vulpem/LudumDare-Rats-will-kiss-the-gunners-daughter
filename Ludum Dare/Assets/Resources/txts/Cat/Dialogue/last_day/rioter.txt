@@ -1,20 +1,20 @@
-<rioter>
+Ôªø<rioter>
 #Last day
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Em necessita?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+No puc, em toca netejar la coberta.
 
 #Violent answer
-Aarhg... No es posi aixÌ... El que mai el menteix Ès en <brute>.
+Aarhg... No es posi aix√≠... El que mai el menteix √©s en <brute>.
 
 #Peaceful answer
-Doncs em fa una mica de vergonya, perÚ aquest sÛc jo, senyor. Al capit‡ se l'ha de respectar com es mereix.
+Doncs em fa una mica de vergonya, per√≤ aquest s√≥c jo, senyor. Al capit√† se l'ha de respectar com es mereix.
 
 #Briving answer
-AixÚ em vindr‡ bÈ. El mÈs fidel sÛc jo, senyor. Si bÈ m'agraden els diners, no vol dir que menteixi quan no me'ls paguen.
+Aix√≤ em vindr√† b√©. El m√©s fidel s√≥c jo, senyor. Si b√© m'agraden els diners, no vol dir que menteixi quan no me'ls paguen.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

@@ -1,21 +1,21 @@
-<rioter>
+Ôªø<rioter>
 #Would you lie to me
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Monsignore?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+No puc, haig de recollir les nances.
 
 #Violent answer
 Aarhg! 
-Com vol que el menteixi, tractant-nos TAN bÈ?
+Com vol que el menteixi, tractant-nos TAN b√©?
 
 #Peaceful answer
-Jo? No! M'ofËn capit‡!
+Jo? No! M'of√®n capit√†!
 
 #Briving answer
-No senyor, no senyor! No se m'acudiria mentir a la m‡ que em dÛna de menjar.
+No senyor, no senyor! No se m'acudiria mentir a la m√† que em d√≥na de menjar.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

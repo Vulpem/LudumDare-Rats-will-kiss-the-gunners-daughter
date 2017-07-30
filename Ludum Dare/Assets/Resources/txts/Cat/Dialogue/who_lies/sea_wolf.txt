@@ -1,17 +1,17 @@
-<sea_wolf>
+﻿<sea_wolf>
 #Who lies
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Senyor?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Avui ja no podrà ser, capità.
 
 #Violent answer
 Resposta violenta
 
 #Peaceful answer
-No tothom compleix les bones pr�ctiques de la mar en aquest vaixell... i en <brute> no �s bon mariner.
+No tothom compleix les bones pràctiques de la mar en aquest vaixell... i en <brute> no és bon mariner.
 
 #Briving answer
 Resposta soborn

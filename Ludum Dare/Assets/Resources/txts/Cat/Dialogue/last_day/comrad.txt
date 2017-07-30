@@ -1,20 +1,20 @@
-<comrad>
+ï»¿<comrad>
 #Last day
 
 #Greetings
-Why...? What did I ever do wrong...?
+Monsignore?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+No puc, haig de recollir les nances.
 
 #Violent answer
-No em pegui més... No és gaire humil però... el més fidel sóc jo, i sempre ho seré.
+No em pegui mÃ©s... No Ã©s gaire humil perÃ²... el mÃ©s fidel sÃ³c jo, i sempre ho serÃ©.
 
 #Peaceful answer
-No és gaire humil però... el més fidel sóc jo, i sempre ho seré.
+No Ã©s gaire humil perÃ²... el mÃ©s fidel sÃ³c jo, i sempre ho serÃ©.
 
 #Briving answer
-No és gaire humil, i menys acceptant diners per respondre, però... el més fidel sóc jo, i sempre ho seré.
+No Ã©s gaire humil, i menys acceptant diners per respondre, perÃ²... el mÃ©s fidel sÃ³c jo, i sempre ho serÃ©.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

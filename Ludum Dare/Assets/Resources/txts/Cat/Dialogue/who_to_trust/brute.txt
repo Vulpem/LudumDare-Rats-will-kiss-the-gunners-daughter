@@ -1,22 +1,22 @@
-<brute>
+Ôªø<brute>
 #Who to trust
 
 #Greetings
-Hmpf.
+Capit√†?
 
 #Busy
-Grrrrr...
+Estic ocupat, senyor.
 
 #Violent answer
-D'acord li dirÈ, perÚ no em faci mal! 
-…s en <rioter>.
+D'acord li dir√©, per√≤ no em faci mal! 
+√âs en <rioter>.
 
 #Peaceful answer
-En qui mÈs confio jo Ès en qui em pugui protegir les esquenes... El <sea-wolf> Ès l'home mÈs fort.
+En qui m√©s confio jo √©s en qui em pugui protegir les esquenes... El <sea-wolf> √©s l'home m√©s fort.
 
 #Briving answer
-Que bÈ sonen les monedes! 
-AixÌ sÌ que Ès f‡cil fer negocis. En qui mÈs confio Ès en qui sigui capaÁ de protegir-me les esquenes. En <sea-wolf> Ès el mariner mÈs fort.
+Que b√© sonen les monedes! 
+Aix√≠ s√≠ que √©s f√†cil fer negocis. En qui m√©s confio √©s en qui sigui capa√ß de protegir-me les esquenes. En <sea-wolf> √©s el mariner m√©s fort.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

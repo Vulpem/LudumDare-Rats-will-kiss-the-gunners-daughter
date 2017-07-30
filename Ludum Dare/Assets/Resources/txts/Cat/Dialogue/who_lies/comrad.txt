@@ -1,21 +1,21 @@
-<comrad>
+Ôªø<comrad>
 #Who lies
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Capit√†?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Estic ocupat, senyor.
 
 #Violent answer
-VostË tambÈ?! No em pegui si us plau! En <brute> menteix sempre, almenys a mi... ser‡ aixÌ amb vostË?
+Vost√® tamb√©?! No em pegui si us plau! En <brute> menteix sempre, almenys a mi... ser√† aix√≠ amb vost√®?
 
 #Peaceful answer
-En <brute> sempre em ve de bones. I quan me'l crec, s'aprofita de mi. Estar‡ fent el mateix amb vostË?
+En <brute> sempre em ve de bones. I quan me'l crec, s'aprofita de mi. Estar√† fent el mateix amb vost√®?
 
 #Briving answer
-Que generÛs, capit‡! 
-En <brute> sempre em menteix... l'estar‡ mentint tambÈ a vostË?
+Que gener√≥s, capit√†! 
+En <brute> sempre em menteix... l'estar√† mentint tamb√© a vost√®?
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

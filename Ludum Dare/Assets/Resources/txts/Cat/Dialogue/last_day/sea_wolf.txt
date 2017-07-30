@@ -1,17 +1,17 @@
-<sea_wolf>
+﻿<sea_wolf>
 #Last day
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Capità?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Estic ocupat, senyor.
 
 #Violent answer
 Resposta violenta
 
 #Peaceful answer
-La fidelitat, com la tra�ci�, poden ser letals tant per qui la comet com qui la rep. Espero que no li passi res a en <comrad>.
+La fidelitat, com la traïció, poden ser letals tant per qui la comet com qui la rep. Espero que no li passi res a en <comrad>.
 
 #Briving answer
 Resposta soborn

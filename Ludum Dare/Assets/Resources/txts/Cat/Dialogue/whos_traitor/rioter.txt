@@ -1,21 +1,21 @@
-<rioter>
+Ôªø<rioter>
 #Who's the traitor
 
 #Greetings
-Oh, bones capit‡! Com est‡ la mar avui?
+Capit√†?
 
 #Busy
-Haig de seguir treballant, tinc feina per fer.
+Estic ocupat, senyor.
 
 #Violent answer
-Augh... d'acord, d'acord, t'ho dirÈ! 
-En <comrad> te la vol jugar... perÚ jo no t'he dit res!
+Augh... d'acord, d'acord, t'ho dir√©! 
+En <comrad> te la vol jugar... per√≤ jo no t'he dit res!
 
 #Peaceful answer
-No puc dir que n'estigui segur... perÚ m'apostaria alguna cosa a quÈ Ès en <sea_wolf>. Alguna cosa amaga.
+No puc dir que n'estigui segur... per√≤ m'apostaria alguna cosa a qu√© √©s en <sea_wolf>. Alguna cosa amaga.
 
 #Briving answer
-Aquest extra em vindr‡ bÈ aquest mÈs... No et refiÔs d'en <brute>, jo no li trauria l'ull de sobre si fos jo.
+Aquest extra em vindr√† b√© aquest m√©s... No et refi√Øs d'en <brute>, jo no li trauria l'ull de sobre si fos jo.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

@@ -1,21 +1,21 @@
-<brute>
+Ôªø<brute>
 #Last day
 
 #Greetings
-Oh... Ughhh... *plof*
+Senyor?
 
 #Busy
-Grrrrr...
+Avui ja no podr√† ser, capit√†.
 
 #Violent answer
-No, si us plau, res de violËncia, que tinc la pell sensible! 
-El mÈs fidel a vostË Ès en <comrad>.
+No, si us plau, res de viol√®ncia, que tinc la pell sensible! 
+El m√©s fidel a vost√® √©s en <comrad>.
 
 #Peaceful answer
-Si m'ho pregunta a mi, li dirÈ que el mÈs fidel Ès en <rioter>.
+Si m'ho pregunta a mi, li dir√© que el m√©s fidel √©s en <rioter>.
 
 #Briving answer
-El mÈs fidel del vaixell Ès en <rioter>. Qui ho diria, eh?
+El m√©s fidel del vaixell √©s en <rioter>. Qui ho diria, eh?
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

@@ -1,22 +1,22 @@
-<brute>
+ï»¿<brute>
 #Would you lie to me
 
 #Greetings
-Hmpf.
+M'ha cridat?
 
 #Busy
-Grrrrr...
+Tinc feina per fer.
 
 #Violent answer
-D'acord, d'acord, ja sé que ve ara. Millor ens ho estalviem i responc. 
+D'acord, d'acord, ja sÃ© que ve ara. Millor ens ho estalviem i responc. 
 Poder alguna mentida piadosa li he hagut de dir en algun moment, res personal, senyor... No em pegui!
 
 #Peaceful answer
-No, senyor, un servidor no menteix. Un servidor apallissa, roba, beu i enganya. Però mentir? No, mentir no menteix.
+No, senyor, un servidor no menteix. Un servidor apallissa, roba, beu i enganya. PerÃ² mentir? No, mentir no menteix.
 
 #Briving answer
 Xi-xing! 
-No, senyor, un servidor no menteix. Un servidor apallissa, roba, beu i enganya. Però mentir? No, mentir no menteix.
+No, senyor, un servidor no menteix. Un servidor apallissa, roba, beu i enganya. PerÃ² mentir? No, mentir no menteix.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

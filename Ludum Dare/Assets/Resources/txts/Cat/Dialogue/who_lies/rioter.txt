@@ -1,22 +1,22 @@
-<rioter>
+Ôªø<rioter>
 #Who lies
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+M'ha cridat?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Tinc feina per fer.
 
 #Violent answer
 Gggh... 
-En <comrad> el menteix, senyor. Es fa l'est˙pid. Queda avisat...
+En <comrad> el menteix, senyor. Es fa l'est√∫pid. Queda avisat...
 
 #Peaceful answer
-Doncs aquestes coses costa saber-les del cert. PerÚ en <stingy> mai ha sigut de fiar. L'est‡ mentint, senyor!
+Doncs aquestes coses costa saber-les del cert. Per√≤ en <stingy> mai ha sigut de fiar. L'est√† mentint, senyor!
 
 #Briving answer
 Les bones monedes! 
-Violent i esquerp, en <sea-wolf> vol ser el nou capit‡! Far‡ el que fagi falta per aconseguir-ho.
+Violent i esquerp, en <sea-wolf> vol ser el nou capit√†! Far√† el que fagi falta per aconseguir-ho.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

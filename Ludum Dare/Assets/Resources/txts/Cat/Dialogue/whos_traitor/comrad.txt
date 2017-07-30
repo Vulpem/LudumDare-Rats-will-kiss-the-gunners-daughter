@@ -1,20 +1,20 @@
-<comrad>
+Ôªø<comrad>
 #Who's the traitor
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Em necessita?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+No puc, em toca netejar la coberta.
 
 #Violent answer
-PerquË em pega senyor?!? Pari, si us plau, pari! En <rioter> diu coses lletges de vostË, monsignore!
+Perqu√® em pega senyor?!? Pari, si us plau, pari! En <rioter> diu coses lletges de vost√®, monsignore!
 
 #Peaceful answer
-No vull dir res dolent de ning˙, perÚ en <rioter> em mira malament. Ser‡ dolent?
+No vull dir res dolent de ning√∫, per√≤ en <rioter> em mira malament. Ser√† dolent?
 
 #Briving answer
-Ostres unes monedes per mi! Si li dic la veritat, en <rioter> em fa molt mala espina. Ser‡ bona persona?
+Ostres unes monedes per mi! Si li dic la veritat, en <rioter> em fa molt mala espina. Ser√† bona persona?
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

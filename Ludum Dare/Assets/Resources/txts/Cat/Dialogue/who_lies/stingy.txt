@@ -1,21 +1,21 @@
-<stingy>
+ï»¿<stingy>
 #Who lies
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Monsignore?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+No puc, haig de recollir les nances.
 
 #Violent answer
 Auch! 
-No ho sé, senyor, sota pressió no sóc bo recordant coses. No, gens bo, no.
+No ho sÃ©, senyor, sota pressiÃ³ no sÃ³c bo recordant coses. No, gens bo, no.
 
 #Peaceful answer
-No puc recordar la resposta, senyor. Estrany, molt estrany. Sí, estrany.
+No puc recordar la resposta, senyor. Estrany, molt estrany. SÃ­, estrany.
 
 #Briving answer
-Quin color que té! El color de la vida, donaria el que fos per tenir un vaixell ple de monedes on poder... que? ah, el que el menteix és en <rioter>.
+Quin color que tÃ©! El color de la vida, donaria el que fos per tenir un vaixell ple de monedes on poder... que? ah, el que el menteix Ã©s en <rioter>.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

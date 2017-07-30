@@ -1,17 +1,17 @@
-<sea_wolf>
+﻿<sea_wolf>
 #Who's the traitor
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+M'ha cridat?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Tinc feina per fer.
 
 #Violent answer
 Resposta violenta
 
 #Peaceful answer
-Des de l'embarcament et vaig dir que <rioter> no era de fiar! Pels d�us i els set mars, que t'ho vaig dir!
+Des de l'embarcament et vaig dir que <rioter> no era de fiar! Pels déus i els set mars, que t'ho vaig dir!
 
 #Briving answer
 Resposta soborn

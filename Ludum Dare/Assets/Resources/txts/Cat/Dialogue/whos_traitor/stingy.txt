@@ -1,22 +1,22 @@
-<stingy>
+Ôªø<stingy>
 #Who's the traitor
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Senyor?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Avui ja no podr√† ser, capit√†.
 
 #Violent answer
 Eh, eh, para! 
-No recordo qui pot ser, aixÌ amb la tensiÛ... no em ve la memÚria, no. No em ve a la memÚria.
+No recordo qui pot ser, aix√≠ amb la tensi√≥... no em ve la mem√≤ria, no. No em ve a la mem√≤ria.
 
 #Peaceful answer
-Que? Jo... no ho recordo. Estrany, perÚ no em ve a la memÚria. Potser... no, aixÌ de bones no em ve res, no. Res.
+Que? Jo... no ho recordo. Estrany, per√≤ no em ve a la mem√≤ria. Potser... no, aix√≠ de bones no em ve res, no. Res.
 
 #Briving answer
 Oh... com brilla la moneda, no creu? 
-Si m'ho demanes aixÌ de bÈ t'ho dic, home! All‡ on hi ha rebombori, sempre est‡ <rioter>, ves per on!
+Si m'ho demanes aix√≠ de b√© t'ho dic, home! All√† on hi ha rebombori, sempre est√† <rioter>, ves per on!
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

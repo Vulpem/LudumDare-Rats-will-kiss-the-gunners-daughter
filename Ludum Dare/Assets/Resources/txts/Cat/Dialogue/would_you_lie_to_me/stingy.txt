@@ -1,22 +1,22 @@
-<stingy>
+Ôªø<stingy>
 #Would you lie to me
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Capit√†?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Estic ocupat, senyor.
 
 #Violent answer
-Eh, eh, para! No ho recordo, aixÌ amb la tensiÛ... no em ve la memÚria, no. No em ve a la memÚria. 
-Que quin sentit tÈ? Eh...
+Eh, eh, para! No ho recordo, aix√≠ amb la tensi√≥... no em ve la mem√≤ria, no. No em ve a la mem√≤ria. 
+Que quin sentit t√©? Eh...
 
 #Peaceful answer
-Que? Jo... no ho recordo. Estrany, perÚ no em ve a la memÚria. Poder... no, aixÌ de bones no em ve res, no. Res.
- Que quin sentit tÈ? Eh...
+Que? Jo... no ho recordo. Estrany, per√≤ no em ve a la mem√≤ria. Poder... no, aix√≠ de bones no em ve res, no. Res.
+ Que quin sentit t√©? Eh...
 
 #Briving answer
-Noooo senyor! PerÚ bÈ, podria estar mentint-li ara mateix oi? Llavors li diria la veritat i li mentiria alhora. La mentida d'Shrodinger! SÌ, millor marxo. 
+Noooo senyor! Per√≤ b√©, podria estar mentint-li ara mateix oi? Llavors li diria la veritat i li mentiria alhora. La mentida d'Shrodinger! S√≠, millor marxo. 
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

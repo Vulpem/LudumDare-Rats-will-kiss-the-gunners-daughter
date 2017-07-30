@@ -1,22 +1,22 @@
-<rioter>
+Ôªø<rioter>
 #Who to trust
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Senyor?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+Avui ja no podr√† ser, capit√†.
 
 #Violent answer
 Aaugh! *Es queixa* 
-Cap dels mariners Ès de fiar. PerÚ en <stingy> Ès el meu company, al cap i a la fi.
+Cap dels mariners √©s de fiar. Per√≤ en <stingy> √©s el meu company, al cap i a la fi.
 
 #Peaceful answer
-Jo em fio de qui puc conËixer. Poder no Ès el mÈs sincer, perÚ en <stingy> Ès el meu company, al cap i a la fi.
+Jo em fio de qui puc con√®ixer. Poder no √©s el m√©s sincer, per√≤ en <stingy> √©s el meu company, al cap i a la fi.
 
 #Briving answer
 Paga extra, pels meus capritxos! 
-De <stingy> m'en refio, encara que no sigui el mÈs honest. Al cap i a la fi, Ès el meu company.
+De <stingy> m'en refio, encara que no sigui el m√©s honest. Al cap i a la fi, √©s el meu company.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

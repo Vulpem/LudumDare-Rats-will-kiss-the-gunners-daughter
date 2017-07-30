@@ -1,17 +1,17 @@
-<sea_wolf>
+Ôªø<sea_wolf>
 #Who to trust
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+Monsignore?
 
 #Busy
-Oh, I'm sorry. i've got work to do, I can't talk right now.
+No puc, haig de recollir les nances.
 
 #Violent answer
 Resposta violenta
 
 #Peaceful answer
-Del mar, si est‡ en calma. Del sol, si calenta les ones. De les estrelles, si guien el meu camÌ. Cap mariner Ès mereixedor de la meva confianÁa, en canvi.
+Del mar, si est√† en calma. Del sol, si calenta les ones. De les estrelles, si guien el meu cam√≠. Cap mariner √©s mereixedor de la meva confian√ßa, en canvi.
 
 #Briving answer
 Resposta soborn
