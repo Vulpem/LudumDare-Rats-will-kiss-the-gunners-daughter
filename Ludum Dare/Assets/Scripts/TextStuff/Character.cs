@@ -43,8 +43,8 @@ public class Character : MonoBehaviour {
 
     public TYPES type;
     //The name of the Character is the name of the GameObject
-    public bool active = true;
-    public bool activeLastFrame = false;
+    bool active = true;
+    bool updatePos = false;
     public bool doneForToday = false;
 
     public int angryCount = 0;
@@ -52,8 +52,6 @@ public class Character : MonoBehaviour {
     public static string gettingAngry;
     public static string gotAngry;
     public static string Angry;
-
-    Transporter transporter;
 
     [Header(" --- Speech bubbles --- ")]
     public Dictionary<TODAYS_QUESTION, SpeechBubble> bubbles;
@@ -64,6 +62,8 @@ public class Character : MonoBehaviour {
     public int characterN = -1;
 
     Vector3 scale;
+    Vector3 originalPos;
+    Transporter transporter;
 
     public Character()
     {
@@ -72,6 +72,7 @@ public class Character : MonoBehaviour {
 
     void Start()
     {
+        originalPos = transform.position;
         scale = gameObject.transform.localScale;
         transporter = GetComponent<Transporter>();
         if(transporter == null)
@@ -82,18 +83,39 @@ public class Character : MonoBehaviour {
 
     void Update()
     {
-        if (active != activeLastFrame)
+        if (updatePos)
         {
             if (active == false)
             {
-                transporter.Transport(1.0f, transform.position, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
+                if (manager.talkingWith != TYPES.none)
+                {
+                    Vector3 dif = originalPos - manager.characters[manager.talkingWith].gameObject.transform.position;
+                    Vector3 newPos = originalPos + dif / 7.0f;
+                    newPos.y -= 0.2f;
+                    transporter.Transport(1.0f, newPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
+                }
+                else
+                {
+                    transporter.Transport(1.0f, originalPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
+                }
             }
             else
             {
-                transporter.Transport(1.0f, transform.position, scale, new Color(1.0f, 1.0f, 1.0f));
+                transporter.Transport(1.0f, originalPos, scale, new Color(1.0f, 1.0f, 1.0f));
             }
-            activeLastFrame = active;
+            updatePos = false;
         }
+    }
+
+    public void SetActive(bool _active)
+    {
+        active = _active;
+        updatePos = true;
+    }
+
+    public bool IsActive()
+    {
+        return active;
     }
 
     public void ClickUp(int buttonN)

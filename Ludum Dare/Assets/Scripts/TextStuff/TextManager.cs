@@ -299,14 +299,12 @@ public class TextManager : MonoBehaviour {
         {
             if (pnj.angryCount < 2)
             {
-                pnj.active = true;
-                pnj.activeLastFrame = false;
+                pnj.SetActive(true);
                 pnj.doneForToday = false;
             }
             else
             {
-                pnj.active = false;
-                pnj.activeLastFrame = true;
+                pnj.SetActive(false);
                 pnj.doneForToday = true;
             }
         }
@@ -401,9 +399,9 @@ public class TextManager : MonoBehaviour {
 
        foreach(Character t in CharacterGOs)
         {
-            t.active = false;
+            t.SetActive(false);
         }
-        pnj.active = true;
+        pnj.SetActive(true);
         talkingWith = pnj.type;
         talkingWith_name = pnj.name;
 
@@ -432,7 +430,8 @@ public class TextManager : MonoBehaviour {
         textDisplay.Clean();
         foreach (Character pnj in CharacterGOs)
         {
-            if (pnj.doneForToday ? pnj.active = false : pnj.active = true);
+            if(pnj.doneForToday) { pnj.SetActive(false); }
+            else { pnj.SetActive(true); }
         }
     }
 
