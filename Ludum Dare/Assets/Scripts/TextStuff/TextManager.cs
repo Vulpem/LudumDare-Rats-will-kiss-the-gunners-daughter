@@ -10,7 +10,8 @@ public enum TODAYS_QUESTION
     WHO_LIES,
     WHO_TO_TRUST,
     WOULD_YOU_LIE_TO_ME,
-    LAST_DAY
+    LAST_DAY,
+    First_MESSAGE
 }
 
 public class TextManager : MonoBehaviour {
@@ -20,6 +21,8 @@ public class TextManager : MonoBehaviour {
     public SortedDictionary<TYPES, Character> characters;
 
     public string[] angrySeaWolf;
+    public Dictionary<TODAYS_QUESTION, string> questions;
+    public string noPower;
 
     [Header(" -- Character you're currently talking with -- ")]
     public TYPES talkingWith;
@@ -192,8 +195,8 @@ public class TextManager : MonoBehaviour {
         {
             angrySeaWolf = new string[3];
 
-            TextAsset[] wolf = Resources.LoadAll<TextAsset>("Dialogue");
-            string[] dirtyTexts = wolf[0].text.Split('\n');
+            TextAsset[] general = Resources.LoadAll<TextAsset>("Dialogue");
+            string[] dirtyTexts = general[0].text.Split('\n');
             List<string> phrases = new List<string>();
             foreach (string str in dirtyTexts)
             {
@@ -203,14 +206,27 @@ public class TextManager : MonoBehaviour {
                 }
             }
 
-            angrySeaWolf[0] = phrases[1];
-            angrySeaWolf[1] = phrases[2];
-            angrySeaWolf[2] = phrases[3];
+            questions = new Dictionary<TODAYS_QUESTION, string>();
+
+            questions.Add(TODAYS_QUESTION.First_MESSAGE, phrases[0]);
+
+            questions.Add(TODAYS_QUESTION.WHOS_TRAITOR, phrases[1]);
+            questions.Add(TODAYS_QUESTION.WHO_LIES, phrases[2]);
+            questions.Add(TODAYS_QUESTION.WHO_TO_TRUST, phrases[3]);
+            questions.Add(TODAYS_QUESTION.WOULD_YOU_LIE_TO_ME, phrases[4]);
+            questions.Add(TODAYS_QUESTION.LAST_DAY, phrases[5]);
+
+            noPower = phrases[6];
+
+            angrySeaWolf[0] = phrases[7];
+            angrySeaWolf[1] = phrases[8];
+            angrySeaWolf[2] = phrases[9];
         }
     }
 
     void EndDay()
     {
+        textDisplay.Clean();
         BeginDay();
     }
 
@@ -233,19 +249,14 @@ public class TextManager : MonoBehaviour {
                 pnj.doneForToday = true;
             }
         }
-        if(day >= 2 && question != TODAYS_QUESTION.LAST_DAY)
-        {
-            blockInteraction = true;
-            eventManager.LaunchEvent();
-        }
 
         if (day < 5)
         {
             int n = UnityEngine.Random.Range(0, 5);
-            while(questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
+            while (questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
             {
                 n++;
-                if(n >= (int)TODAYS_QUESTION.LAST_DAY) { n = 0; }
+                if (n >= (int)TODAYS_QUESTION.LAST_DAY) { n = 0; }
             }
             question = (TODAYS_QUESTION)n;
             questionsAsked.Add(question, true);
@@ -254,6 +265,23 @@ public class TextManager : MonoBehaviour {
         {
             question = TODAYS_QUESTION.LAST_DAY;
         }
+
+
+        if (day >= 2 && question != TODAYS_QUESTION.LAST_DAY)
+        {
+            blockInteraction = true;
+            eventManager.LaunchEvent();
+        }
+        else
+        {
+            EndedEvent();
+        }
+    }
+
+    public void EndedEvent()
+    {
+        blockInteraction = false;
+        CreateText("", questions[question]);
     }
 
     //Sets everything at start
@@ -334,17 +362,17 @@ public class TextManager : MonoBehaviour {
 
         if (pnj.doneForToday == false)
         {
-            CreateText(pnj, pnj.bubbles[question].text);
+            CreateText(pnj.name, pnj.bubbles[question].text);
         }
         else
         {
             if (pnj.angryCount < 2)
             {
-                CreateText(pnj, pnj.bubbles[question].busy);
+                CreateText(pnj.name, pnj.bubbles[question].busy);
             }
             else
             {
-                CreateText(pnj, angrySeaWolf[2]);
+                CreateText(pnj.name, angrySeaWolf[2]);
             }
         }
     }
@@ -354,7 +382,7 @@ public class TextManager : MonoBehaviour {
     {
         talkingWith = TYPES.none;
         talkingWith_name = "No one";
-        textDisplay.Clean();
+        CreateText("", questions[question]);
         foreach (Character pnj in CharacterGOs)
         {
             if (pnj.doneForToday ? pnj.active = false : pnj.active = true);
@@ -369,6 +397,11 @@ public class TextManager : MonoBehaviour {
             {
                 delayCounter = 0.0f;
                 actionMade = (PLAYER_ACTIONS)actionN;
+                if (actionMade != PLAYER_ACTIONS.PEACEFUL && power <= 0)
+                {
+                    StoppedTalking();
+                    CreateText("", noPower);
+                }
                 MakeAnswer();
             }
             else
@@ -385,29 +418,42 @@ public class TextManager : MonoBehaviour {
             Character pnj = characters[talkingWith];
             pnj.doneForToday = true;
 
+            if (actionMade != PLAYER_ACTIONS.PEACEFUL)
+            {
+                power--;
+            }
+
             if (pnj.type == TYPES.sea_wolf && actionMade != PLAYER_ACTIONS.PEACEFUL)
             {
                 switch (pnj.angryCount)
                 {
-                    case 0: CreateText(pnj, angrySeaWolf[0]); break;
-                    case 1: CreateText(pnj, angrySeaWolf[1]); break;
-                    default: CreateText(pnj, angrySeaWolf[2]); break;
+                    case 0: CreateText(pnj.name, angrySeaWolf[0]); break;
+                    case 1: CreateText(pnj.name, angrySeaWolf[1]); break;
+                    default: CreateText(pnj.name, angrySeaWolf[2]); break;
                 }
                 pnj.angryCount++;
                 
             }
             else
             {
-                CreateText(pnj, pnj.bubbles[question].answers[actionMade]);
+                CreateText(pnj.name, pnj.bubbles[question].answers[actionMade]);
             }
         }
     }
 
-    void CreateText(Character characterTalking, string text)
+    void CreateText(string characterTalking, string text)
     {
-        string tmp = characterTalking.name;
-        tmp += " : ";
-        tmp += text;
+        string tmp;
+        if (characterTalking.Length > 1)
+        {
+            tmp = characterTalking;
+            tmp += " : ";
+            tmp += text;
+        }
+        else
+        {
+            tmp = text;
+        }
 
         tmp = tmp.Replace("<rioter>", characters[TYPES.rioter].name);
         tmp = tmp.Replace("<brute>", characters[TYPES.brute].name);

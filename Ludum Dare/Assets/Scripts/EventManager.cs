@@ -134,6 +134,6 @@ public class EventManager : MonoBehaviour {
         finishEventButton.SetActive(false);
         eventResponse.gameObject.SetActive(false);
         panel.SetActive(false);
-        textManager.blockInteraction = false;
+        textManager.EndedEvent();
     }
 }
