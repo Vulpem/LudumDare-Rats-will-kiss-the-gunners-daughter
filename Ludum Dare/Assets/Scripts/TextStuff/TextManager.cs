@@ -305,14 +305,14 @@ public class TextManager : MonoBehaviour {
         }
     }
 
-    public void MakeAction(PLAYER_ACTIONS actionN)
+    public void MakeAction(int actionN)
     {
         if (delayCounter > clickDelay && blockInteraction == false)
         {
             if (characters[talkingWith].doneForToday == false)
             {
                 delayCounter = 0.0f;
-                actionMade = actionN;
+                actionMade = (PLAYER_ACTIONS)actionN;
                 MakeAnswer();
             }
             else
