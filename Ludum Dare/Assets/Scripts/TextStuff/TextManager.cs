@@ -28,7 +28,7 @@ public class TextManager : MonoBehaviour {
     public int day = 0;
 
     public MakeTextAppear textDisplay;
-    public Actions[] actions;
+    public Button[] actions;
 
     public EventManager eventManager;
 
@@ -96,14 +96,14 @@ public class TextManager : MonoBehaviour {
     {
         if (talkingWith == TYPES.none || textDisplay.working == true || characters[talkingWith].doneForToday == true)
         {
-            foreach (Actions c in actions)
+            foreach (Button c in actions)
             {
                 c.gameObject.SetActive(false);
             }
         }
         else
         {
-            foreach (Actions c in actions)
+            foreach (Button c in actions)
             {
                 c.gameObject.SetActive(true);
             }
@@ -211,12 +211,6 @@ public class TextManager : MonoBehaviour {
             pnj.characterN = n;
             n++;
         }
-        n = 0;
-        foreach (Actions act in actions)
-        {
-            act.manager = this;
-            n++;
-        }
     }
 
     //Manages player input
@@ -305,14 +299,14 @@ public class TextManager : MonoBehaviour {
         }
     }
 
-    public void MakeAction(PLAYER_ACTIONS actionN)
+    public void MakeAction(int actionN)
     {
         if (delayCounter > clickDelay && blockInteraction == false)
         {
             if (characters[talkingWith].doneForToday == false)
             {
                 delayCounter = 0.0f;
-                actionMade = actionN;
+                actionMade = (PLAYER_ACTIONS)actionN;
                 MakeAnswer();
             }
             else
