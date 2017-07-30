@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
     public void LoadGame(int language)
     {
+        VariableStorage.Gen();
         if (VariableStorage.ints.ContainsKey("lang"))
         {
             VariableStorage.ints["lang"] = language;
