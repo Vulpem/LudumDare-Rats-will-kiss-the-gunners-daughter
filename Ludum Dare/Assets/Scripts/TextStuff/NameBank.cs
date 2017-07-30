@@ -13,13 +13,11 @@ public class Name
 
 public class NameBank : MonoBehaviour {
 
-    TextAsset[] textBank;
-
     public List<Name> names;
 
     void Awake()
     {
-        textBank = Resources.LoadAll<TextAsset>("NameBank");
+        TextAsset[] textBank = Resources.LoadAll<TextAsset>("NameBank");
 
         string bank = textBank[0].text;
         string[] tmp = bank.Split('\n');

@@ -10,7 +10,7 @@ public class MakeTextAppear : MonoBehaviour {
     public float delayWithinLetters = 0.02f;
     public bool working = false;
 
-    Text UIText;
+    public Text UIText;
 
 	// Use this for initialization
 	void Start () {

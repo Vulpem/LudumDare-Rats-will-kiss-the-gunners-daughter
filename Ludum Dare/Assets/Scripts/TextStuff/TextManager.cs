@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public enum TODAYS_QUESTION
 {
@@ -77,7 +78,7 @@ public class TextManager : MonoBehaviour {
         HideActions();
 
         bool endDay = true;
-        if(textDisplay.text.Length > 3 || textDisplay.working == true )
+        if(textDisplay.UIText.text.Length > 3 || textDisplay.working == true )
         {
             endDay = false;
         }
@@ -159,7 +160,7 @@ public class TextManager : MonoBehaviour {
         power = 2;
         foreach (Character pnj in CharacterGOs)
         {
-            if(pnj.doneForToday ? pnj.active = false : pnj.active = true);
+            pnj.active = true;
             pnj.activeLastFrame = true;
             pnj.doneForToday = false;
         }
@@ -172,7 +173,13 @@ public class TextManager : MonoBehaviour {
         if (day < 5)
         {
             int n = UnityEngine.Random.Range(0, 5);
-
+            while(questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
+            {
+                n++;
+                if(n >= (int)TODAYS_QUESTION.LAST_DAY) { n = 0; }
+            }
+            question = (TODAYS_QUESTION)n;
+            questionsAsked.Add(question, true);
         }
         else
         {
