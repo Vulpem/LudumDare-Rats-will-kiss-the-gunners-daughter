@@ -13,6 +13,7 @@ public class Name
 
 public class NameBank : MonoBehaviour {
 
+    [HideInInspector]
     public List<Name> names;
 
     void Awake()

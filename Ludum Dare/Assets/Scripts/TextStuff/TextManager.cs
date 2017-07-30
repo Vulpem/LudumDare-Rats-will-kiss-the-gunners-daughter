@@ -16,30 +16,13 @@ public enum TODAYS_QUESTION
 
 public class TextManager : MonoBehaviour {
 
-    [Header(" -- List of characters -- ")]
-    public Character[] CharacterGOs;
-    public SortedDictionary<TYPES, Character> characters;
-
-    public string[] angrySeaWolf;
-    public Dictionary<TODAYS_QUESTION, string> questions;
-    public string noPower;
-
-    [Header(" -- Character you're currently talking with -- ")]
-    public TYPES talkingWith;
-    public string talkingWith_name;
-
-    [Header("More stuff")]
-    public TODAYS_QUESTION question;
-    public int day = 0;
-
-    public MakeTextAppear textDisplay;
-    public Button[] actions;
+    Dictionary<TODAYS_QUESTION, string> questions;
+    Dictionary<TODAYS_QUESTION, bool> questionsAsked;
+    string[] angrySeaWolf;
+    string noPower;
+    public int power = 2;
 
     bool dayOver = false;
-
-    public EventManager eventManager;
-
-    public int power = 2;
 
     float clickDelay = 0.25f;
     float delayCounter = 0.0f;
@@ -47,13 +30,27 @@ public class TextManager : MonoBehaviour {
     float advanceTimer = -0.1f;
     bool wantToAdvance = false;
 
-    public bool blockInteraction = false;
+    PLAYER_ACTIONS actionMade = 0;
 
+    [Header("Things that need to be set up Manually")]
+
+    [Tooltip("List of characters")]
+    public Character[] CharacterGOs;
+    [HideInInspector]
+    public SortedDictionary<TYPES, Character> characters;
+
+    public MakeTextAppear textDisplay;
+    public Button[] actions;
+
+    public EventManager eventManager;
     public GameObject FadeInOut;
 
-    Dictionary<TODAYS_QUESTION, bool> questionsAsked;
-
-    PLAYER_ACTIONS actionMade = 0;
+    [Header("Debug Info")]
+    public TYPES talkingWith;
+    public string talkingWith_name;
+    public TODAYS_QUESTION question;
+    public int day = 0;
+    public bool blockInteraction = false;
 
     // Use this for initialization
     void Start () {
