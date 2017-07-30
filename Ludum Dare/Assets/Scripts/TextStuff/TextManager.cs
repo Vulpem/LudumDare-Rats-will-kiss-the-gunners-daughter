@@ -47,6 +47,8 @@ public class TextManager : MonoBehaviour {
 
     public bool blockInteraction = false;
 
+    public GameObject FadeInOut;
+
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
 
     PLAYER_ACTIONS actionMade = 0;
@@ -68,13 +70,46 @@ public class TextManager : MonoBehaviour {
         SecurityCheck();
 
         GenerateCharacters();
-
+        blockInteraction = true;
         BeginDay();
+        question = TODAYS_QUESTION.First_MESSAGE;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(question == TODAYS_QUESTION.First_MESSAGE)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (textDisplay.working)
+                {
+                    textDisplay.Skip();
+                }
+                else
+                {
+                    if (day < 5)
+                    {
+                        int n = UnityEngine.Random.Range(0, 5);
+                        while (questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
+                        {
+                            n++;
+                            if (n >= (int)TODAYS_QUESTION.LAST_DAY) { n = 0; }
+                        }
+                        question = (TODAYS_QUESTION)n;
+                        questionsAsked.Add(question, true);
+                    }
+                    else
+                    {
+                        question = TODAYS_QUESTION.LAST_DAY;
+                    }
+                    blockInteraction = false;
+                    textDisplay.Clean();
+                    delayCounter = 0.0f;
+                }
+            }
+        }
+
         if (blockInteraction == false)
         {
             delayCounter += Time.deltaTime;
@@ -85,6 +120,7 @@ public class TextManager : MonoBehaviour {
                 CreateText("", questions[question]);
             }
         }
+
         HideActions();
 
         bool endDay = true;
@@ -99,6 +135,25 @@ public class TextManager : MonoBehaviour {
         if(endDay)
         {
             EndDay();
+        }
+    }
+
+    void ChooseTodayQuestion()
+    {
+        if (day < 5)
+        {
+            int n = UnityEngine.Random.Range(0, 5);
+            while (questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
+            {
+                n++;
+                if (n >= (int)TODAYS_QUESTION.LAST_DAY) { n = 0; }
+            }
+            question = (TODAYS_QUESTION)n;
+            questionsAsked.Add(question, true);
+        }
+        else
+        {
+            question = TODAYS_QUESTION.LAST_DAY;
         }
     }
 
@@ -232,6 +287,7 @@ public class TextManager : MonoBehaviour {
     void EndDay()
     {
         textDisplay.Clean();
+        FadeInOut.SetActive(true);
         BeginDay();
     }
 
@@ -255,22 +311,7 @@ public class TextManager : MonoBehaviour {
             }
         }
 
-        if (day < 5)
-        {
-            int n = UnityEngine.Random.Range(0, 5);
-            while (questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
-            {
-                n++;
-                if (n >= (int)TODAYS_QUESTION.LAST_DAY) { n = 0; }
-            }
-            question = (TODAYS_QUESTION)n;
-            questionsAsked.Add(question, true);
-        }
-        else
-        {
-            question = TODAYS_QUESTION.LAST_DAY;
-        }
-
+        ChooseTodayQuestion();
 
         if (day >= 2 && question != TODAYS_QUESTION.LAST_DAY)
         {
@@ -279,6 +320,7 @@ public class TextManager : MonoBehaviour {
         }
         else
         {
+            CreateText("", questions[TODAYS_QUESTION.First_MESSAGE]);
             EndedEvent();
         }
     }
