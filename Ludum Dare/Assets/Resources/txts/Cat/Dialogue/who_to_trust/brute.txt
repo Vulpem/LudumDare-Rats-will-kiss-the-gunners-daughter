@@ -8,13 +8,15 @@ Hmpf.
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+D'acord li diré, però no em faci mal! 
+És en <rioter>.
 
 #Peaceful answer
-Pfff...
+En qui més confio jo és en qui em pugui protegir les esquenes... El <sea-wolf> és l'home més fort.
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Que bé sonen les monedes! 
+Així sí que és fàcil fer negocis. En qui més confio és en qui sigui capaç de protegir-me les esquenes. En <sea-wolf> és el mariner més fort.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

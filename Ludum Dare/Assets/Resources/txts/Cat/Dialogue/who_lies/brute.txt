@@ -8,13 +8,15 @@ Hmpf.
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+No, no! Pari, pari! Em fa maaaaaal! 
+En <rioter> el menteix, però no em faci mal.
 
 #Peaceful answer
-Pfff...
+No està clar? En <sea-wolf> és molt llest! No pensa que vostè sigui un capità en condicions. 
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Si m'ho paga així de bé, li explico tot sense falta de detalls! 
+En <sea-wolf> pretén quedar-se amb el poder d'aquí a 4 dies. Acabi amb ell si vol sobreviure.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

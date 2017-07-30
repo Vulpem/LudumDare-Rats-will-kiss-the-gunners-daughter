@@ -8,13 +8,14 @@ Oh... Ughhh... *plof*
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+No, si us plau, res de violència, que tinc la pell sensible! 
+El més fidel a vostè és en <comrad>.
 
 #Peaceful answer
-Pfff...
+Si m'ho pregunta a mi, li diré que el més fidel és en <rioter>.
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+El més fidel del vaixell és en <rioter>. Qui ho diria, eh?
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

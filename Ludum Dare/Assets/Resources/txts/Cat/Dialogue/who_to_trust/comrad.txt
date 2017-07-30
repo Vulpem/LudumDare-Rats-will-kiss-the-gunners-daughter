@@ -8,13 +8,15 @@ Oh, hi captain! Nice seeing you around here. What's on your mind today?
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+Perquè em pega? Li diré... 
+Poder ell no ho sap... però en l'únic en qui confio és en en <sea-wolf>. És l'únic que no s'aprofita de mi. Farà el mateix amb vostè?
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+Poder ell no ho sap... però en l'únic en qui confio és en en <sea-wolf>. És l'únic que no s'aprofita de mi. Serà així amb vostè també?
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+Monedes! 
+Poder ell no ho sap... però en l'únic en qui confio és en en <sea-wolf>. És l'únic que no s'aprofita de mi. Serà així amb vostè també?
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

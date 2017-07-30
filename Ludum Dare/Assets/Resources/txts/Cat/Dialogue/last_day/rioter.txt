@@ -8,13 +8,13 @@ Oh, hi captain! Nice seeing you around here. What's on your mind today?
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+Aarhg... No es posi així... El que mai el menteix és en <brute>.
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+Doncs em fa una mica de vergonya, però aquest sóc jo, senyor. Al capità se l'ha de respectar com es mereix.
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+Això em vindrà bé. El més fidel sóc jo, senyor. Si bé m'agraden els diners, no vol dir que menteixi quan no me'ls paguen.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

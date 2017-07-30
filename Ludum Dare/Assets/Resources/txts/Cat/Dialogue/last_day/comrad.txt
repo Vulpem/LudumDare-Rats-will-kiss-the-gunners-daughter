@@ -8,13 +8,13 @@ Why...? What did I ever do wrong...?
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+No em pegui més... No és gaire humil però... el més fidel sóc jo, i sempre ho seré.
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+No és gaire humil però... el més fidel sóc jo, i sempre ho seré.
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+No és gaire humil, i menys acceptant diners per respondre, però... el més fidel sóc jo, i sempre ho seré.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

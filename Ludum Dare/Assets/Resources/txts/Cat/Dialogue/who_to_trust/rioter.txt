@@ -8,13 +8,15 @@ Oh, hi captain! Nice seeing you around here. What's on your mind today?
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+Aaugh! *Es queixa* 
+Cap dels mariners és de fiar. Però en <stingy> és el meu company, al cap i a la fi.
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+Jo em fio de qui puc conèixer. Poder no és el més sincer, però en <stingy> és el meu company, al cap i a la fi.
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+Paga extra, pels meus capritxos! 
+De <stingy> m'en refio, encara que no sigui el més honest. Al cap i a la fi, és el meu company.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

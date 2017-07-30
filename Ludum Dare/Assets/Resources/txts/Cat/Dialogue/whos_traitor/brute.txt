@@ -8,13 +8,14 @@ Hmpf.
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+Ai, ai, mareta, mareta si us plau no! Faré el que sigui! 
+L'amotinat és en <rioter>.
 
 #Peaceful answer
-Pfff...
+Cap problema, capi! És en <comrad>! Es fa el burro i després va dient barbaritats sobre tu! Mata'l!
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Doncs si m'ho demana tan bé, capi, li diré. L'amotinat és en <stingy>.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

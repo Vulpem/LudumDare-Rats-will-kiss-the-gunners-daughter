@@ -8,13 +8,15 @@ Hmpf.
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+D'acord, d'acord, ja sé que ve ara. Millor ens ho estalviem i responc. 
+Poder alguna mentida piadosa li he hagut de dir en algun moment, res personal, senyor... No em pegui!
 
 #Peaceful answer
-Pfff...
+No, senyor, un servidor no menteix. Un servidor apallissa, roba, beu i enganya. Però mentir? No, mentir no menteix.
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Xi-xing! 
+No, senyor, un servidor no menteix. Un servidor apallissa, roba, beu i enganya. Però mentir? No, mentir no menteix.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

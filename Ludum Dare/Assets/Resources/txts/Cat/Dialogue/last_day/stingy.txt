@@ -8,13 +8,15 @@ Oh, hi captain! Nice seeing you around here. What's on your mind today?
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+Ei, calma, calma! 
+El més fidel? No sabria que dir-li. I a hores d'ara, ja m'hauria de conèixer.
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+El més fidel? No sabria que dir-li. I a hores d'ara, ja m'hauria de conèixer.
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+Money Money, baby!! 
+El més fidel és també el més estúpid. I el més estúpid és en <comrad>.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!
