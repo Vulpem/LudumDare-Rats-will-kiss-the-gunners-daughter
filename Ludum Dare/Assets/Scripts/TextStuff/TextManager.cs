@@ -161,7 +161,7 @@ public class TextManager : MonoBehaviour {
         foreach (Character pnj in CharacterGOs)
         {
             pnj.active = true;
-            pnj.activeLastFrame = true;
+            pnj.activeLastFrame = false;
             pnj.doneForToday = false;
         }
         if(day >= 2 && question != TODAYS_QUESTION.LAST_DAY)
