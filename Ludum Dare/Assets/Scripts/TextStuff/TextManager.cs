@@ -19,6 +19,8 @@ public class TextManager : MonoBehaviour {
     public Character[] CharacterGOs;
     public SortedDictionary<TYPES, Character> characters;
 
+    public string[] angrySeaWolf;
+
     [Header(" -- Character you're currently talking with -- ")]
     public TYPES talkingWith;
     public string talkingWith_name;
@@ -186,8 +188,25 @@ public class TextManager : MonoBehaviour {
             }
             n++;
         }
-        
 
+        {
+            angrySeaWolf = new string[3];
+
+            TextAsset[] wolf = Resources.LoadAll<TextAsset>("Dialogue");
+            string[] dirtyTexts = wolf[0].text.Split('\n');
+            List<string> phrases = new List<string>();
+            foreach (string str in dirtyTexts)
+            {
+                if (str[0] != '#' && str.Length > 2)
+                {
+                    phrases.Add(str.Substring(0, str.Length - 1));
+                }
+            }
+
+            angrySeaWolf[0] = phrases[1];
+            angrySeaWolf[1] = phrases[2];
+            angrySeaWolf[2] = phrases[3];
+        }
     }
 
     void EndDay()
@@ -201,9 +220,18 @@ public class TextManager : MonoBehaviour {
         power = 2;
         foreach (Character pnj in CharacterGOs)
         {
-            pnj.active = true;
-            pnj.activeLastFrame = false;
-            pnj.doneForToday = false;
+            if (pnj.angryCount < 2)
+            {
+                pnj.active = true;
+                pnj.activeLastFrame = false;
+                pnj.doneForToday = false;
+            }
+            else
+            {
+                pnj.active = false;
+                pnj.activeLastFrame = true;
+                pnj.doneForToday = true;
+            }
         }
         if(day >= 2 && question != TODAYS_QUESTION.LAST_DAY)
         {
@@ -310,7 +338,14 @@ public class TextManager : MonoBehaviour {
         }
         else
         {
-            CreateText(pnj, pnj.bubbles[question].busy);
+            if (pnj.angryCount < 2)
+            {
+                CreateText(pnj, pnj.bubbles[question].busy);
+            }
+            else
+            {
+                CreateText(pnj, angrySeaWolf[2]);
+            }
         }
     }
 
@@ -352,8 +387,14 @@ public class TextManager : MonoBehaviour {
 
             if (pnj.type == TYPES.sea_wolf && actionMade != PLAYER_ACTIONS.PEACEFUL)
             {
+                switch (pnj.angryCount)
+                {
+                    case 0: CreateText(pnj, angrySeaWolf[0]); break;
+                    case 1: CreateText(pnj, angrySeaWolf[1]); break;
+                    default: CreateText(pnj, angrySeaWolf[2]); break;
+                }
                 pnj.angryCount++;
-                CreateText(pnj, pnj.bubbles[question].answers[actionMade]);
+                
             }
             else
             {

@@ -1,0 +1,23 @@
+<sea_wolf>
+#Angry sea wolf answers
+
+#First time
+Do you think this tricks of yours will work on me? Hmpf! Don't you dare try that again, or i will be forced to leave.
+
+#Second time
+That's it! I don't have to take this anymore. Next stop we make, i'm leaving. I don't have to take orders from some captain wannabe.
+
+#Not talking anymore
+...
+
+
+
+#Write theese instead of an actual name to reffer to someone. Be careful with ortography!
+
+#<rioter>
+#<brute>
+#<sea_wolf>
+#<stingy>
+#<comrad>
+
+#Empty lines or those starting with "#" will be ignored

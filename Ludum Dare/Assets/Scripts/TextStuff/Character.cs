@@ -47,7 +47,6 @@ public class Character : MonoBehaviour {
     public bool activeLastFrame = false;
     public bool doneForToday = false;
 
-    public bool angry = false;
     public int angryCount = 0;
 
     public static string gettingAngry;
