@@ -13,7 +13,7 @@ public class MakeTextAppear : MonoBehaviour {
     public Text UIText;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         UIText = GetComponent<Text>();
         working = false;
         UIText.text = "";
