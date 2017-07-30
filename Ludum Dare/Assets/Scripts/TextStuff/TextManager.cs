@@ -47,6 +47,8 @@ public class TextManager : MonoBehaviour {
 
     public bool blockInteraction = false;
 
+    public GameObject FadeInOut;
+
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
 
     PLAYER_ACTIONS actionMade = 0;
@@ -285,6 +287,7 @@ public class TextManager : MonoBehaviour {
     void EndDay()
     {
         textDisplay.Clean();
+        FadeInOut.SetActive(true);
         BeginDay();
     }
 
