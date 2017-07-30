@@ -4,6 +4,13 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
+enum LANGUAGE
+{
+    ENGLISH = 0,
+    SPANISH = 1,
+    CATALAN = 2
+}
+
 public enum TODAYS_QUESTION
 {
     WHOS_TRAITOR,
@@ -61,9 +68,11 @@ public class TextManager : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        if (txtRoute.Length < 2)
+        switch (VariableStorage.ints["lang"])
         {
-            txtRoute = "txts/En/";
+            case (int)(LANGUAGE.SPANISH): txtRoute = "txts/Sp/"; break;
+            case (int)(LANGUAGE.CATALAN): txtRoute = "txts/Cat/"; break;
+            default: txtRoute = "txts/En/"; break;
         }
     }
 

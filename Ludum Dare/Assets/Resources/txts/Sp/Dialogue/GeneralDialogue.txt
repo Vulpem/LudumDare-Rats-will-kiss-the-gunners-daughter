@@ -1,7 +1,7 @@
 #Questions
 
 #First message
-You've overheard a rumor that a mutiny is brewing on your boat. You'd better find who's the culprit of this treachery, or you'll be walking the plank. You have 5 days before reaching the next port, where the treason will occur.
+- En castellano -You've overheard a rumor that a mutiny is brewing on your boat. You'd better find who's the culprit of this treachery, or you'll be walking the plank. You have 5 days before reaching the next port, where the treason will occur.
 
 #Who's the traitor
 Today might be a good day to take a more direct approach. You let your crew in your cabinet, and ask, one by one: "Can you tell me who's the traitor in this boat?".
