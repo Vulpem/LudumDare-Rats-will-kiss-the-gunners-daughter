@@ -22,6 +22,7 @@ public class EventManager : MonoBehaviour {
 
     public GameObject finishEventButton;
     public GameObject panel;
+    public GameObject background;
 
     public TextManager textManager;
 
@@ -55,6 +56,7 @@ public class EventManager : MonoBehaviour {
 
     public void LaunchEvent()
     {
+        background.SetActive(true);
         //Generating random content
         eventIndex = ChooseNewEvent();
         GenerateAnswerOrders();
@@ -133,6 +135,7 @@ public class EventManager : MonoBehaviour {
     {
         finishEventButton.SetActive(false);
         eventResponse.gameObject.SetActive(false);
+        background.SetActive(false);
         panel.SetActive(false);
         textManager.EndedEvent();
     }
