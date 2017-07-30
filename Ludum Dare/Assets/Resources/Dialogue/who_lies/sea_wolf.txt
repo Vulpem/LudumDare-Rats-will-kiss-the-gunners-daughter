@@ -1,0 +1,28 @@
+<sea_wolf>
+#Who lies
+
+#Greetings
+Oh, hi captain! Nice seeing you around here. What's on your mind today?
+
+#Busy
+Oh, I'm sorry. i've got work to do, I can't talk right now.
+
+#Violent answer
+Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+
+#Peaceful answer
+Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+
+#Briving answer
+Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+
+
+#Write theese instead of an actual name to reffer to someone. Be careful with ortography!
+
+#<rioter>
+#<brute>
+#<sea_wolf>
+#<stingy>
+#<comrad>
+
+#Empty lines or those starting with "#" will be ignored
