@@ -291,7 +291,7 @@ public class TextManager : MonoBehaviour {
                 if (phrases.Count > 6)
                 {
                     string lang = LanguageToString();
-                    Debug.LogError("One of the txts has more phrases than it should!\nText written in " + lang + "\n" + dirtyTexts[0] + dirtyTexts[1] + dirtyTexts[2]);
+                    Debug.LogError("One of the txts has more phrases than it should! Written in " + lang + "\n" + dirtyTexts[0] + dirtyTexts[1] + dirtyTexts[2]);
                 }
             }
             n++;
