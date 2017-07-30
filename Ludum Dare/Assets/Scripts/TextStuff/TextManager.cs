@@ -116,7 +116,7 @@ public class TextManager : MonoBehaviour {
             delayCounter += Time.deltaTime;
             ManageInputAskCrew();
 
-            if(textDisplay.UIText.text.Length < 2 && textDisplay.working == false)
+            if(textDisplay.UIText.text.Length < 2 && textDisplay.working == false && dayOver == false)
             {
                 CreateText("", questions[question]);
             }

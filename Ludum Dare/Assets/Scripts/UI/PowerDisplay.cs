@@ -11,7 +11,7 @@ public class PowerDisplay : MonoBehaviour {
 	void Start ()
     {
         lastPower = textManager.power;
-        UpdateDisplay();
+        UpdateDisplay(true);
 	}
 	
 	// Update is called once per frame
@@ -24,17 +24,24 @@ public class PowerDisplay : MonoBehaviour {
         }
 	}
 
-    void UpdateDisplay()
+    void UpdateDisplay(bool instantDisappear = false)
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
-            if (i < lastPower)
+            if (i < textManager.power)
             {
-                gameObject.transform.GetChild(i).gameObject.SetActive(true);
+                gameObject.transform.GetChild(i).gameObject.GetComponent<PowerCoin>().Activate();
             }
             else
             {
-                gameObject.transform.GetChild(i).gameObject.SetActive(false);
+                if (instantDisappear == false)
+                {
+                    gameObject.transform.GetChild(i).gameObject.GetComponent<PowerCoin>().Consume();
+                }
+                else
+                {
+                    gameObject.transform.GetChild(i).gameObject.SetActive(false);
+                }
             }
         }
     }
