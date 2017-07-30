@@ -15,7 +15,7 @@ public class CardsManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        cards = Resources.LoadAll<TextAsset>(cardsPath);
+        cards = Resources.LoadAll<TextAsset>(textManager.txtRoute + cardsPath);
 	}
 	
 	// Update is called once per frame

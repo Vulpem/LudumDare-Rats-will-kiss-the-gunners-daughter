@@ -34,14 +34,14 @@ public class EventManager : MonoBehaviour {
         launchedEvents = new List<int>();
         answersOrder = new int[3];
 
-        events = Resources.LoadAll<TextAsset>(eventsPath + "/EventExpl");
-        answers[0] = Resources.LoadAll<TextAsset>(eventsPath + "/PositiveAsw");
-        answers[1] = Resources.LoadAll<TextAsset>(eventsPath + "/NegativeAsw");
-        answers[2] = Resources.LoadAll<TextAsset>(eventsPath + "/NeutralAsw");
+        events = Resources.LoadAll<TextAsset>(textManager.txtRoute + eventsPath + "/EventExpl");
+        answers[0] = Resources.LoadAll<TextAsset>(textManager.txtRoute + eventsPath + "/PositiveAsw");
+        answers[1] = Resources.LoadAll<TextAsset>(textManager.txtRoute + eventsPath + "/NegativeAsw");
+        answers[2] = Resources.LoadAll<TextAsset>(textManager.txtRoute + eventsPath + "/NeutralAsw");
 
-        responses[0] = Resources.LoadAll<TextAsset>(eventsPath + "/PositiveResp");
-        responses[1] = Resources.LoadAll<TextAsset>(eventsPath + "/NegativeResp");
-        responses[2] = Resources.LoadAll<TextAsset>(eventsPath + "/NeutralResp");
+        responses[0] = Resources.LoadAll<TextAsset>(textManager.txtRoute + eventsPath + "/PositiveResp");
+        responses[1] = Resources.LoadAll<TextAsset>(textManager.txtRoute + eventsPath + "/NegativeResp");
+        responses[2] = Resources.LoadAll<TextAsset>(textManager.txtRoute + eventsPath + "/NeutralResp");
 
       //  LaunchEvent();
 

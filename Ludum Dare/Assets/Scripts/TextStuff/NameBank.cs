@@ -15,10 +15,11 @@ public class NameBank : MonoBehaviour {
 
     [HideInInspector]
     public List<Name> names;
+    public TextManager textManager;
 
     void Awake()
     {
-        TextAsset[] textBank = Resources.LoadAll<TextAsset>("NameBank");
+        TextAsset[] textBank = Resources.LoadAll<TextAsset>(textManager.txtRoute + "NameBank");
 
         string bank = textBank[0].text;
         string[] tmp = bank.Split('\n');

@@ -1,0 +1,56 @@
+#Questions
+
+#First message
+You've overheard a rumor that a mutiny is brewing on your boat. You'd better find who's the culprit of this treachery, or you'll be walking the plank. You have 5 days before reaching the next port, where the treason will occur.
+
+#Who's the traitor
+Today might be a good day to take a more direct approach. You let your crew in your cabinet, and ask, one by one: "Can you tell me who's the traitor in this boat?".
+
+#Who lies
+Goddamn bunch of liars... no one seems to agree with no one else. Today, you scream "Who of you bastards is lying to me?!"
+
+#Who can I trust
+You don't know what to think anymore... so today, you ask: "Tell me who can I trust the most in this boat".
+
+#Would you lie to me
+Today, you decide to ask a simple question. One by one, you approach them, look them in the eye and ask: "Would you lie to me?".
+
+#Last day
+No more time. One last time, you let them in, with your gun loaded at your side. You've gotta make a choice. It's you, or him.
+
+
+# ----------------------------------------------------------------
+
+
+#Trying to do a "questionable action" (Agression, brive) with no power left
+You think you shouldn't abuse your power here. Better wait some time before doing some more... \"questionable\" actions.
+
+
+# -----------------------------------------------------------------
+
+#Angry sea wolf answers
+
+#First time
+Do you think this tricks of yours will work on me? Hmpf! Don't you dare try that again, or i will be forced to leave.
+
+#Second time
+That's it! I don't have to take this anymore. Next stop we make, i'm leaving. I don't have to take orders from some captain wannabe.
+
+#Not talking anymore
+...
+
+
+
+# ----------------------------------------------------------------
+
+
+
+#Write theese instead of an actual name to reffer to someone. Be careful with ortography!
+
+#<rioter>
+#<brute>
+#<sea_wolf>
+#<stingy>
+#<comrad>
+
+#Empty lines or those starting with "#" will be ignored

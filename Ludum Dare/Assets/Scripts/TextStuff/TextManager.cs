@@ -21,6 +21,9 @@ public class TextManager : MonoBehaviour {
     string[] angrySeaWolf;
     string noPower;
 
+    [HideInInspector]
+    public string txtRoute;
+
     bool questionableDecisions = false;
 
     bool dayOver = false;
@@ -56,7 +59,16 @@ public class TextManager : MonoBehaviour {
     public bool blockInteraction = false;
 
     // Use this for initialization
+    void Awake()
+    {
+        if (txtRoute.Length < 2)
+        {
+            txtRoute = "txts/En/";
+        }
+    }
+
     void Start () {
+
         questionsAsked = new Dictionary<TODAYS_QUESTION, bool>();
         questionsAsked.Add(TODAYS_QUESTION.LAST_DAY, true);
 
@@ -220,11 +232,11 @@ public class TextManager : MonoBehaviour {
     void LoadDialogues()
     {
         TextAsset[][] bank = new TextAsset[5][];
-        bank[(int)TODAYS_QUESTION.WHOS_TRAITOR] = Resources.LoadAll<TextAsset>("Dialogue/whos_traitor");
-        bank[(int)TODAYS_QUESTION.WHO_LIES] = Resources.LoadAll<TextAsset>("Dialogue/who_lies");
-        bank[(int)TODAYS_QUESTION.WHO_TO_TRUST] = Resources.LoadAll<TextAsset>("Dialogue/who_to_trust");
-        bank[(int)TODAYS_QUESTION.WOULD_YOU_LIE_TO_ME] = Resources.LoadAll<TextAsset>("Dialogue/would_you_lie_to_me");
-        bank[(int)TODAYS_QUESTION.LAST_DAY] = Resources.LoadAll<TextAsset>("Dialogue/last_day");
+        bank[(int)TODAYS_QUESTION.WHOS_TRAITOR] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/whos_traitor");
+        bank[(int)TODAYS_QUESTION.WHO_LIES] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/who_lies");
+        bank[(int)TODAYS_QUESTION.WHO_TO_TRUST] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/who_to_trust");
+        bank[(int)TODAYS_QUESTION.WOULD_YOU_LIE_TO_ME] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/would_you_lie_to_me");
+        bank[(int)TODAYS_QUESTION.LAST_DAY] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/last_day");
 
         int n = 0;
         foreach (TextAsset[] dayBank in bank)
@@ -262,7 +274,7 @@ public class TextManager : MonoBehaviour {
         {
             angrySeaWolf = new string[3];
 
-            TextAsset[] general = Resources.LoadAll<TextAsset>("Dialogue");
+            TextAsset[] general = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue");
             string[] dirtyTexts = general[0].text.Split('\n');
             List<string> phrases = new List<string>();
             foreach (string str in dirtyTexts)

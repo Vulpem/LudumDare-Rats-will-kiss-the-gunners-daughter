@@ -1,0 +1,28 @@
+<brute>
+#Who lies
+
+#Greetings
+Hmpf.
+
+#Busy
+Grrrrr...
+
+#Violent answer
+Uh?! Oh! Jajaja! <rioter>.
+
+#Peaceful answer
+Pfff...
+
+#Briving answer
+Oooooh... <rioter>, <rioter>.
+
+
+#Write theese instead of an actual name to reffer to someone. Be careful with ortography!
+
+#<rioter>
+#<brute>
+#<sea_wolf>
+#<stingy>
+#<comrad>
+
+#Empty lines or those starting with "#" will be ignored
