@@ -65,6 +65,9 @@ public class Character : MonoBehaviour {
     Vector3 originalPos;
     Transporter transporter;
 
+    float timeToMove = 0.0f;
+    float counter = 0.0f;
+
     public Character()
     {
         bubbles = new Dictionary<TODAYS_QUESTION, SpeechBubble>();
@@ -83,28 +86,51 @@ public class Character : MonoBehaviour {
 
     void Update()
     {
+        RandomMovement();
+
         if (updatePos)
         {
-            if (active == false)
+            UpdatePos();
+        }
+    }
+
+    void RandomMovement()
+    {
+        counter += Time.deltaTime;
+        if(counter >= timeToMove)
+        {
+            counter = 0.0f;
+            timeToMove = Random.Range(3.0f, 8.0f);
+
+            Vector3 newPos = originalPos;
+            newPos.x += Random.Range(-0.35f, 0.35f);
+            newPos.y += Random.Range(-0.25f, 0.25f);
+
+            transporter.Transport(Random.Range(0.5f, 1.5f), newPos);
+        }
+    }
+
+    void UpdatePos()
+    {
+        if (active == false)
+        {
+            if (manager.talkingWith != TYPES.none)
             {
-                if (manager.talkingWith != TYPES.none)
-                {
-                    Vector3 dif = originalPos - manager.characters[manager.talkingWith].gameObject.transform.position;
-                    Vector3 newPos = originalPos + dif / 7.0f;
-                    newPos.y -= 0.2f;
-                    transporter.Transport(1.0f, newPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
-                }
-                else
-                {
-                    transporter.Transport(1.0f, originalPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
-                }
+                Vector3 dif = originalPos - manager.characters[manager.talkingWith].gameObject.transform.position;
+                Vector3 newPos = originalPos + dif / 7.0f;
+                newPos.y -= 0.2f;
+                transporter.Transport(1.0f, newPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
             }
             else
             {
-                transporter.Transport(1.0f, originalPos, scale, new Color(1.0f, 1.0f, 1.0f));
+                transporter.Transport(1.0f, originalPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
             }
-            updatePos = false;
         }
+        else
+        {
+            transporter.Transport(1.0f, originalPos, scale, new Color(1.0f, 1.0f, 1.0f));
+        }
+        updatePos = false;
     }
 
     public void SetActive(bool _active)

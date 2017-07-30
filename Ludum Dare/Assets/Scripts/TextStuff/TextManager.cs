@@ -385,7 +385,7 @@ public class TextManager : MonoBehaviour {
     //A character has recieved a click
     public void ClickedOnMe(GameObject go, int button)
     {
-        if (delayCounter > clickDelay && blockInteraction == false)
+        if (delayCounter > clickDelay && blockInteraction == false && question != TODAYS_QUESTION.First_MESSAGE)
         {
             if (textDisplay.working == false)
             {

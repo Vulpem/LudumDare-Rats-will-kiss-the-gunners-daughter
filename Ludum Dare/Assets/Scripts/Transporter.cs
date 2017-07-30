@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transporter : MonoBehaviour {
+public class Transporter : MonoBehaviour
+{
 
     Vector3 speed;
     Color changeColor;
@@ -17,21 +18,21 @@ public class Transporter : MonoBehaviour {
 
     bool working = false;
     Renderer rend;
-	
+
     void Start()
     {
         rend = GetComponent<Renderer>();
     }
 
-	void Update ()
+    void Update()
     {
-		if(working)
+        if (working)
         {
             transform.position += speed * Time.deltaTime;
             rend.material.color += changeColor * Time.deltaTime;
             transform.localScale += changeScale * Time.deltaTime;
             counter += Time.deltaTime;
-            if(counter >= duration)
+            if (counter >= duration)
             {
                 working = false;
                 transform.localScale = scale;
@@ -40,7 +41,7 @@ public class Transporter : MonoBehaviour {
             }
         }
 
-	}
+    }
 
     public void Transport(float time, Vector3 pos, Vector3 scal, Color col)
     {
@@ -55,5 +56,10 @@ public class Transporter : MonoBehaviour {
         changeColor = (col - GetComponent<Renderer>().material.color) / time;
         changeScale = (scal - transform.localScale) / time;
 
+    }
+
+    public void Transport(float time, Vector3 pos)
+    {
+        Transport(time, pos, transform.localScale, color);
     }
 }
