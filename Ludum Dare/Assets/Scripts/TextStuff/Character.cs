@@ -104,7 +104,7 @@ public class Character : MonoBehaviour {
 
             Vector3 newPos = originalPos;
             newPos.x += Random.Range(-0.35f, 0.35f);
-            newPos.y += Random.Range(-0.25f, 0.25f);
+            newPos.y += Random.Range(-0.2f, 0.05f);
 
             transporter.Transport(Random.Range(0.5f, 1.5f), newPos);
         }
