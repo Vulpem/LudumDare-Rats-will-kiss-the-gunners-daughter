@@ -38,7 +38,7 @@ public class SpeechBubble
     }
 }
 
-
+[RequireComponent(typeof(Transporter))]
 public class Character : MonoBehaviour {
 
     public TYPES type;
@@ -52,6 +52,8 @@ public class Character : MonoBehaviour {
     public static string gettingAngry;
     public static string gotAngry;
     public static string Angry;
+
+    Transporter transporter;
 
     [Header(" --- Speech bubbles --- ")]
     public Dictionary<TODAYS_QUESTION, SpeechBubble> bubbles;
@@ -71,6 +73,11 @@ public class Character : MonoBehaviour {
     void Start()
     {
         scale = gameObject.transform.localScale;
+        transporter = GetComponent<Transporter>();
+        if(transporter == null)
+        {
+            transporter = gameObject.AddComponent<Transporter>();
+        }
     }
 
     void Update()
@@ -79,13 +86,11 @@ public class Character : MonoBehaviour {
         {
             if (active == false)
             {
-                GetComponent<Renderer>().material.color = new Color(0.6f, 0.6f, 0.6f);
-                gameObject.transform.localScale = scale * 0.6f;
+                transporter.Transport(1.0f, transform.position, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
             }
             else
             {
-                GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f);
-                gameObject.transform.localScale = scale;
+                transporter.Transport(1.0f, transform.position, scale, new Color(1.0f, 1.0f, 1.0f));
             }
             activeLastFrame = active;
         }
