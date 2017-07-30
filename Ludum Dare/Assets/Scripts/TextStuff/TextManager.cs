@@ -20,7 +20,6 @@ public class TextManager : MonoBehaviour {
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
     string[] angrySeaWolf;
     string noPower;
-    public int power = 2;
 
     bool dayOver = false;
 
@@ -48,6 +47,8 @@ public class TextManager : MonoBehaviour {
     [Header("Debug Info")]
     public TYPES talkingWith;
     public string talkingWith_name;
+    [Range(0, 5)]
+    public int power = 2;
     public TODAYS_QUESTION question;
     public int day = 0;
     public bool blockInteraction = false;
