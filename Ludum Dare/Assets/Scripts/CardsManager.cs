@@ -28,10 +28,12 @@ public class CardsManager : MonoBehaviour
     {
         cardText.text = cards[textManager.day - 1].text;
         cardPanel.SetActive(true);
+        textManager.blockInteraction = true;
     }
 
     public void OnExitButton()
     {
         cardPanel.SetActive(false);
+        textManager.blockInteraction = false;
     }
 }

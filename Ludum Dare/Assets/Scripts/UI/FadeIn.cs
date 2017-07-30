@@ -1,0 +1,31 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class FadeIn : MonoBehaviour
+{
+    public float fadeInTime = 2.0f;
+    public float fadeDelay = 0.0f;
+    float currentTime = 0.0f;
+    public bool fade = true;
+
+	// Update is called once per frame
+	void Update ()
+    {
+        if (fade == true)
+        {
+            currentTime += Time.deltaTime;
+            Image image = gameObject.GetComponent<Image>();
+            Color imageColor = image.color;
+            imageColor.a = currentTime / fadeInTime;
+            image.color = imageColor;
+
+            if (imageColor.a >= 1.0f)
+            {
+                gameObject.GetComponent<FadeOut>().fade = true;
+            }
+        }
+
+	}
+}
