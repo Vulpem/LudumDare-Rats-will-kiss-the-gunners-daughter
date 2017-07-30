@@ -49,8 +49,11 @@ public class Character : MonoBehaviour {
 
     public int angryCount = 0;
 
+    [HideInInspector]
     public static string gettingAngry;
+    [HideInInspector]
     public static string gotAngry;
+    [HideInInspector]
     public static string Angry;
 
     [Header(" --- Speech bubbles --- ")]
@@ -100,13 +103,16 @@ public class Character : MonoBehaviour {
         if(counter >= timeToMove)
         {
             counter = 0.0f;
-            timeToMove = Random.Range(3.0f, 8.0f);
+            if (transporter.isWorking() == false)
+            {
+                timeToMove = Random.Range(3.0f, 8.0f);
 
-            Vector3 newPos = originalPos;
-            newPos.x += Random.Range(-0.35f, 0.35f);
-            newPos.y += Random.Range(-0.2f, 0.05f);
+                Vector3 newPos = originalPos;
+                newPos.x += Random.Range(-0.35f, 0.35f);
+                newPos.y += Random.Range(-0.2f, 0.05f);
 
-            transporter.Transport(Random.Range(0.5f, 1.5f), newPos);
+                transporter.Transport(Random.Range(0.5f, 1.5f), newPos);
+            }
         }
     }
 

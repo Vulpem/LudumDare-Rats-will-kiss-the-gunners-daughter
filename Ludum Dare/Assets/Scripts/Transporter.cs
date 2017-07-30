@@ -16,12 +16,13 @@ public class Transporter : MonoBehaviour
     float duration;
     float counter;
 
+    Color rendererColor;
+
     bool working = false;
-    Renderer rend;
 
     void Start()
     {
-        rend = GetComponent<Renderer>();
+        rendererColor = Color.white;
     }
 
     void Update()
@@ -29,7 +30,8 @@ public class Transporter : MonoBehaviour
         if (working)
         {
             transform.position += speed * Time.deltaTime;
-            rend.material.color += changeColor * Time.deltaTime;
+            rendererColor += changeColor * Time.deltaTime;
+            /////
             transform.localScale += changeScale * Time.deltaTime;
             counter += Time.deltaTime;
             if (counter >= duration)
@@ -37,8 +39,9 @@ public class Transporter : MonoBehaviour
                 working = false;
                 transform.localScale = scale;
                 transform.position = position;
-                rend.material.color = color;
+                rendererColor = color;
             }
+            SetColor(rendererColor);
         }
 
     }
@@ -53,13 +56,40 @@ public class Transporter : MonoBehaviour
         working = true;
 
         speed = (pos - transform.position) / time;
-        changeColor = (col - GetComponent<Renderer>().material.color) / time;
+        changeColor = (col - rendererColor) / time;
         changeScale = (scal - transform.localScale) / time;
 
+    }
+
+    void SetColor(Color col)
+    {
+        Stack<GameObject> childs = new Stack<GameObject>();
+        childs.Push(gameObject);
+
+        while (childs.Count > 0)
+        {
+            GameObject toTint = childs.Pop();
+
+            for (int n = 0; n < toTint.transform.childCount; n++)
+            {
+                childs.Push(toTint.transform.GetChild(n).gameObject);
+            }
+
+            Renderer rend = toTint.GetComponent<Renderer>();
+            if (rend != null)
+            {
+                rend.material.color = col;
+            }
+        }
     }
 
     public void Transport(float time, Vector3 pos)
     {
         Transport(time, pos, transform.localScale, color);
+    }
+
+    public bool isWorking()
+    {
+        return working;
     }
 }
