@@ -21,6 +21,8 @@ public class TextManager : MonoBehaviour {
     string[] angrySeaWolf;
     string noPower;
 
+    bool questionableDecisions = false;
+
     bool dayOver = false;
 
     float clickDelay = 0.25f;
@@ -163,7 +165,7 @@ public class TextManager : MonoBehaviour {
 
     void HideActions()
     {
-        if (talkingWith == TYPES.none || textDisplay.working == true || characters[talkingWith].doneForToday == true)
+        if (talkingWith == TYPES.none || textDisplay.working == true || characters[talkingWith].doneForToday == true || questionableDecisions == true)
         {
             foreach (Button c in actions)
             {
@@ -404,7 +406,9 @@ public class TextManager : MonoBehaviour {
             return;
         }
 
-       foreach(Character t in CharacterGOs)
+        questionableDecisions = false;
+
+       foreach (Character t in CharacterGOs)
         {
             t.SetActive(false);
         }
@@ -432,6 +436,7 @@ public class TextManager : MonoBehaviour {
     //Stopped talking with someone
     void StoppedTalking()
     {
+        questionableDecisions = false;
         talkingWith = TYPES.none;
         talkingWith_name = "No one";
         textDisplay.Clean();
@@ -453,6 +458,7 @@ public class TextManager : MonoBehaviour {
                 if (actionMade != PLAYER_ACTIONS.PEACEFUL && power <= 0)
                 {
                     CreateText("", noPower);
+                    questionableDecisions = true;
                 }
                 else
                 {
