@@ -66,6 +66,7 @@ public class Character : MonoBehaviour {
 
     Vector3 scale;
     Vector3 originalPos;
+    Vector3 currentPos;
     Transporter transporter;
 
     float timeToMove = 0.0f;
@@ -107,7 +108,7 @@ public class Character : MonoBehaviour {
             {
                 timeToMove = Random.Range(3.0f, 8.0f);
 
-                Vector3 newPos = originalPos;
+                Vector3 newPos = currentPos;
                 newPos.x += Random.Range(-0.35f, 0.35f);
                 newPos.y += Random.Range(-0.2f, 0.05f);
 
@@ -124,17 +125,29 @@ public class Character : MonoBehaviour {
             {
                 Vector3 dif = originalPos - manager.characters[manager.talkingWith].gameObject.transform.position;
                 Vector3 newPos = originalPos + dif / 7.0f;
-                newPos.y -= 0.2f;
-                transporter.Transport(1.0f, newPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
+                newPos.y -= 0.1f;
+                transporter.Transport(Random.Range(0.7f, 2.0f), newPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
+                currentPos = newPos;
             }
             else
             {
-                transporter.Transport(1.0f, originalPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
+                Vector3 newPos = originalPos;
+                newPos.y -= 0.1f;
+                transporter.Transport(Random.Range(0.7f, 2.0f), newPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
+                currentPos = newPos;
             }
         }
         else
         {
-            transporter.Transport(1.0f, originalPos, scale, new Color(1.0f, 1.0f, 1.0f));
+            if (manager.talkingWith == type)
+            {
+                transporter.Transport(Random.Range(0.7f, 2.0f), originalPos, scale * 1.5f, new Color(1.0f, 1.0f, 1.0f));
+            }
+            else
+            {
+                transporter.Transport(Random.Range(0.7f, 2.0f), originalPos, scale, new Color(1.0f, 1.0f, 1.0f));
+                currentPos = originalPos;
+            }
         }
         updatePos = false;
     }
