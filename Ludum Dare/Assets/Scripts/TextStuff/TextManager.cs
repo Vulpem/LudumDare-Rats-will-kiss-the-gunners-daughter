@@ -139,14 +139,28 @@ public class TextManager : MonoBehaviour {
                 bubble.answers.Add(PLAYER_ACTIONS.AGRESSION, "You won't get anything from me with violence. Not even <brute> scares me.");
                 bubble.answers.Add(PLAYER_ACTIONS.BRIVE, "I have no need for money. Try giving it to <stingy>.");
                 bubble.answers.Add(PLAYER_ACTIONS.PEACEFUL, "Sorry, i have nothing to say. Try asking <comrade>.");
-
                 c.bubbles.Add((TODAYS_QUESTION)(q), bubble);
             }
-
-
-
             characters.Add(type, c);
         }
+        LoadDialogues();
+    }
+
+    void LoadDialogues()
+    {
+        /*TextAsset[][] bank = new TextAsset[5][];
+        bank[(int)TODAYS_QUESTION.WHOS_TRAITOR] = Resources.LoadAll<TextAsset>("Dialogue/whos_traitor");
+        bank[(int)TODAYS_QUESTION.WHO_LIES] = Resources.LoadAll<TextAsset>("Dialogue/who_lies");
+        bank[(int)TODAYS_QUESTION.WHO_TO_TRUST] = Resources.LoadAll<TextAsset>("Dialogue/who_to_trust");
+        bank[(int)TODAYS_QUESTION.WOULD_YOU_LIE_TO_ME] = Resources.LoadAll<TextAsset>("Dialogue/would_you_lie_to_me");
+        bank[(int)TODAYS_QUESTION.LAST_DAY] = Resources.LoadAll<TextAsset>("Dialogue/last_day");
+
+        foreach (TextAsset[] dayBank in bank)
+        {
+
+        }
+        */
+
     }
 
     void EndDay()
@@ -291,7 +305,7 @@ public class TextManager : MonoBehaviour {
         }
     }
 
-    void MakeAction(PLAYER_ACTIONS actionN)
+    public void MakeAction(PLAYER_ACTIONS actionN)
     {
         if (delayCounter > clickDelay && blockInteraction == false)
         {
