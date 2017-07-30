@@ -79,11 +79,16 @@ public class TextManager : MonoBehaviour {
         {
             delayCounter += Time.deltaTime;
             ManageInputAskCrew();
+
+            if(textDisplay.UIText.text.Length < 2 && textDisplay.working == false)
+            {
+                CreateText("", questions[question]);
+            }
         }
         HideActions();
 
         bool endDay = true;
-        if(textDisplay.UIText.text.Length > 3 || textDisplay.working == true )
+        if(textDisplay.UIText.text.Length > 3 || talkingWith != TYPES.none )
         {
             endDay = false;
         }
@@ -382,7 +387,7 @@ public class TextManager : MonoBehaviour {
     {
         talkingWith = TYPES.none;
         talkingWith_name = "No one";
-        CreateText("", questions[question]);
+        textDisplay.Clean();
         foreach (Character pnj in CharacterGOs)
         {
             if (pnj.doneForToday ? pnj.active = false : pnj.active = true);
@@ -399,10 +404,12 @@ public class TextManager : MonoBehaviour {
                 actionMade = (PLAYER_ACTIONS)actionN;
                 if (actionMade != PLAYER_ACTIONS.PEACEFUL && power <= 0)
                 {
-                    StoppedTalking();
                     CreateText("", noPower);
                 }
-                MakeAnswer();
+                else
+                {
+                    MakeAnswer();
+                }
             }
             else
             {

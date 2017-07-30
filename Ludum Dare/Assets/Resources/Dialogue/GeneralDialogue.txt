@@ -19,6 +19,15 @@ Today, you decide to ask a simple question. One by one, you approach them, look 
 No more time. One last time, you let them in, with your gun loaded at your side. You've gotta make a choice. It's you, or him.
 
 
+# ----------------------------------------------------------------
+
+
+#Trying to do a "questionable action" (Agression, brive) with no power left
+You think you shouldn't abuse your power here. Better wait some time before doing some more... \"questionable\" actions.
+
+
+# -----------------------------------------------------------------
+
 #Angry sea wolf answers
 
 #First time
@@ -32,8 +41,7 @@ That's it! I don't have to take this anymore. Next stop we make, i'm leaving. I 
 
 
 
-#Trying to do a "questionable action" (Agression, brive) with no power left
-You think you shouldn't abuse your power here. Better wait some time before doing some more... \"questionable\" actions.
+# ----------------------------------------------------------------
 
 
 
