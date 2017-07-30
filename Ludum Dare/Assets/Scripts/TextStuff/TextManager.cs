@@ -104,6 +104,8 @@ public class TextManager : MonoBehaviour {
         SecurityCheck();
 
         GenerateCharacters();
+        LoadDialogues();
+
         blockInteraction = true;
         BeginDay();
         question = TODAYS_QUESTION.First_MESSAGE;
@@ -246,7 +248,6 @@ public class TextManager : MonoBehaviour {
             }
             characters.Add(type, c);
         }
-        LoadDialogues();
     }
 
     void LoadDialogues()
