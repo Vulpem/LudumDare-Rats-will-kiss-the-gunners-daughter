@@ -32,6 +32,8 @@ public class GenerateAspect : MonoBehaviour {
  
         headPostition.y = database.GetHeadPositionY(body.sprite);
         headObject.transform.localPosition = headPostition;
+
+        gameObject.transform.localScale = new Vector3(2.3f, 2.3f, 2.3f);
     }
 	
 	// Update is called once per frame
