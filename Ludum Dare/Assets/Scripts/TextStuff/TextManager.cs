@@ -73,6 +73,7 @@ public class TextManager : MonoBehaviour {
         blockInteraction = true;
         BeginDay();
         question = TODAYS_QUESTION.First_MESSAGE;
+        day = 1;
     }
 
     // Update is called once per frame
