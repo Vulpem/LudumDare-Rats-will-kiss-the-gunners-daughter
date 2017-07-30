@@ -130,7 +130,6 @@ public class TextManager : MonoBehaviour {
 
             c.type = type;
 
-            //TODO, to load speech bubbles
             for(int q = 0; q <= (int)(TODAYS_QUESTION.LAST_DAY); q++)
             {
                 SpeechBubble bubble = new SpeechBubble();
@@ -148,18 +147,46 @@ public class TextManager : MonoBehaviour {
 
     void LoadDialogues()
     {
-        /*TextAsset[][] bank = new TextAsset[5][];
+        TextAsset[][] bank = new TextAsset[5][];
         bank[(int)TODAYS_QUESTION.WHOS_TRAITOR] = Resources.LoadAll<TextAsset>("Dialogue/whos_traitor");
         bank[(int)TODAYS_QUESTION.WHO_LIES] = Resources.LoadAll<TextAsset>("Dialogue/who_lies");
         bank[(int)TODAYS_QUESTION.WHO_TO_TRUST] = Resources.LoadAll<TextAsset>("Dialogue/who_to_trust");
         bank[(int)TODAYS_QUESTION.WOULD_YOU_LIE_TO_ME] = Resources.LoadAll<TextAsset>("Dialogue/would_you_lie_to_me");
         bank[(int)TODAYS_QUESTION.LAST_DAY] = Resources.LoadAll<TextAsset>("Dialogue/last_day");
 
+        int n = 0;
         foreach (TextAsset[] dayBank in bank)
         {
+            foreach(TextAsset file in dayBank)
+            {
+                string[] dirtyTexts = file.text.Split('\n');
+                List<string> phrases = new List<string>();
+                foreach(string str in dirtyTexts)
+                {
+                    if(str[0] != '#' && str.Length > 2)
+                    {
+                        phrases.Add(str);
+                    }
+                }
+                TYPES type = new TYPES();
+                switch (phrases[0])
+                {
+                    case "<rioter>": type = TYPES.rioter; break;
+                    case "<brute>": type = TYPES.brute; break;
+                    case "<sea_wolf>": type = TYPES.sea_wolf; break;
+                    case "<stingy>": type = TYPES.stingy; break;
+                    case "<comrad>": type = TYPES.comrad; break;
+                }
 
+                characters[type].bubbles[(TODAYS_QUESTION)(n)].text = phrases[1];
+                characters[type].bubbles[(TODAYS_QUESTION)(n)].busy = phrases[2];
+                characters[type].bubbles[(TODAYS_QUESTION)(n)].answers[PLAYER_ACTIONS.AGRESSION] = phrases[3];
+                characters[type].bubbles[(TODAYS_QUESTION)(n)].answers[PLAYER_ACTIONS.PEACEFUL] = phrases[4];
+                characters[type].bubbles[(TODAYS_QUESTION)(n)].answers[PLAYER_ACTIONS.BRIVE] = phrases[5];
+            }
+            n++;
         }
-        */
+        
 
     }
 
@@ -343,9 +370,9 @@ public class TextManager : MonoBehaviour {
 
         tmp = tmp.Replace("<rioter>", characters[TYPES.rioter].name);
         tmp = tmp.Replace("<brute>", characters[TYPES.brute].name);
-        tmp = tmp.Replace("<sea wolf>", characters[TYPES.sea_wolf].name);
+        tmp = tmp.Replace("<sea_wolf>", characters[TYPES.sea_wolf].name);
         tmp = tmp.Replace("<stingy>", characters[TYPES.stingy].name);
-        tmp = tmp.Replace("<comrade>", characters[TYPES.comrade].name);
+        tmp = tmp.Replace("<comrad>", characters[TYPES.comrad].name);
 
         textDisplay.Begin(tmp);
     }

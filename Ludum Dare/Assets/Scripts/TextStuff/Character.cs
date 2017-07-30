@@ -15,7 +15,7 @@ public enum TYPES
     brute,
     sea_wolf,
     stingy,
-    comrade,
+    comrad,
     none
 }
 
