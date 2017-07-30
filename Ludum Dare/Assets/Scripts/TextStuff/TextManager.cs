@@ -27,6 +27,7 @@ public class TextManager : MonoBehaviour {
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
     string[] angrySeaWolf;
     string noPower;
+    LANGUAGE language;
 
     [HideInInspector]
     public string txtRoute;
@@ -77,10 +78,12 @@ public class TextManager : MonoBehaviour {
                 case (int)(LANGUAGE.CATALAN): txtRoute = "txts/Cat/"; break;
                 default: txtRoute = "txts/En/"; break;
             }
+            language = (LANGUAGE)VariableStorage.ints["lang"];
         }
         else
         {
             txtRoute = "txts/En/";
+            language = LANGUAGE.ENGLISH;
         }
     }
 
@@ -284,6 +287,12 @@ public class TextManager : MonoBehaviour {
                 characters[type].bubbles[(TODAYS_QUESTION)(n)].answers[PLAYER_ACTIONS.AGRESSION] = phrases[3];
                 characters[type].bubbles[(TODAYS_QUESTION)(n)].answers[PLAYER_ACTIONS.PEACEFUL] = phrases[4];
                 characters[type].bubbles[(TODAYS_QUESTION)(n)].answers[PLAYER_ACTIONS.BRIVE] = phrases[5];
+               
+                if (phrases.Count > 6)
+                {
+                    string lang = LanguageToString();
+                    Debug.LogError("One of the txts has more phrases than it should!\nText written in " + lang + "\n" + dirtyTexts[0] + dirtyTexts[1] + dirtyTexts[2]);
+                }
             }
             n++;
         }
@@ -317,6 +326,22 @@ public class TextManager : MonoBehaviour {
             angrySeaWolf[0] = phrases[7];
             angrySeaWolf[1] = phrases[8];
             angrySeaWolf[2] = phrases[9];
+
+            if(phrases.Count > 10)
+            {
+                string lang = LanguageToString();
+                Debug.LogError("General dialogues have more phrases than they should.\nText written in " + lang);
+            }
+        }
+    }
+
+    string LanguageToString()
+    {
+        switch (language)
+        {
+            case LANGUAGE.SPANISH: return "spanish";
+            case LANGUAGE.CATALAN: return "catalan";
+            default: return "english";
         }
     }
 
