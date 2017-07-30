@@ -28,6 +28,7 @@ public class FadeOut : MonoBehaviour
 
                 if (image.alpha <= 0.0f)
                 {
+                    fade = false;
                     gameObject.SetActive(false);
                 }
             }

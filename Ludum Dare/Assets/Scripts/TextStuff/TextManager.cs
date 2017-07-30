@@ -286,14 +286,14 @@ public class TextManager : MonoBehaviour {
 
     void EndDay()
     {
+        day++;
         textDisplay.Clean();
         FadeInOut.SetActive(true);
-        BeginDay();
+       // BeginDay();
     }
 
-    void BeginDay()
+    public void BeginDay()
     {
-        day++;
         power = 2;
         foreach (Character pnj in CharacterGOs)
         {

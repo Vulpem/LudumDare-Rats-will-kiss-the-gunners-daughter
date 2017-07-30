@@ -8,8 +8,8 @@ public class FadeIn : MonoBehaviour
     public float fadeInTime = 2.0f;
     public float fadeDelay = 0.0f;
     float currentTime = 0.0f;
-    public bool fade = true;
-
+    public bool fade = false;
+    public TextManager textManager;
 	// Update is called once per frame
 	void Update ()
     {
@@ -22,8 +22,14 @@ public class FadeIn : MonoBehaviour
             if (image.alpha >= 1.0f)
             {
                 gameObject.GetComponent<FadeOut>().fade = true;
+                fade = false;
+                textManager.BeginDay();
             }
         }
-
 	}
+
+    void OnEnable()
+    {
+        fade = true;
+    }
 }
