@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PLAYER_ACTIONS
 {
@@ -41,6 +42,7 @@ public class SpeechBubble
 [RequireComponent(typeof(Transporter))]
 public class Character : MonoBehaviour {
 
+    public Text characterNameUI;
     public TYPES type;
     //The name of the Character is the name of the GameObject
     bool active = true;
@@ -125,14 +127,14 @@ public class Character : MonoBehaviour {
             {
                 Vector3 dif = originalPos - manager.characters[manager.talkingWith].gameObject.transform.position;
                 Vector3 newPos = originalPos + dif / 7.0f;
-                newPos.y -= 0.1f;
+                newPos.y += 0.1f;
                 transporter.Transport(Random.Range(0.7f, 2.0f), newPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
                 currentPos = newPos;
             }
             else
             {
                 Vector3 newPos = originalPos;
-                newPos.y -= 0.1f;
+                newPos.y += 0.1f;
                 transporter.Transport(Random.Range(0.7f, 2.0f), newPos, scale * 0.6f, new Color(0.6f, 0.6f, 0.6f));
                 currentPos = newPos;
             }
@@ -150,6 +152,11 @@ public class Character : MonoBehaviour {
             }
         }
         updatePos = false;
+    }
+
+    public void SetName(string _name)
+    {
+        characterNameUI.text = name = _name;
     }
 
     public void SetActive(bool _active)

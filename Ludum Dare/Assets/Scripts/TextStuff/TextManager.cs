@@ -184,7 +184,8 @@ public class TextManager : MonoBehaviour {
         {
             TYPES type = new TYPES();
 
-           c.name = GetComponent<NameBank>().GetName();
+           c.SetName(GetComponent<NameBank>().GetName());
+
            type = (TYPES)(UnityEngine.Random.Range(0, (float)(TYPES.none)));
 
             while (characters.ContainsKey(type) || type == TYPES.none)
