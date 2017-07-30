@@ -165,7 +165,7 @@ public class TextManager : MonoBehaviour {
                 {
                     if(str[0] != '#' && str.Length > 2)
                     {
-                        phrases.Add(str);
+                        phrases.Add(str.Substring(0, str.Length - 1));
                     }
                 }
                 TYPES type = new TYPES();
