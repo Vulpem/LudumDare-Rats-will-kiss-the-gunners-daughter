@@ -16,12 +16,10 @@ public class FadeIn : MonoBehaviour
         if (fade == true)
         {
             currentTime += Time.deltaTime;
-            Image image = gameObject.GetComponent<Image>();
-            Color imageColor = image.color;
-            imageColor.a = currentTime / fadeInTime;
-            image.color = imageColor;
+            CanvasGroup image = gameObject.GetComponent<CanvasGroup>();
+            image.alpha = currentTime / fadeInTime;
 
-            if (imageColor.a >= 1.0f)
+            if (image.alpha >= 1.0f)
             {
                 gameObject.GetComponent<FadeOut>().fade = true;
             }

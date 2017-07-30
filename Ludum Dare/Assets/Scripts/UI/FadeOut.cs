@@ -23,12 +23,10 @@ public class FadeOut : MonoBehaviour
             if (currentDelay >= fadeDelay)
             {
                 currentTime += Time.deltaTime;
-                Image image = gameObject.GetComponent<Image>();
-                Color imageColor = image.color;
-                imageColor.a = (fadeOutTime - currentTime) / fadeOutTime;
-                image.color = imageColor;
+                CanvasGroup image = gameObject.GetComponent<CanvasGroup>();
+                image.alpha = (fadeOutTime - currentTime) / fadeOutTime;
 
-                if (imageColor.a <= 0.0f)
+                if (image.alpha <= 0.0f)
                 {
                     gameObject.SetActive(false);
                 }
