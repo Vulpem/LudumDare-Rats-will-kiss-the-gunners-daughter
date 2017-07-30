@@ -359,19 +359,6 @@ public class TextManager : MonoBehaviour {
     {
         dayOver = false;
         power = 2;
-        foreach (Character pnj in CharacterGOs)
-        {
-            if (pnj.angryCount < 2)
-            {
-                pnj.SetActive(true);
-                pnj.doneForToday = false;
-            }
-            else
-            {
-                pnj.SetActive(false);
-                pnj.doneForToday = true;
-            }
-        }
 
         ChooseTodayQuestion();
 
@@ -396,12 +383,9 @@ public class TextManager : MonoBehaviour {
     //Sets everything at start
     void SecurityCheck()
     {
-        int n = 0;
         foreach (Character pnj in CharacterGOs)
         {
             pnj.manager = this;
-            pnj.characterN = n;
-            n++;
         }
     }
 
@@ -463,11 +447,6 @@ public class TextManager : MonoBehaviour {
 
         questionableDecisions = false;
 
-       foreach (Character t in CharacterGOs)
-        {
-            t.SetActive(false);
-        }
-        pnj.SetActive(true);
         talkingWith = pnj.type;
         talkingWith_name = pnj.name;
 
@@ -495,11 +474,6 @@ public class TextManager : MonoBehaviour {
         talkingWith = TYPES.none;
         talkingWith_name = "No one";
         textDisplay.Clean();
-        foreach (Character pnj in CharacterGOs)
-        {
-            if(pnj.doneForToday) { pnj.SetActive(false); }
-            else { pnj.SetActive(true); }
-        }
     }
 
     public void MakeAction(int actionN)

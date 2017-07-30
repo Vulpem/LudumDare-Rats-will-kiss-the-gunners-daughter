@@ -63,8 +63,6 @@ public class Character : MonoBehaviour {
 
     [HideInInspector]
     public TextManager manager;
-    [HideInInspector]
-    public int characterN = -1;
 
     Vector3 scale;
     Vector3 originalPos;
