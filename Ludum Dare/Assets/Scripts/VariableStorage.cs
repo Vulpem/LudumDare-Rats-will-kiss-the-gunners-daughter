@@ -12,13 +12,17 @@ public class VariableStorage : MonoBehaviour {
 
     void Awake ()
     {
+        Gen();
+    }
+
+    public static void Gen()
+    {
         if (generated == false)
         {
             ints = new Dictionary<string, int>();
             strings = new Dictionary<string, string>();
             generated = true;
         }
-
     }
  
 }

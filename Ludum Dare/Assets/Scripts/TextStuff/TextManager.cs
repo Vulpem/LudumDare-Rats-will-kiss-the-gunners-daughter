@@ -68,11 +68,19 @@ public class TextManager : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        switch (VariableStorage.ints["lang"])
+        VariableStorage.Gen();
+        if (VariableStorage.ints.ContainsKey("lang"))
         {
-            case (int)(LANGUAGE.SPANISH): txtRoute = "txts/Sp/"; break;
-            case (int)(LANGUAGE.CATALAN): txtRoute = "txts/Cat/"; break;
-            default: txtRoute = "txts/En/"; break;
+            switch (VariableStorage.ints["lang"])
+            {
+                case (int)(LANGUAGE.SPANISH): txtRoute = "txts/Sp/"; break;
+                case (int)(LANGUAGE.CATALAN): txtRoute = "txts/Cat/"; break;
+                default: txtRoute = "txts/En/"; break;
+            }
+        }
+        else
+        {
+            txtRoute = "txts/En/";
         }
     }
 
