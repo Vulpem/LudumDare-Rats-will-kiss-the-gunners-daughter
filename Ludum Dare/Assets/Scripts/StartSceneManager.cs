@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
     public class StartSceneManager : MonoBehaviour {
 
+    public MusicManager music;
     public Text UI_Play;
     public Text UI_Exit;
     public Text UI_Credits;
