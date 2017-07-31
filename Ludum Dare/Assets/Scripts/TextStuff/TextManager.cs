@@ -273,7 +273,7 @@ public class TextManager : MonoBehaviour {
 
     void HideActions()
     {
-        if (state != DAY_STATE.SEVEN_CHOOSE_ACTION)
+        if (state != DAY_STATE.SEVEN_CHOOSE_ACTION || blockInteraction == true)
         {
             foreach (Button c in actions)
             {
