@@ -544,7 +544,14 @@ public class TextManager : MonoBehaviour {
         power = 2;
         state = DAY_STATE.ONE_SKULL;
 
+        foreach(Character pnj in CharacterGOs)
+        {
+            pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
+        }
+
         ChooseTodayQuestion();
+
+        EndedEvent();
     }
 
     public void EndedEvent()
