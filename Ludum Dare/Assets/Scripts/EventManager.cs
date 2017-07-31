@@ -74,7 +74,11 @@ public class EventManager : MonoBehaviour {
         {
             answersText[i].text = answers[answersOrder[i]][eventIndex].text;
         }*/
+
+
+        //////  TMP
         OnFinishEvent();
+        textManager.power = 2;
         
     }
 
