@@ -69,7 +69,7 @@ public class TextManager : MonoBehaviour {
     public Button[] actions;
 
     public EventManager eventManager;
-    public GameObject FadeInOut;
+    public FadeManager fade;
 
     public GameObject talkingPos;
     public GameObject restingPos;
@@ -167,6 +167,7 @@ public class TextManager : MonoBehaviour {
         if(Input.GetMouseButtonDown(0))
         {
             textDisplay.Skip();
+            questionDisplay.Skip();
         }
 
         HideActions();
@@ -174,8 +175,16 @@ public class TextManager : MonoBehaviour {
 
     public void StartNightEvent()
     {
-        questionDisplay.Clean();
-        textDisplay.Clean();
+        if (state == DAY_STATE.EIGHT_ANSWER && textDisplay.working == false)
+        {
+            talkingWith = TYPES.none;
+            talkingWithN++;
+            state = DAY_STATE.NINE_NIGHT_EVENT;
+            textDisplay.Clean();
+            questionDisplay.Clean();
+            fade.In();
+        }
+
         //TODO
     }
 
@@ -278,13 +287,31 @@ public class TextManager : MonoBehaviour {
             foreach (Button c in actions)
             {
                 c.gameObject.SetActive(false);
+                c.GetComponent<Image>().color = Color.white;
             }
         }
         else
         {
-            foreach (Button c in actions)
+            if (power > 0)
             {
-                c.gameObject.SetActive(true);
+                foreach (Button c in actions)
+                {
+                    c.gameObject.SetActive(true);
+                    c.GetComponent<Image>().color = Color.white;
+                }
+            }
+            else
+            {
+                int n = 0;
+                foreach (Button c in actions)
+                {
+                    c.gameObject.SetActive(true);
+                    if (n != 0)
+                    {
+                        c.GetComponent<Image>().color = new Color(0.3f,0.3f,0.3f);
+                    }
+                    n++;
+                }
             }
         }
     }
@@ -422,12 +449,14 @@ public class TextManager : MonoBehaviour {
     {
         day++;
         textDisplay.Clean();
-        FadeInOut.SetActive(true);
+        fade.In();
        // BeginDay();
     }
 
     public void BeginDay()
     {
+        fade.SetAlpha(1.0f);
+        fade.Out();
         talkingWithN = 0;
         power = 2;
         state = DAY_STATE.ONE_SKULL;
@@ -456,40 +485,6 @@ public class TextManager : MonoBehaviour {
         foreach (Character pnj in CharacterGOs)
         {
             pnj.manager = this;
-        }
-    }
-
-    //Manages player input
-    void ManageInputAskCrew()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (delayCounter > clickDelay)
-            {
-                if (textDisplay.working)
-                {
-                    textDisplay.Skip();
-                    delayCounter = 0.0f;
-                }
-                else
-                {
-                    wantToAdvance = true;
-                    advanceTimer = 0.0f;
-                }
-            }
-        }
-
-        if(wantToAdvance)
-        {
-            if (advanceTimer < 0.15f)
-            {
-                advanceTimer += Time.deltaTime;
-            }
-            else
-            {
-                wantToAdvance = false;
-                Minimize();
-            }
         }
     }
 
@@ -542,14 +537,7 @@ public class TextManager : MonoBehaviour {
         {
             talkingWith = TYPES.none;
             talkingWithN++;
-            if (talkingWithN >= characters.Count)
-            {
-                //TODO
-            }
-            else
-            {
-                state = DAY_STATE.FIVE_DOOR;
-            }
+            state = DAY_STATE.FIVE_DOOR;
             textDisplay.Clean();
         }
     }

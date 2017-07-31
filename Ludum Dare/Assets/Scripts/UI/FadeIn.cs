@@ -21,15 +21,8 @@ public class FadeIn : MonoBehaviour
 
             if (image.alpha >= 1.0f)
             {
-                gameObject.GetComponent<FadeOut>().fade = true;
                 fade = false;
-                textManager.BeginDay();
             }
         }
 	}
-
-    void OnEnable()
-    {
-        fade = true;
-    }
 }
