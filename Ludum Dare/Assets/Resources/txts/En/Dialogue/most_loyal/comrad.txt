@@ -1,20 +1,20 @@
-<comrad>
+﻿<comrad>
 #Last day
 
 #Greetings
-Why...? What did I ever do wrong...?
+My Lord?
 
 #Busy
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+Don’t hit me no more… It ain’t very humble of me to say so sir, but…I’m the most loyal to you sir, and always will be.
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+It ain’t very modest of me to say so but…I’m the most loyal to ya sir, and always will be.
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+It ain’t very modest of me, and… now I feel bad fer takin’ money from ya, but…I’m the most loyal to you sir, and always will be.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

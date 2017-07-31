@@ -1,20 +1,20 @@
-<brute>
+﻿<brute>
 #Who lies
 
 #Greetings
-Hmpf.
+You called for me?
 
 #Busy
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+No, no! Stop, stop! You’re huuurting me! <rioter> is the one lying to you! Don’t hurt mee.
 
 #Peaceful answer
-Pfff...
+It ain’t clear? <sea_wolf> is quite sharp. He doesn’t think you’re fit to be captain.
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Ah if ya pay me this well I tell you everything, abundant in detail! <sea_wolf> intends to rise to power in 4 days. Finish him if you want to survive.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

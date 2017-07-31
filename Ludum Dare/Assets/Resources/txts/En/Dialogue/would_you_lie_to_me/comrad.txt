@@ -1,20 +1,20 @@
-<comrad>
+﻿<comrad>
 #Would you lie to me
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+You called for me?
 
 #Busy
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+Ooooow, why you gotta be like that sir? I didn’t lie to you! I’ve been an orphan since I lost my parents…they died ‘cause of lyin’, so I keep to the truth with all me might.
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+Me sir? Noo, never! My momma taught me good, e’vr since I was a wee lad I know that liars get taken by the sea.
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+Me sir? Noo, never! A childhood mate and an old lass o’ mine lied to me years ago. Since then I nev’r sink down to that level.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

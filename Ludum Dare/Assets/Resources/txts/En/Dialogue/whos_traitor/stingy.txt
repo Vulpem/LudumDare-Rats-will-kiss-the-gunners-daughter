@@ -1,20 +1,20 @@
-<stingy>
+﻿<stingy>
 #Who's the traitor
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+My Lord?
 
 #Busy
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+Oy, hey, stop!  I don’t know who it could be, like this, with all this tension… it doesn’t come to mind, no. I just can’t put my finger on it…
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+What? I don’t… don’t recall. Strange, but it doesn’t come to mind. Maybe… nope, right now I got nothing, no. Nothing.
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+Oh… it’s so shiny, don’t ya think? If ya ask me this nicely I tell ya mate! Wherever there’s trouble there’s <rioter>, ain’t that strange?
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

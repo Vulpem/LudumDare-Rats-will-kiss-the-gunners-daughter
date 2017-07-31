@@ -1,20 +1,20 @@
-<brute>
+﻿<brute>
 #Who to trust
 
 #Greetings
-Hmpf.
+My Lord?
 
 #Busy
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+Okay I’ll tell you, but no need to hurt me! It’s <rioter>.
 
 #Peaceful answer
-Pfff...
+I put my trust most in a man who can watch my back… <sea_wolf> is the strongest man here.
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Ah the lovely sound of coins! This is easy money. I put most of my trust in a man who can watch my back… <sea_wolf> is the strongest man here.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

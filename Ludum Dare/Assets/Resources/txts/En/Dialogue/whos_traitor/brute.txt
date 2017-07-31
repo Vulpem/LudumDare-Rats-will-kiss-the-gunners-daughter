@@ -1,20 +1,20 @@
-<brute>
+﻿<brute>
 #Who's the traitor
 
 #Greetings
-Hmpf.
+Am I needed?
 
 #Busy
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+Oh no pretty please, no! I’ll do anything! The mutineer is <rioter>.
 
 #Peaceful answer
-Pfff...
+No problem, Cap’n! That would be <comrade>! He acts all dumb and then turns ‘round and goes sayin’ smut about you. Kill ‘im!
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Well since you ask me this nicely Cap’n, I tell ya. <stingy> is the mutineer.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!
