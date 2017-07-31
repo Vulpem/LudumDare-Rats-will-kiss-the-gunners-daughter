@@ -34,6 +34,9 @@ public class MusicManager : MonoBehaviour {
 
     void Start()
     {
+        sources = new List<AudioSource>();
+        musics = new List<AudioSource>();
+
         AudioSource[] src = gameObject.GetComponents<AudioSource>();
         if (src.Length > 0)
         {

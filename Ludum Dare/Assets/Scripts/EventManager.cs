@@ -55,6 +55,7 @@ public class EventManager : MonoBehaviour {
 
     public void LaunchEvent()
     {
+        /*
         //Generating random content
         eventIndex = ChooseNewEvent();
         GenerateAnswerOrders();
@@ -72,7 +73,8 @@ public class EventManager : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             answersText[i].text = answers[answersOrder[i]][eventIndex].text;
-        }
+        }*/
+        OnFinishEvent();
         
     }
 
