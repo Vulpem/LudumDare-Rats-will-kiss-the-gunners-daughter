@@ -60,12 +60,12 @@ public class EventManager : MonoBehaviour {
         GenerateAnswerOrders();
 
         //Activating UI texts
-        panel.SetActive(true);
+        panel.GetComponent<FadeManager>().In();
         for (int i = 0; i < answersText.Length; i++)
         {
-            answersText[i].transform.parent.gameObject.SetActive(true);
+            answersText[i].transform.parent.gameObject.GetComponent<FadeManager>().In();
         }
-        eventText.gameObject.SetActive(true);
+        eventText.gameObject.GetComponent<FadeManager>().In();
          
         //Filling UI texts
         eventText.text = events[eventIndex].text;       
@@ -114,26 +114,28 @@ public class EventManager : MonoBehaviour {
     {
         for (int i = 0; i < answersText.Length; i++)
         {
-            answersText[i].transform.parent.gameObject.SetActive(false);
+            answersText[i].transform.parent.gameObject.GetComponent<FadeManager>().Out();
         }
-        eventText.gameObject.SetActive(false);
+        eventText.gameObject.GetComponent<FadeManager>().Out();
 
         eventResponse.text = responses[answersOrder[answer]][eventIndex].text;
-        eventResponse.gameObject.SetActive(true);
+        eventResponse.gameObject.GetComponent<FadeManager>().In();
 
         if (answersOrder[answer] == 0)
-            textManager.power++;
+            textManager.power = 3;
         else if (answersOrder[answer] == 1)
-            textManager.power--;
+            textManager.power = 1;
+        else
+            textManager.power = 2;
 
-        finishEventButton.SetActive(true);
+        finishEventButton.GetComponent<FadeManager>().In();
     }
 
     public void OnFinishEvent()
     {
-        finishEventButton.SetActive(false);
-        eventResponse.gameObject.SetActive(false);
-        panel.SetActive(false);
+        finishEventButton.GetComponent<FadeManager>().SetAlpha(0.0f);
+        eventResponse.GetComponent<FadeManager>().SetAlpha(0.0f);
+        panel.GetComponent<FadeManager>().SetAlpha(0.0f);
         textManager.EndedEvent();
     }
 }

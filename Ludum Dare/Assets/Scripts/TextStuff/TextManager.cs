@@ -541,7 +541,6 @@ public class TextManager : MonoBehaviour {
         fade.SetAlpha(1.0f);
         fade.Out();
         talkingWithN = 0;
-        power = 2;
         state = DAY_STATE.ONE_SKULL;
 
         foreach(Character pnj in CharacterGOs)
