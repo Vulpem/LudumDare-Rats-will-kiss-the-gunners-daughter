@@ -135,11 +135,15 @@ public class TextManager : MonoBehaviour {
     {
         foreach(Character pnj in CharacterGOs)
         {
-            pnj.gameObject.transform.position = restingPos.transform.position;
-        }
-        if (talkingWith != TYPES.none)
-        {
-            characters[talkingWith].transform.position = talkingPos.transform.position;
+            if (talkingWith != pnj.type)
+            {
+                pnj.SetActive(false);
+            }
+            else
+            {
+                pnj.SetActive(true);
+                pnj.transform.position = talkingPos.transform.position;
+            }
         }
 
         if(state == DAY_STATE.SIX_TALKING && textDisplay.working == false)

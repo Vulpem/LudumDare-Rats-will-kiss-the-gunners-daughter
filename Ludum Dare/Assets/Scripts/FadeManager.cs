@@ -5,13 +5,22 @@ using UnityEngine;
 public class FadeManager : MonoBehaviour
 {
 
-    public FadeIn fadeIn;
-    public FadeOut fadeOut;
+    FadeIn fadeIn;
+    FadeOut fadeOut;
 
     void Awake()
     {
         fadeIn = GetComponent<FadeIn>();
+        if(fadeIn == null)
+        {
+            fadeIn = gameObject.AddComponent<FadeIn>();
+        }
+
         fadeOut = GetComponent<FadeOut>();
+        if(fadeOut == null)
+        {
+            fadeOut = gameObject.AddComponent<FadeOut>();
+        }
     }
 
     public bool Working()
@@ -43,6 +52,29 @@ public class FadeManager : MonoBehaviour
             gameObject.SetActive(false);
         }
         CanvasGroup image = gameObject.GetComponent<CanvasGroup>();
-        image.alpha = alpha;
+        if (image != null)
+        {
+            image.alpha = alpha;
+            return;
+        }
+
+        Stack<GameObject> childs = new Stack<GameObject>();
+        childs.Push(gameObject);
+
+        while (childs.Count > 0)
+        {
+            GameObject go = childs.Pop();
+
+            for (int n = 0; n < go.transform.childCount; n++)
+            {
+                childs.Push(go.transform.GetChild(n).gameObject);
+            }
+
+            Renderer rend = go.GetComponent<Renderer>();
+            if (rend != null)
+            {
+                rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, alpha);
+            }
+        }        
     }
 }

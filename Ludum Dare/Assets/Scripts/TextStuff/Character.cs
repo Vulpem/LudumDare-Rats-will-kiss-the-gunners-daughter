@@ -63,13 +63,38 @@ public class Character : MonoBehaviour {
     Vector3 scale;
     Transporter transporter;
 
+    public FadeManager fade;
+
     public Character()
     {
         bubbles = new Dictionary<TODAYS_QUESTION, SpeechBubble>();
     }
 
+    public void SetActive(bool active)
+    {
+        if(active)
+        {
+            if (gameObject.activeInHierarchy == false)
+            {
+                fade.SetAlpha(0.0f);
+                fade.In();
+                gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (gameObject.activeInHierarchy == true)
+            {
+                fade.SetAlpha(1.0f);
+                fade.Out();
+            }
+        }
+       
+    }
+
     void Start()
     {
+        fade = GetComponent<FadeManager>();
         scale = gameObject.transform.localScale;
         transporter = GetComponent<Transporter>();
         if(transporter == null)
