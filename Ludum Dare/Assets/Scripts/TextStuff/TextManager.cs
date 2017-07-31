@@ -45,12 +45,6 @@ public class TextManager : MonoBehaviour {
     [HideInInspector]
     public string txtRoute;
 
-    float clickDelay = 0.25f;
-    float delayCounter = 0.0f;
-
-    float advanceTimer = -0.1f;
-    bool wantToAdvance = false;
-
     PLAYER_ACTIONS actionMade = 0;
 
     [Header("Things that need to be set up Manually")]
@@ -112,11 +106,6 @@ public class TextManager : MonoBehaviour {
         questionsAsked.Add(TODAYS_QUESTION.LAST_DAY, true);
 
         characters = new SortedDictionary<TYPES, Character>();
-        clickDelay = 0.25f;
-        delayCounter = 0.0f;
-
-        advanceTimer = -0.1f;
-        wantToAdvance = false;
 
         actionMade = 0;
         talkingWith = TYPES.none;
@@ -571,15 +560,6 @@ public class TextManager : MonoBehaviour {
         tmp = tmp.Replace("<comrad>", characters[TYPES.comrad].name);
 
         textDisplay.Begin(tmp);
-    }
-
-    void Minimize()
-    {
-        if(textDisplay.working == false && talkingWith != TYPES.none)
-        {
-            delayCounter = 0.0f;
-            StoppedTalking();
-        }
     }
 }
  

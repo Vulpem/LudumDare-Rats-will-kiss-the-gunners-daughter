@@ -10,7 +10,6 @@ public class FadeIn : MonoBehaviour
     float currentTime = 0.0f;
     public bool fade = false;
     float minAlpha = 0.0f;
-    public TextManager textManager;
 
     // Update is called once per frame
     void Update()
@@ -30,11 +29,11 @@ public class FadeIn : MonoBehaviour
                     childs.Push(go.transform.GetChild(n).gameObject);
                 }
 
-                CanvasGroup image = go.GetComponent<CanvasGroup>();
+                Image image = go.GetComponent<Image>();
                 if (image != null)
                 {
-                    image.alpha = currentTime / fadeInTime;
-                    minAlpha = Mathf.Min(minAlpha, image.alpha);
+                    image.color = new Color(image.color.r, image.color.g, image.color.b, currentTime / fadeInTime);
+                    minAlpha = Mathf.Min(minAlpha, image.color.a);
                 }
                 else
                 {
@@ -50,6 +49,7 @@ public class FadeIn : MonoBehaviour
             if (minAlpha >= 1.0f)
             {
                 fade = false;
+                currentTime = 0.0f;
             }
 
         }

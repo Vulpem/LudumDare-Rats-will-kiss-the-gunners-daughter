@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class FadeOut : MonoBehaviour
 {
     public float fadeOutTime = 1.0f;
-    public float fadeDelay = 0.0f;
 
-    float currentDelay = 0.0f;
     float currentTime = 0.0f;
     public bool fade = false;
     float maxAlpha;
@@ -31,11 +29,11 @@ public class FadeOut : MonoBehaviour
                     childs.Push(go.transform.GetChild(n).gameObject);
                 }
 
-                CanvasGroup image = go.GetComponent<CanvasGroup>();
+                Image image = go.GetComponent<Image>();
                 if (image != null)
                 {
-                    image.alpha = (fadeOutTime - currentTime) / fadeOutTime;
-                    maxAlpha = Mathf.Max(maxAlpha, image.alpha);
+                    image.color = new Color(image.color.r, image.color.g, image.color.b, (fadeOutTime - currentTime) / fadeOutTime);
+                    maxAlpha = Mathf.Min(maxAlpha, image.color.a);
                 }
                 else
                 {
@@ -51,6 +49,7 @@ public class FadeOut : MonoBehaviour
             if (maxAlpha <= 0.0f)
             {
                 fade = false;
+                currentTime = 0.0f;
                 gameObject.SetActive(false);
             }
 

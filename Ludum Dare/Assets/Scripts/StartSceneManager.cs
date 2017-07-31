@@ -5,6 +5,22 @@ using UnityEngine.SceneManagement;
 
     public class StartSceneManager : MonoBehaviour {
 
+    public FadeManager whiteScreen;
+    bool wantToLoad;
+
+    void Start()
+    {
+        wantToLoad = false;
+    }
+
+    void Update()
+    {
+        if (wantToLoad && whiteScreen.Working() == false)
+        {
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+        }
+    }
+
     public void LoadGame(int language)
     {
         VariableStorage.Gen();
@@ -17,6 +33,6 @@ using UnityEngine.SceneManagement;
             VariableStorage.ints.Add("lang", language);
         }
 
-        SceneManager.LoadScene(1, LoadSceneMode.Single);        
+        wantToLoad = true;        
     }
 }
