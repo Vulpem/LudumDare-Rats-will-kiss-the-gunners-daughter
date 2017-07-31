@@ -29,7 +29,8 @@ public enum DAY_STATE
     FIVE_DOOR,
     SIX_TALKING,
     SEVEN_CHOOSE_ACTION,
-    EIGHT_ANSWER
+    EIGHT_ANSWER,
+    NINE_NIGHT_EVENT
 }
 
 public class TextManager : MonoBehaviour {
@@ -44,10 +45,6 @@ public class TextManager : MonoBehaviour {
     [HideInInspector]
     public string txtRoute;
 
-    bool questionableDecisions = false;
-
-    bool dayOver = false;
-
     float clickDelay = 0.25f;
     float delayCounter = 0.0f;
 
@@ -58,6 +55,8 @@ public class TextManager : MonoBehaviour {
 
     [Header("Things that need to be set up Manually")]
 
+    public GameObject dismissPNJ;
+    public GameObject dismissNight;
     public CardsManager cardManager;
     public CardsManager skullManager;
     [Tooltip("List of characters")]
@@ -150,7 +149,35 @@ public class TextManager : MonoBehaviour {
             state = DAY_STATE.SEVEN_CHOOSE_ACTION;
         }
 
+        if(state == DAY_STATE.EIGHT_ANSWER && textDisplay.working == false)
+        {
+            if (talkingWithN >= characters.Count - 1)
+            {
+                dismissNight.SetActive(true);
+            }
+            else
+            {
+                dismissPNJ.SetActive(true);
+            }
+        }
+        else
+        {
+            dismissNight.SetActive(false);
+            dismissPNJ.SetActive(false);
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            textDisplay.Skip();
+        }
+
         HideActions();
+    }
+
+    public void StartNightEvent()
+    {
+        textDisplay.Clean();
+        //TODO
     }
 
     public void ClickedOnSkull()
@@ -196,6 +223,16 @@ public class TextManager : MonoBehaviour {
             talkingWith = CharacterGOs[talkingWithN].type;
             state = DAY_STATE.SIX_TALKING;
             CreateText(characters[talkingWith].name, characters[talkingWith].bubbles[question].text);
+        }
+    }
+
+    public void MakeAction(int act)
+    {
+        if(state == DAY_STATE.SEVEN_CHOOSE_ACTION)
+        {
+            state = DAY_STATE.EIGHT_ANSWER;
+            actionMade = (PLAYER_ACTIONS)act;
+            MakeAnswer();
         }
     }
 
@@ -367,7 +404,6 @@ public class TextManager : MonoBehaviour {
 
     void EndDay()
     {
-        dayOver = true;
         day++;
         textDisplay.Clean();
         FadeInOut.SetActive(true);
@@ -377,7 +413,6 @@ public class TextManager : MonoBehaviour {
     public void BeginDay()
     {
         talkingWithN = 0;
-        dayOver = false;
         power = 2;
         state = DAY_STATE.ONE_SKULL;
 
@@ -451,7 +486,6 @@ public class TextManager : MonoBehaviour {
     //Stopped talking with someone
     void StoppedTalking()
     {
-        questionableDecisions = false;
         talkingWith = TYPES.none;
         talkingWith_name = "No one";
         textDisplay.Clean();
@@ -459,10 +493,9 @@ public class TextManager : MonoBehaviour {
 
     void MakeAnswer()
     {
-        if (talkingWith != TYPES.none)
+        if (talkingWith != TYPES.none && state == DAY_STATE.EIGHT_ANSWER)
         {
             Character pnj = characters[talkingWith];
-            pnj.doneForToday = true;
 
             if (actionMade != PLAYER_ACTIONS.PEACEFUL)
             {
@@ -484,6 +517,24 @@ public class TextManager : MonoBehaviour {
             {
                 CreateText(pnj.name, pnj.bubbles[question].answers[actionMade]);
             }
+        }
+    }
+
+    public void ExitCharacter()
+    {
+        if (state == DAY_STATE.EIGHT_ANSWER && textDisplay.working == false)
+        {
+            talkingWith = TYPES.none;
+            talkingWithN++;
+            if (talkingWithN >= characters.Count)
+            {
+                //TODO
+            }
+            else
+            {
+                state = DAY_STATE.FIVE_DOOR;
+            }
+            textDisplay.Clean();
         }
     }
 

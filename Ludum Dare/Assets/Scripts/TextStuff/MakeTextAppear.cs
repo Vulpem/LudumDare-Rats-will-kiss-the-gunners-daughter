@@ -53,8 +53,11 @@ public class MakeTextAppear : MonoBehaviour {
 
     public void Skip()
     {
-        UIText.text = text;
-        working = false;
+        if (working)
+        {
+            UIText.text = text;
+            working = false;
+        }
     }
 
     public void Clean()

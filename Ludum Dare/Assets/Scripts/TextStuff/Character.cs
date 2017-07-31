@@ -44,8 +44,6 @@ public class Character : MonoBehaviour {
 
     public Text characterNameUI;
     public TYPES type;
-    //The name of the Character is the name of the GameObject
-    public bool doneForToday = false;
 
     public int angryCount = 0;
 
