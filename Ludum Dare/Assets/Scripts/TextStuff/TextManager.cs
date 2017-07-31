@@ -17,16 +17,19 @@ public enum TODAYS_QUESTION
     WHO_LIES,
     WHO_TO_TRUST,
     WOULD_YOU_LIE_TO_ME,
-    LAST_DAY,
-    First_MESSAGE
+    LAST_DAY
 }
 
 public enum DAY_STATE
 {
     ONE_SKULL,
-    TWO_NOTE,
-    THREE_DOOR,
-    FOUR_CONVERSATION
+    TWO_SKULL_NOTE,
+    THREE_NOTE,
+    FOUR_NOTE_NOTE,
+    FIVE_DOOR,
+    SIX_TALKING,
+    SEVEN_CHOOSE_ACTION,
+    EIGHT_ANSWER
 }
 
 public class TextManager : MonoBehaviour {
@@ -36,6 +39,7 @@ public class TextManager : MonoBehaviour {
     string[] angrySeaWolf;
     string noPower;
     LANGUAGE language;
+    public DAY_STATE state;
 
     [HideInInspector]
     public string txtRoute;
@@ -54,6 +58,8 @@ public class TextManager : MonoBehaviour {
 
     [Header("Things that need to be set up Manually")]
 
+    public CardsManager cardManager;
+    public CardsManager skullManager;
     [Tooltip("List of characters")]
     public Character[] CharacterGOs;
     [HideInInspector]
@@ -69,6 +75,7 @@ public class TextManager : MonoBehaviour {
     public GameObject restingPos;
 
     [Header("Debug Info")]
+    public int talkingWithN;
     public TYPES talkingWith;
     public string talkingWith_name;
     [Range(0, 5)]
@@ -96,6 +103,7 @@ public class TextManager : MonoBehaviour {
             txtRoute = "txts/En/";
             language = LANGUAGE.ENGLISH;
         }
+        state = DAY_STATE.ONE_SKULL;
     }
 
     void Start () {       
@@ -119,8 +127,10 @@ public class TextManager : MonoBehaviour {
 
         blockInteraction = true;
         BeginDay();
-        question = TODAYS_QUESTION.First_MESSAGE;
         day = 1;
+
+
+
     }
 
     // Update is called once per frame
@@ -135,22 +145,58 @@ public class TextManager : MonoBehaviour {
             characters[talkingWith].transform.position = talkingPos.transform.position;
         }
 
+        if(state == DAY_STATE.SIX_TALKING && textDisplay.working == false)
+        {
+            state = DAY_STATE.SEVEN_CHOOSE_ACTION;
+        }
+
         HideActions();
-    }
-
-    public void ClickedOnDoor()
-    {
-
     }
 
     public void ClickedOnSkull()
     {
+        if(state == DAY_STATE.ONE_SKULL)
+        {
+            skullManager.OnClickCard();
+            state = DAY_STATE.TWO_SKULL_NOTE;
+        }
+    }
 
+    public void CloseSkull()
+    {
+        if(state == DAY_STATE.TWO_SKULL_NOTE)
+        {
+            skullManager.OnExitButton();
+            state = DAY_STATE.THREE_NOTE;
+        }
     }
 
     public void ClickedOnParchement()
     {
+        if(state == DAY_STATE.THREE_NOTE)
+        {
+            cardManager.OnClickCard();
+            state = DAY_STATE.FOUR_NOTE_NOTE;
+        }
+    }
 
+    public void CloseParchement()
+    {
+        if (state == DAY_STATE.FOUR_NOTE_NOTE)
+        {
+            cardManager.OnExitButton();
+            state = DAY_STATE.FIVE_DOOR;
+        }
+    }
+
+    public void ClickedOnDoor()
+    {
+        if(state == DAY_STATE.FIVE_DOOR)
+        {
+            talkingWith = CharacterGOs[talkingWithN].type;
+            state = DAY_STATE.SIX_TALKING;
+            CreateText(characters[talkingWith].name, characters[talkingWith].bubbles[question].text);
+        }
     }
 
     void ChooseTodayQuestion()
@@ -174,7 +220,7 @@ public class TextManager : MonoBehaviour {
 
     void HideActions()
     {
-        if (talkingWith == TYPES.none || textDisplay.working == true || characters[talkingWith].doneForToday == true || questionableDecisions == true)
+        if (state != DAY_STATE.SEVEN_CHOOSE_ACTION)
         {
             foreach (Button c in actions)
             {
@@ -289,8 +335,6 @@ public class TextManager : MonoBehaviour {
 
             questions = new Dictionary<TODAYS_QUESTION, string>();
 
-            questions.Add(TODAYS_QUESTION.First_MESSAGE, phrases[0]);
-
             questions.Add(TODAYS_QUESTION.WHOS_TRAITOR, phrases[1]);
             questions.Add(TODAYS_QUESTION.WHO_LIES, phrases[2]);
             questions.Add(TODAYS_QUESTION.WHO_TO_TRUST, phrases[3]);
@@ -332,8 +376,10 @@ public class TextManager : MonoBehaviour {
 
     public void BeginDay()
     {
+        talkingWithN = 0;
         dayOver = false;
         power = 2;
+        state = DAY_STATE.ONE_SKULL;
 
         ChooseTodayQuestion();
 
@@ -344,7 +390,6 @@ public class TextManager : MonoBehaviour {
         }
         else
         {
-            CreateText("", questions[TODAYS_QUESTION.First_MESSAGE]);
             EndedEvent();
         }
     }
@@ -352,7 +397,6 @@ public class TextManager : MonoBehaviour {
     public void EndedEvent()
     {
         blockInteraction = false;
-        CreateText("", questions[question]);
     }
 
     //Sets everything at start
@@ -401,45 +445,7 @@ public class TextManager : MonoBehaviour {
     //A character has recieved a click
     public void ClickedOnMe(GameObject go, int button)
     {
-        if (delayCounter > clickDelay && blockInteraction == false && question != TODAYS_QUESTION.First_MESSAGE)
-        {
-            if (textDisplay.working == false)
-            {
-                Character pnj = go.GetComponent<Character>();
-                delayCounter = 0.0f;
-                StartedTalking(pnj);
-            }
-        }
-    }
 
-    //Began talking with someone
-    void StartedTalking(Character pnj)
-    {
-        if(pnj.type == talkingWith)
-        {
-            return;
-        }
-
-        questionableDecisions = false;
-
-        talkingWith = pnj.type;
-        talkingWith_name = pnj.name;
-
-        if (pnj.doneForToday == false)
-        {
-            CreateText(pnj.name, pnj.bubbles[question].text);
-        }
-        else
-        {
-            if (pnj.angryCount < 2)
-            {
-                CreateText(pnj.name, pnj.bubbles[question].busy);
-            }
-            else
-            {
-                CreateText(pnj.name, angrySeaWolf[2]);
-            }
-        }
     }
 
     //Stopped talking with someone
@@ -449,31 +455,6 @@ public class TextManager : MonoBehaviour {
         talkingWith = TYPES.none;
         talkingWith_name = "No one";
         textDisplay.Clean();
-    }
-
-    public void MakeAction(int actionN)
-    {
-        if (delayCounter > clickDelay && blockInteraction == false)
-        {
-            if (characters[talkingWith].doneForToday == false)
-            {
-                delayCounter = 0.0f;
-                actionMade = (PLAYER_ACTIONS)actionN;
-                if (actionMade != PLAYER_ACTIONS.PEACEFUL && power <= 0)
-                {
-                    CreateText("", noPower);
-                    questionableDecisions = true;
-                }
-                else
-                {
-                    MakeAnswer();
-                }
-            }
-            else
-            {
-                StoppedTalking();
-            }
-        }
     }
 
     void MakeAnswer()
