@@ -34,13 +34,13 @@ You think you shouldn't abuse your power here. Better wait some time before doin
 #Angry sea wolf answers
 
 #First time
-Yeh tryin’ dirty tricks with me?!? Blimey, yeh try that again and I send yeh ter see the bottom o’ the sea up close. Yeh hear me? Try that once more and i never speak ter yeh again.
+Yeh sure yeh wanna try that with me?!? Blimey, yeh try that again and I send yeh ter see the bottom o’ the sea up close. Yeh hear me? Try that once more and i never speak ter yeh again.
 
 #Second time
 *Punches you*  Insolence and pride, may the seas curse yeh, yeh fresh water sailor. And the Drowned God take yeh and rid the world of yer kin! Silence.. is all I offer yeh now.
 
 #Not talking anymore
-...
+... *Spits on the ground and walks away*
 
 
 
