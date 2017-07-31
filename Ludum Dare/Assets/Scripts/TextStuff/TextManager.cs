@@ -44,10 +44,6 @@ public class TextManager : MonoBehaviour {
     public string winText;
     [HideInInspector]
     public string lostText;
-    [HideInInspector]
-    public string tutorial1;
-    [HideInInspector]
-    public string tutorial2;
 
     LANGUAGE language;
     public DAY_STATE state;
@@ -129,6 +125,14 @@ public class TextManager : MonoBehaviour {
         blockInteraction = true;
         BeginDay();
         day = 1;
+
+        foreach (Character pnj in CharacterGOs)
+        {
+                pnj.SetActive(true);
+                pnj.transform.position = talkingPos.transform.position;
+                pnj.transform.localScale = pnj.scale;
+            pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
+        }
     }
 
     // Update is called once per frame
@@ -485,8 +489,8 @@ public class TextManager : MonoBehaviour {
             angrySeaWolf[1] = phrases[9];
             angrySeaWolf[2] = phrases[10];
 
-            tutorial1 = phrases[11];
-            tutorial2 = phrases[12];
+            cardManager.tutorial1.text = phrases[11];
+            cardManager.tutorial2.text = phrases[12];
 
             winText = phrases[13];
             lostText = phrases[14];

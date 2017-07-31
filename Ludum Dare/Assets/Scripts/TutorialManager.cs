@@ -24,9 +24,6 @@ public class TutorialManager : MonoBehaviour {
         globalPanel.SetActive(true);
         TogglePage();
         globalPanel.SetActive(false);
-
-        tutorial1.text = manager.tutorial1;
-        tutorial2.text = manager.tutorial2;
     }
 
     void Update()
@@ -36,8 +33,12 @@ public class TutorialManager : MonoBehaviour {
             for (int n = 0; n < manager.CharacterGOs.Length; n++)
             {
                 manager.CharacterGOs[n].gameObject.SetActive(!page1);
-                manager.CharacterGOs[n].transform.position = characterPositions[n].transform.position;
-                //manager.CharacterGOs[n].transform.localScale = characterPositions[n].transform.localScale;
+                if (!page1)
+                {
+                    manager.CharacterGOs[n].GetComponent<FadeManager>().SetAlpha(1.0f);
+                    manager.CharacterGOs[n].transform.position = characterPositions[n].transform.position;
+                    manager.CharacterGOs[n].transform.localScale = characterPositions[n].transform.localScale;
+                }
             }
         }
     }
