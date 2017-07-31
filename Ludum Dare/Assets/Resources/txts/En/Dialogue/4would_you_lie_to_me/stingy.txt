@@ -1,0 +1,29 @@
+﻿<stingy>
+#Would you lie to me
+
+#Greetings
+Am I needed?
+
+#Busy
+Oh, I'm sorry. i've got work to do, I can't talk right now.
+
+#Violent answer
+Oy, hey, stop!  I don’t know who it could be, like this, with all this tension… it doesn’t come to mind, no. I just can’t put my finger on it… "That doesn't make sense"?  oh, uh umm...
+
+#Peaceful answer
+What? I don’t… don’t recall. Strange, but it doesn’t come to mind. Maybe… nope, right now I got nothing, no. Nothing. "That doesn't make sense"? oh, uh umm...
+
+
+#Briving answer
+Noooo sir! But, I could be lyin’ right now, eh? Then I’d be tellin’ ya a truth and a lie at the same time. Schrodinger’s lie! Aye, I’ll just.. go over there. 
+
+
+#Write theese instead of an actual name to reffer to someone. Be careful with ortography!
+
+#<rioter>
+#<brute>
+#<sea_wolf>
+#<stingy>
+#<comrad>
+
+#Empty lines or those starting with "#" will be ignored

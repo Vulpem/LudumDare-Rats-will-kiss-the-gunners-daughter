@@ -1,0 +1,28 @@
+﻿<rioter>
+#Would you lie to me
+
+#Greetings
+Sir?
+
+#Busy
+Oh, I'm sorry. i've got work to do, I can't talk right now.
+
+#Violent answer
+Aarhg! Why would I ever lie to you..? You treat us SO well…
+
+#Peaceful answer
+Me? No! You offend me Captain!
+
+#Briving answer
+No sir, no sir! I would never lie to the hand that feeds me.
+
+
+#Write theese instead of an actual name to reffer to someone. Be careful with ortography!
+
+#<rioter>
+#<brute>
+#<sea_wolf>
+#<stingy>
+#<comrad>
+
+#Empty lines or those starting with "#" will be ignored

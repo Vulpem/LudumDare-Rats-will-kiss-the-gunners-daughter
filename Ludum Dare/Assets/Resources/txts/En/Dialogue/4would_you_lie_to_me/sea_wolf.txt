@@ -1,0 +1,28 @@
+﻿<sea_wolf>
+#Would you lie to me
+
+#Greetings
+My Lord?
+
+#Busy
+Oh, I'm sorry. i've got work to do, I can't talk right now.
+
+#Violent answer
+Violent answer
+
+#Peaceful answer
+I’ve committed a few dishonorable actions in me life, lying ain’t one of ‘em. The sailor code is clear: he who lies gets an untimely visit with the Drowned God. That ain’t my fate.
+
+#Briving answer
+Briving answer
+
+
+#Write theese instead of an actual name to reffer to someone. Be careful with ortography!
+
+#<rioter>
+#<brute>
+#<sea_wolf>
+#<stingy>
+#<comrad>
+
+#Empty lines or those starting with "#" will be ignored

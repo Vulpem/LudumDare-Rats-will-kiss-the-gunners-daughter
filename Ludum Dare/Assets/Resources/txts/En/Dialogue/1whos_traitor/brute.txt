@@ -1,0 +1,28 @@
+﻿<brute>
+#Who's the traitor
+
+#Greetings
+Am I needed?
+
+#Busy
+Grrrrr...
+
+#Violent answer
+Oh no pretty please, no! I’ll do anything! The mutineer is <rioter>.
+
+#Peaceful answer
+No problem, Cap’n! That would be <comrade>! He acts all dumb and then turns ‘round and goes sayin’ smut about you. Kill ‘im!
+
+#Briving answer
+Well since you ask me this nicely Cap’n, I tell ya. <stingy> is the mutineer.
+
+
+#Write theese instead of an actual name to reffer to someone. Be careful with ortography!
+
+#<rioter>
+#<brute>
+#<sea_wolf>
+#<stingy>
+#<comrad>
+
+#Empty lines or those starting with "#" will be ignored

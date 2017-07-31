@@ -1,22 +1,22 @@
-#Questions
+﻿#Questions
 
 #First message
-You've overheard a rumor that a mutiny is brewing on your boat. You'd better find who's the culprit of this treachery, or you'll be walking the plank. You have 5 days before reaching the next port, where the treason will occur.
+First message
 
 #Who's the traitor
-Today might be a good day to take a more direct approach. You let your crew in your cabinet, and ask, one by one: "Can you tell me who's the traitor in this boat?".
+Day 1 - Who is inciting mutiny?
 
 #Who lies
-Goddamn bunch of liars... no one seems to agree with no one else. Today, you scream "Who of you bastards is lying to me?!"
+Day 2 - Who lies to me?
 
 #Who can I trust
-You don't know what to think anymore... so today, you ask: "Tell me who can I trust the most in this boat".
+Day 3 - Who do you most trust?
 
 #Would you lie to me
-Today, you decide to ask a simple question. One by one, you approach them, look them in the eye and ask: "Would you lie to me?".
+Day 4 - Would you lie to me?
 
 #Who's the most loyal
-Who do you think it's the most loyal?
+Day 5 - Who is most loyal?
 
 #Last day
 No more time. One last time, you let them in, with your gun loaded at your side. You've gotta make a choice. It's you, or him.
@@ -34,10 +34,10 @@ You think you shouldn't abuse your power here. Better wait some time before doin
 #Angry sea wolf answers
 
 #First time
-Do you think this tricks of yours will work on me? Hmpf! Don't you dare try that again, or i will be forced to leave.
+Yeh tryin’ dirty tricks with me?!? Blimey, yeh try that again and I send yeh ter see the bottom o’ the sea up close. Yeh hear me? Try that once more and i never speak ter yeh again.
 
 #Second time
-That's it! I don't have to take this anymore. Next stop we make, i'm leaving. I don't have to take orders from some captain wannabe.
+*Punches you*  Insolence and pride, may the seas curse yeh, yeh fresh water sailor. And the Drowned God take yeh and rid the world of yer kin! Silence.. is all I offer yeh now.
 
 #Not talking anymore
 ...
