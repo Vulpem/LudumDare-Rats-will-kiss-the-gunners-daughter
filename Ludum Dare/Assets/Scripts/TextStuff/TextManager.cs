@@ -31,7 +31,8 @@ public enum DAY_STATE
     SIX_TALKING,
     SEVEN_CHOOSE_ACTION,
     EIGHT_ANSWER,
-    NINE_NIGHT_EVENT
+    NINE_NIGHT_EVENT,
+    NIGHT
 }
 
 public class TextManager : MonoBehaviour {
@@ -138,6 +139,15 @@ public class TextManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(state == DAY_STATE.NIGHT)
+        {
+            if(fade.Working() == false)
+            {
+                fade.Out();
+                BeginDay();
+            }
+        }
+
         if(shinySkull != null)
         {
             if (state == DAY_STATE.ONE_SKULL && blockInteraction == false && fade.Working() == false)
@@ -232,6 +242,7 @@ public class TextManager : MonoBehaviour {
             textDisplay.Clean();
             questionDisplay.Clean();
             fade.In();
+            EndDay();
         }
 
         //TODO
@@ -463,8 +474,8 @@ public class TextManager : MonoBehaviour {
         {
             angrySeaWolf = new string[3];
 
-            TextAsset[] general = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue");
-            string[] dirtyTexts = general[0].text.Split('\n');
+            TextAsset general = Resources.Load<TextAsset>(txtRoute + "Dialogue/GeneralDialogue");
+            string[] dirtyTexts = general.text.Split('\n');
             List<string> phrases = new List<string>();
             foreach (string str in dirtyTexts)
             {
@@ -519,7 +530,7 @@ public class TextManager : MonoBehaviour {
         day++;
         textDisplay.Clean();
         fade.In();
-       // BeginDay();
+        state = DAY_STATE.NIGHT;
     }
 
     public void BeginDay()
