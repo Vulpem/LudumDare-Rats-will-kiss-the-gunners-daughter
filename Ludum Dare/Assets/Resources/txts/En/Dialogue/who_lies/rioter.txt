@@ -1,20 +1,20 @@
-<rioter>
+﻿<rioter>
 #Who lies
 
 #Greetings
-Oh, hi captain! Nice seeing you around here. What's on your mind today?
+My Lord?
 
 #Busy
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Wha... Why?! Why did i do to deserve this? It's <comrad>, <comrad>, i tell ya! Please, don't punch me again! *He runs away*
+Gggh... <comrad> is lying to you, sir. He‘s playing dumb. You've been warned...
 
 #Peaceful answer
-Hmm... I'm not sure, but i do not fully trust <sea_wolf>. There's something fishy about him.
+It’s hard to know these things for sure. But <stingy> has never been trustworthy. He is lying to you, sir!
 
 #Briving answer
-Woaa.. That... Is that for me? Thank you! Really! I think this is worth my trust! I know <sea_wolf> is plotting something, though.
+Good coins! <sea_wolf> is so agressive and rude… and he wants to be the new Captain! He will do whatever it takes to get what he wants.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

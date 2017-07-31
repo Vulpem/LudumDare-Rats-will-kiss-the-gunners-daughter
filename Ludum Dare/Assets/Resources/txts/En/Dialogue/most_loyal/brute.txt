@@ -1,20 +1,20 @@
-<brute>
+﻿<brute>
 #Last day
 
 #Greetings
-Oh... Ughhh... *plof*
+Sir?
 
 #Busy
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+No, please, no violence, I have delicate skin! <comrade> is most loyal to you.
 
 #Peaceful answer
-Pfff...
+If you ask me, I’d say <rioter> is the most loyal.
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Most loyal man on the ship is <rioter>. Who would think it, eh? Haha.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!

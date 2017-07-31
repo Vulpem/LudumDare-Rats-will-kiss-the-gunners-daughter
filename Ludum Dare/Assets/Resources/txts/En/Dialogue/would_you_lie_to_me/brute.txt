@@ -1,20 +1,20 @@
-<brute>
+﻿<brute>
 #Would you lie to me
 
 #Greetings
-Hmpf.
+Captain?
 
 #Busy
 Grrrrr...
 
 #Violent answer
-Uh?! Oh! Jajaja! <rioter>.
+Alright, alright, I know what’s coming. Let’s skip that part and I’ll just answer ya. Maybe I’ve said some little white lie at some point, nothin’ personal sir… Don’t hit me!
 
 #Peaceful answer
-Pfff...
+No, sir, yours truly don’t lie. Maybe, beat, rob, drink and cheat. But lie? No, I never lie.
 
 #Briving answer
-Oooooh... <rioter>, <rioter>.
+Ka-ching! No, sir, yours truly don’t lie. Maybe, beat, rob, drink and cheat. But lie? No, I never lie.
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!
