@@ -52,6 +52,7 @@ public class TextManager : MonoBehaviour {
     [HideInInspector]
     public string lostText;
 
+    public MusicManager music;
     [Header(" --- KillScreen --- ")]
     public GameObject KillPanel;
     public GameObject KillText;
@@ -193,6 +194,7 @@ public class TextManager : MonoBehaviour {
             {
                 EndedEvent();
                 fade.Out();
+                music.ChangeMusicVolume(1.0f);
                 BeginDay();
             }
         }
@@ -296,6 +298,7 @@ public class TextManager : MonoBehaviour {
             textDisplay.Clean();
             questionDisplay.Clean();
             fade.In();
+            music.ChangeMusicVolume(0.0f);
             EndDay();
         }
 
@@ -306,6 +309,7 @@ public class TextManager : MonoBehaviour {
     {
         if(state >= DAY_STATE.ONE_SKULL && state != DAY_STATE.NINE_NIGHT_EVENT && blockInteraction == false)
         {
+            music.PlaySound(SOUNDS.paper);
             blockInteraction = true;
             skullManager.OnClickCard();
             if (state == DAY_STATE.ONE_SKULL)
@@ -319,6 +323,7 @@ public class TextManager : MonoBehaviour {
     {
         if(state >= DAY_STATE.TWO_SKULL_NOTE)
         {
+            music.PlaySound(SOUNDS.paper);
             blockInteraction = false;
             skullManager.OnExitButton();
             if (state == DAY_STATE.TWO_SKULL_NOTE)
@@ -329,6 +334,7 @@ public class TextManager : MonoBehaviour {
                 }
                 else
                 {
+                    questionDisplay.Begin(questions[question]);
                     state = DAY_STATE.FIVE_DOOR;
                 }
             }
@@ -339,6 +345,7 @@ public class TextManager : MonoBehaviour {
     {
         if(state >= DAY_STATE.THREE_NOTE && state != DAY_STATE.NINE_NIGHT_EVENT && blockInteraction == false)
         {
+            music.PlaySound(SOUNDS.paper);
             blockInteraction = true;
             cardManager.OpenScroll();
             if (state == DAY_STATE.THREE_NOTE)
@@ -353,6 +360,7 @@ public class TextManager : MonoBehaviour {
         
         if (state >= DAY_STATE.FOUR_NOTE_NOTE)
         {
+            music.PlaySound(SOUNDS.paper);
             blockInteraction = false;
             cardManager.CloseScroll();
             if (state == DAY_STATE.FOUR_NOTE_NOTE)
@@ -367,6 +375,7 @@ public class TextManager : MonoBehaviour {
     {
         if(state == DAY_STATE.FIVE_DOOR && blockInteraction == false)
         {
+            music.PlaySound(SOUNDS.door);
             talkingWith = CharacterGOs[talkingWithN].type;
             state = DAY_STATE.SIX_TALKING;
             CreateText(characters[talkingWith].name, characters[talkingWith].bubbles[question].text);
@@ -608,6 +617,7 @@ public class TextManager : MonoBehaviour {
     {
         textDisplay.Clean();
         fade.In();
+        music.ChangeMusicVolume(0.0f);
         blockInteraction = true;
         state = DAY_STATE.NIGHT;
         if (day < 6)
@@ -669,9 +679,10 @@ public class TextManager : MonoBehaviour {
         day++;
         fade.SetAlpha(1.0f);
         fade.Out();
+        music.ChangeMusicVolume(1.0f);
         talkingWithN = 0;
         state = DAY_STATE.ONE_SKULL;
-
+        music.PlaySound(SOUNDS.bell);
         foreach(Character pnj in CharacterGOs)
         {
             pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
@@ -754,6 +765,7 @@ public class TextManager : MonoBehaviour {
             if (actionMade != PLAYER_ACTIONS.PEACEFUL)
             {
                 power--;
+                music.PlaySound(SOUNDS.coin);
             }
 
             if (pnj.type == TYPES.sea_wolf && actionMade != PLAYER_ACTIONS.PEACEFUL)
