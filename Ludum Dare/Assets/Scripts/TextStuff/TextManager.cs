@@ -134,7 +134,7 @@ public class TextManager : MonoBehaviour {
     {
         if(shinySkull != null)
         {
-            if (state == DAY_STATE.ONE_SKULL && blockInteraction == false)
+            if (state == DAY_STATE.ONE_SKULL && blockInteraction == false && fade.Working() == false)
             {
                 shinySkull.gameObject.SetActive(true);
             }
@@ -146,7 +146,7 @@ public class TextManager : MonoBehaviour {
 
         if (shinyPapyrus != null)
         {
-            if (state == DAY_STATE.THREE_NOTE && blockInteraction == false)
+            if (state == DAY_STATE.THREE_NOTE && blockInteraction == false && fade.Working() == false)
             {
                 shinyPapyrus.gameObject.SetActive(true);
             }
@@ -158,7 +158,7 @@ public class TextManager : MonoBehaviour {
 
         if (shinyDoor != null)
         {
-            if (state == DAY_STATE.FIVE_DOOR && blockInteraction == false)
+            if (state == DAY_STATE.FIVE_DOOR && blockInteraction == false && fade.Working() == false)
             {
                 shinyDoor.gameObject.SetActive(true);
             }
