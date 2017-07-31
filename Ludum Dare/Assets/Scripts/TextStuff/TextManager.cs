@@ -405,7 +405,7 @@ public class TextManager : MonoBehaviour {
         {
             question = TODAYS_QUESTION.LAST_DAY;
         }*/
-        question = (TODAYS_QUESTION)(day);
+        question = (TODAYS_QUESTION)(day - 1);
     }
 
     void HideActions()
@@ -606,7 +606,6 @@ public class TextManager : MonoBehaviour {
 
     void EndDay()
     {
-        day++;
         textDisplay.Clean();
         fade.In();
         blockInteraction = true;
@@ -667,6 +666,7 @@ public class TextManager : MonoBehaviour {
 
     public void BeginDay()
     {
+        day++;
         fade.SetAlpha(1.0f);
         fade.Out();
         talkingWithN = 0;
