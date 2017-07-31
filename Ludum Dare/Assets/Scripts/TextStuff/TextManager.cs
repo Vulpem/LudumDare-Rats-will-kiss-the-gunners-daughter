@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-enum LANGUAGE
+public enum LANGUAGE
 {
     ENGLISH = 0,
     SPANISH = 1,

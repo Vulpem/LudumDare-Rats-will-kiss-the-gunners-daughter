@@ -30,10 +30,16 @@ public class FadeIn : MonoBehaviour
                 }
 
                 Image image = go.GetComponent<Image>();
+                Text text = go.GetComponent<Text>();
                 if (image != null)
                 {
                     image.color = new Color(image.color.r, image.color.g, image.color.b, currentTime / fadeInTime);
                     minAlpha = Mathf.Min(minAlpha, image.color.a);
+                }
+                else if(text != null)
+                {
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, currentTime / fadeInTime);
+                    minAlpha = Mathf.Min(minAlpha, text.color.a);
                 }
                 else
                 {

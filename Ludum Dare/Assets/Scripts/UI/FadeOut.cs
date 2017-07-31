@@ -24,6 +24,7 @@ public class FadeOut : MonoBehaviour
             while (childs.Count > 0)
             {
                 GameObject go = childs.Pop();
+                Text text = go.GetComponent<Text>();
                 for (int n = 0; n < go.transform.childCount; n++)
                 {
                     childs.Push(go.transform.GetChild(n).gameObject);
@@ -33,7 +34,12 @@ public class FadeOut : MonoBehaviour
                 if (image != null)
                 {
                     image.color = new Color(image.color.r, image.color.g, image.color.b, (fadeOutTime - currentTime) / fadeOutTime);
-                    maxAlpha = Mathf.Min(maxAlpha, image.color.a);
+                    maxAlpha = Mathf.Max(maxAlpha, image.color.a);
+                }
+                else if (text != null)
+                {
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, (fadeOutTime - currentTime) / fadeOutTime);
+                    maxAlpha = Mathf.Max(maxAlpha, text.color.a);
                 }
                 else
                 {
