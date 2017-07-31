@@ -42,7 +42,7 @@ public class TextManager : MonoBehaviour {
     string noPower;
 
     string winText;
-    string loostText;
+    string lostText;
     string tutorial1;
     string tutorial2;
 
@@ -315,7 +315,7 @@ public class TextManager : MonoBehaviour {
     {
         if (day < 6)
         {
-            int n = UnityEngine.Random.Range(0, 5);
+            int n = UnityEngine.Random.Range(0, 6);
             while (questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
             {
                 n++;
@@ -482,7 +482,7 @@ public class TextManager : MonoBehaviour {
             tutorial2 = phrases[12];
 
             winText = phrases[13];
-            loostText = phrases[14];
+            lostText = phrases[14];
 
 
             if (phrases.Count > 15)
