@@ -5,13 +5,10 @@ using UnityEngine;
 public class PowerCoin : MonoBehaviour {
 
     public float acceleration_consumed = 1000.0f;
-    float acceleration = 0.0f;
     public float speed = 20.0f;
     public float disappearSpeed = 1080.0f;
 
     bool beingConsumed = false;
-
-    float angle = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -68,7 +65,6 @@ public class PowerCoin : MonoBehaviour {
             gameObject.SetActive(true);
 
             beingConsumed = false;
-            angle = 0.0f;
             speed = 20.0f;
             speed += Random.Range(-5.0f, 5.0f);
             if (Random.Range(-1.0f, 1.0f) > 0.0f)

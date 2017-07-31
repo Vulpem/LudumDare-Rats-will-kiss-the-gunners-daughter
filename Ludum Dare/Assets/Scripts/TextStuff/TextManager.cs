@@ -40,7 +40,6 @@ public class TextManager : MonoBehaviour {
     Dictionary<TODAYS_QUESTION, string> questions;
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
     string[] angrySeaWolf;
-    string noPower;
     [HideInInspector]
     public string winText;
     [HideInInspector]
@@ -480,8 +479,6 @@ public class TextManager : MonoBehaviour {
             questions.Add(TODAYS_QUESTION.MOST_LOYAL, phrases[5]);
             questions.Add(TODAYS_QUESTION.LAST_DAY, phrases[6]);
 
-            noPower = phrases[7];
-
             angrySeaWolf[0] = phrases[8];
             angrySeaWolf[1] = phrases[9];
             angrySeaWolf[2] = phrases[10];
@@ -557,8 +554,20 @@ public class TextManager : MonoBehaviour {
         textDisplay.Clean();
         fade.In();
         blockInteraction = true;
-        eventManager.LaunchEvent();
+        if (day < 6)
+        {
+            eventManager.LaunchEvent();
+        }
+        else
+        {
+            BeginKill();
+        }
         state = DAY_STATE.NIGHT;
+    }
+
+    void BeginKill()
+    {
+
     }
 
     public void BeginDay()
