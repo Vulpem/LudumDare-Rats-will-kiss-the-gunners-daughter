@@ -485,7 +485,7 @@ public class TextManager : MonoBehaviour {
             loostText = phrases[14];
 
 
-            if (phrases.Count > 10)
+            if (phrases.Count > 15)
             {
                 string lang = LanguageToString();
                 Debug.LogError("General dialogues have more phrases than they should.\nText written in " + lang);
