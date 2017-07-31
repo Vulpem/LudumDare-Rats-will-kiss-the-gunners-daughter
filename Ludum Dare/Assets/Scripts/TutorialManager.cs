@@ -8,8 +8,8 @@ public class TutorialManager : MonoBehaviour {
     public TextManager manager;
     public GameObject globalPanel;
 
-    public Text tutorial1;
-    public Text tutorial2;
+    public GameObject tutorial1;
+    public GameObject tutorial2;
     public GameObject[] characterPositions;
     public GameObject[] characterNames;
 

@@ -549,8 +549,8 @@ public class TextManager : MonoBehaviour {
             angrySeaWolf[1] = phrases[9];
             angrySeaWolf[2] = phrases[10];
 
-            cardManager.tutorial1.text = phrases[11];
-            cardManager.tutorial2.text = phrases[12];
+            //cardManager.tutorial1.text = phrases[11];
+           // cardManager.tutorial2.text = phrases[12];
 
             winText = phrases[13];
             lostText = phrases[14];
