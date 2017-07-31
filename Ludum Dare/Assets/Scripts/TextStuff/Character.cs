@@ -45,8 +45,6 @@ public class Character : MonoBehaviour {
     public Text characterNameUI;
     public TYPES type;
     //The name of the Character is the name of the GameObject
-    bool active = true;
-    bool updatePos = false;
     public bool doneForToday = false;
 
     public int angryCount = 0;
@@ -65,8 +63,6 @@ public class Character : MonoBehaviour {
     public TextManager manager;
 
     Vector3 scale;
-    Vector3 originalPos;
-    Vector3 currentPos;
     Transporter transporter;
 
     public Character()
@@ -76,7 +72,6 @@ public class Character : MonoBehaviour {
 
     void Start()
     {
-        originalPos = transform.position;
         scale = gameObject.transform.localScale;
         transporter = GetComponent<Transporter>();
         if(transporter == null)
