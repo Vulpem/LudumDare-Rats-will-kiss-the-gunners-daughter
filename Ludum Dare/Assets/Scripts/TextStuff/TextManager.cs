@@ -255,6 +255,10 @@ public class TextManager : MonoBehaviour {
     {
         if(state == DAY_STATE.SEVEN_CHOOSE_ACTION && blockInteraction == false)
         {
+            if(act != (int)PLAYER_ACTIONS.PEACEFUL && power <= 0)
+            {
+                return;
+            }
             state = DAY_STATE.EIGHT_ANSWER;
             actionMade = (PLAYER_ACTIONS)act;
             MakeAnswer();
