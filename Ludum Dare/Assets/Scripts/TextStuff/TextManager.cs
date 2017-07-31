@@ -17,6 +17,7 @@ public enum TODAYS_QUESTION
     WHO_LIES,
     WHO_TO_TRUST,
     WOULD_YOU_LIE_TO_ME,
+    MOST_LOYAL,
     LAST_DAY
 }
 
@@ -39,6 +40,12 @@ public class TextManager : MonoBehaviour {
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
     string[] angrySeaWolf;
     string noPower;
+
+    string winText;
+    string loostText;
+    string tutorial1;
+    string tutorial2;
+
     LANGUAGE language;
     public DAY_STATE state;
 
@@ -306,7 +313,7 @@ public class TextManager : MonoBehaviour {
 
     void ChooseTodayQuestion()
     {
-        if (day < 5)
+        if (day < 6)
         {
             int n = UnityEngine.Random.Range(0, 5);
             while (questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
@@ -401,7 +408,7 @@ public class TextManager : MonoBehaviour {
         bank[(int)TODAYS_QUESTION.WHO_LIES] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/who_lies");
         bank[(int)TODAYS_QUESTION.WHO_TO_TRUST] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/who_to_trust");
         bank[(int)TODAYS_QUESTION.WOULD_YOU_LIE_TO_ME] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/would_you_lie_to_me");
-        bank[(int)TODAYS_QUESTION.LAST_DAY] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/last_day");
+        bank[(int)TODAYS_QUESTION.MOST_LOYAL] = Resources.LoadAll<TextAsset>(txtRoute + "Dialogue/most_loyal");
 
         int n = 0;
         foreach (TextAsset[] dayBank in bank)
@@ -462,15 +469,23 @@ public class TextManager : MonoBehaviour {
             questions.Add(TODAYS_QUESTION.WHO_LIES, phrases[2]);
             questions.Add(TODAYS_QUESTION.WHO_TO_TRUST, phrases[3]);
             questions.Add(TODAYS_QUESTION.WOULD_YOU_LIE_TO_ME, phrases[4]);
-            questions.Add(TODAYS_QUESTION.LAST_DAY, phrases[5]);
+            questions.Add(TODAYS_QUESTION.MOST_LOYAL, phrases[5]);
+            questions.Add(TODAYS_QUESTION.LAST_DAY, phrases[6]);
 
-            noPower = phrases[6];
+            noPower = phrases[7];
 
-            angrySeaWolf[0] = phrases[7];
-            angrySeaWolf[1] = phrases[8];
-            angrySeaWolf[2] = phrases[9];
+            angrySeaWolf[0] = phrases[8];
+            angrySeaWolf[1] = phrases[9];
+            angrySeaWolf[2] = phrases[10];
 
-            if(phrases.Count > 10)
+            tutorial1 = phrases[11];
+            tutorial2 = phrases[12];
+
+            winText = phrases[13];
+            loostText = phrases[14];
+
+
+            if (phrases.Count > 10)
             {
                 string lang = LanguageToString();
                 Debug.LogError("General dialogues have more phrases than they should.\nText written in " + lang);

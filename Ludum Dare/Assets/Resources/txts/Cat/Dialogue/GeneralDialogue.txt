@@ -15,6 +15,9 @@ You don't know what to think anymore... so today, you ask: "Tell me who can I tr
 #Would you lie to me
 Today, you decide to ask a simple question. One by one, you approach them, look them in the eye and ask: "Would you lie to me?".
 
+#Who's the most loyal
+Who do you think it's the most loyal?
+
 #Last day
 No more time. One last time, you let them in, with your gun loaded at your side. You've gotta make a choice. It's you, or him.
 
@@ -42,6 +45,22 @@ That's it! I don't have to take this anymore. Next stop we make, i'm leaving. I 
 
 
 # ----------------------------------------------------------------
+
+#First page in the "tutorial" scroll
+Aqui hi ha un tutorial!
+
+#Second page in the "tutorial" scroll, where the faces are
+Aqui surten les cares dels personatges. Si, a sota.
+
+#Text que surt en guanyar
+Has guanyat!
+
+#text que surt en perdre
+Has perdut...
+
+
+# ----------------------------------------------------------------
+
 
 
 
