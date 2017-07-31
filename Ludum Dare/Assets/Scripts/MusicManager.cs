@@ -43,8 +43,11 @@ public class MusicManager : MonoBehaviour {
 
     public void RestartMusic()
     {
-        musics[0].Stop();
-        musics[0].Play();
+        if (musics.Count > 0)
+        {
+            musics[0].Stop();
+            musics[0].Play();
+        }
     }
 
     void Start()
