@@ -64,7 +64,7 @@ public class MusicManager : MonoBehaviour {
 
     void Update()
     {
-        if(changing)
+        if(changing && musics.Count > 0)
         {
             currentVolume += changeSpeed * Time.deltaTime;
             if(Mathf.Abs(currentVolume - desiredVolume) < Mathf.Abs(changeSpeed))
