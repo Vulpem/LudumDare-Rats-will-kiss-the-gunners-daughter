@@ -65,6 +65,7 @@ public class Character : MonoBehaviour {
     Transporter transporter;
 
     public FadeManager fade;
+    public Vector3 originalPos;
 
     public Character()
     {
@@ -86,7 +87,7 @@ public class Character : MonoBehaviour {
         {
             if (gameObject.activeInHierarchy == true)
             {
-                fade.SetAlpha(1.0f);
+                //fade.SetAlpha(1.0f);
                 fade.Out();
             }
         }
@@ -96,6 +97,7 @@ public class Character : MonoBehaviour {
     void Awake()
     {
         scale = gameObject.transform.localScale;
+        originalPos = gameObject.transform.position;
     }
 
     void Start()

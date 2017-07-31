@@ -660,19 +660,24 @@ public class TextManager : MonoBehaviour {
                 pnj.GetComponent<FadeManager>().In();
             }
         }
-
         n = 0;
-        foreach (Character pnj in CharacterGOs)
+        if(KillBool)
         {
-            pnj.transform.position = KillCharacterPositions[n].transform.position;
-            pnj.transform.localScale = KillCharacterPositions[n].transform.localScale;
-            n++;
+            foreach (Character pnj in CharacterGOs)
+            {
+                pnj.transform.position = KillCharacterPositions[n].transform.position;
+                pnj.transform.localScale = KillCharacterPositions[n].transform.localScale;
+                n++;
+            }
+        }
+        else
+        {
+            foreach (Character pnj in CharacterGOs)
+            {
+                pnj.transform.position = pnj.originalPos;
+            }
         }
 
-        if (KillPanel.GetComponent<FadeManager>().Working() == false)
-        {
-
-        }
     }
 
     public void BeginDay()
@@ -735,6 +740,7 @@ public class TextManager : MonoBehaviour {
 
     void Win()
     {
+        music.ChangeMusicVolume(1.0f);
         WinScreen.SetActive(true);
         WinScreenText.gameObject.SetActive(true);
         WinScreenText.GetComponent<MakeTextAppear>().Begin(winText);
@@ -743,6 +749,7 @@ public class TextManager : MonoBehaviour {
 
     void Loose()
     {
+        music.ChangeMusicVolume(1.0f);
         WinScreen.SetActive(true);
         WinScreenText.gameObject.SetActive(true);
         WinScreenText.GetComponent<MakeTextAppear>().Begin(lostText);
@@ -791,10 +798,17 @@ public class TextManager : MonoBehaviour {
     {
         if (state == DAY_STATE.EIGHT_ANSWER && textDisplay.working == false)
         {
+            if (question == TODAYS_QUESTION.MOST_LOYAL && talkingWithN == 4)
+            {
+                characters[talkingWith].gameObject.SetActive(false);
+                characters[talkingWith].gameObject.GetComponent<FadeManager>().SetAlpha(0.0f);
+                blockInteraction = true;
+            }
             talkingWith = TYPES.none;
             talkingWithN++;
             state = DAY_STATE.FIVE_DOOR;
             textDisplay.Clean();
+
         }
     }
 
