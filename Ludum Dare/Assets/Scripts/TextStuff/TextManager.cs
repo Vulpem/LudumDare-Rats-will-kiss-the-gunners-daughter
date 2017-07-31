@@ -32,7 +32,8 @@ public enum DAY_STATE
     SEVEN_CHOOSE_ACTION,
     EIGHT_ANSWER,
     NINE_NIGHT_EVENT,
-    NIGHT
+    NIGHT,
+    KILL
 }
 
 public class TextManager : MonoBehaviour {
@@ -44,6 +45,13 @@ public class TextManager : MonoBehaviour {
     public string winText;
     [HideInInspector]
     public string lostText;
+
+    [Header(" --- KillScreen --- ")]
+    public GameObject KillPanel;
+    public GameObject KillText;
+    public GameObject[] KillCharacterPositions;
+    public GameObject[] KillCharacterNames;
+    bool KillBool = false;
 
     LANGUAGE language;
     public DAY_STATE state;
@@ -125,6 +133,9 @@ public class TextManager : MonoBehaviour {
         blockInteraction = true;
         BeginDay();
         day = 1;
+        KillBool = false;
+
+        KillPanel.SetActive(false);
 
         foreach (Character pnj in CharacterGOs)
         {
@@ -146,6 +157,11 @@ public class TextManager : MonoBehaviour {
                 fade.Out();
                 BeginDay();
             }
+        }
+
+        if(state == DAY_STATE.KILL)
+        {
+            KillUpdate();
         }
 
         if(shinySkull != null)
@@ -554,6 +570,7 @@ public class TextManager : MonoBehaviour {
         textDisplay.Clean();
         fade.In();
         blockInteraction = true;
+        state = DAY_STATE.NIGHT;
         if (day < 6)
         {
             eventManager.LaunchEvent();
@@ -562,12 +579,53 @@ public class TextManager : MonoBehaviour {
         {
             BeginKill();
         }
-        state = DAY_STATE.NIGHT;
+
     }
 
     void BeginKill()
     {
+        state = DAY_STATE.KILL;
+    }
 
+    void KillUpdate()
+    {
+        int n = 0;
+        if (fade.Working() == false && KillBool == false)
+        {
+            KillBool = true;
+            KillPanel.GetComponent<FadeManager>().SetAlpha(0.0f);
+            KillPanel.GetComponent<FadeManager>().In();
+
+            
+            foreach(GameObject name in KillCharacterNames)
+            {
+                name.GetComponent<Text>().text = CharacterGOs[n].name;
+                n++;
+            }
+
+            foreach(Character pnj in CharacterGOs)
+            {
+                pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
+            }
+
+            foreach (Character pnj in CharacterGOs)
+            {
+                pnj.GetComponent<FadeManager>().In();
+            }
+        }
+
+        n = 0;
+        foreach (Character pnj in CharacterGOs)
+        {
+            pnj.transform.position = KillCharacterPositions[n].transform.position;
+            pnj.transform.localScale = KillCharacterPositions[n].transform.localScale;
+            n++;
+        }
+
+        if (KillPanel.GetComponent<FadeManager>().Working() == false)
+        {
+
+        }
     }
 
     public void BeginDay()
