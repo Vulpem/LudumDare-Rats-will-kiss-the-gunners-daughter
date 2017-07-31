@@ -43,6 +43,14 @@ public class FadeManager : MonoBehaviour
 
     public void SetAlpha(float alpha)
     {
+        if (fadeIn != null)
+        {
+            fadeIn.fade = false;
+        }
+        if (fadeOut != null)
+        {
+            fadeOut.fade = false;
+        }
         if (alpha != 0.0f)
         {
             gameObject.SetActive(true);
