@@ -82,7 +82,7 @@ public class TextManager : MonoBehaviour {
     public int talkingWithN;
     public TYPES talkingWith;
     public string talkingWith_name;
-    [Range(0, 5)]
+    [Range(0, 3)]
     public int power = 2;
     public TODAYS_QUESTION question;
     public int day = 0;
