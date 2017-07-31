@@ -64,6 +64,7 @@ public class TextManager : MonoBehaviour {
     [HideInInspector]
     public SortedDictionary<TYPES, Character> characters;
 
+    public MakeTextAppear questionDisplay;
     public MakeTextAppear textDisplay;
     public Button[] actions;
 
@@ -127,9 +128,6 @@ public class TextManager : MonoBehaviour {
         blockInteraction = true;
         BeginDay();
         day = 1;
-
-
-
     }
 
     // Update is called once per frame
@@ -176,49 +174,67 @@ public class TextManager : MonoBehaviour {
 
     public void StartNightEvent()
     {
+        questionDisplay.Clean();
         textDisplay.Clean();
         //TODO
     }
 
     public void ClickedOnSkull()
     {
-        if(state == DAY_STATE.ONE_SKULL)
+        if(state >= DAY_STATE.ONE_SKULL && state != DAY_STATE.NINE_NIGHT_EVENT && blockInteraction == false)
         {
+            blockInteraction = true;
             skullManager.OnClickCard();
-            state = DAY_STATE.TWO_SKULL_NOTE;
+            if (state == DAY_STATE.ONE_SKULL)
+            {
+                state = DAY_STATE.TWO_SKULL_NOTE;
+            }
         }
     }
 
     public void CloseSkull()
     {
-        if(state == DAY_STATE.TWO_SKULL_NOTE)
+        if(state >= DAY_STATE.TWO_SKULL_NOTE)
         {
+            blockInteraction = false;
             skullManager.OnExitButton();
-            state = DAY_STATE.THREE_NOTE;
+            if (state == DAY_STATE.TWO_SKULL_NOTE)
+            {
+                state = DAY_STATE.THREE_NOTE;
+            }
         }
     }
 
     public void ClickedOnParchement()
     {
-        if(state == DAY_STATE.THREE_NOTE)
+        if(state >= DAY_STATE.THREE_NOTE && state != DAY_STATE.NINE_NIGHT_EVENT && blockInteraction == false)
         {
+            blockInteraction = true;
             cardManager.OnClickCard();
-            state = DAY_STATE.FOUR_NOTE_NOTE;
+            if (state == DAY_STATE.THREE_NOTE)
+            {
+                state = DAY_STATE.FOUR_NOTE_NOTE;
+            }
         }
     }
 
     public void CloseParchement()
     {
-        if (state == DAY_STATE.FOUR_NOTE_NOTE)
+        if (state >= DAY_STATE.FOUR_NOTE_NOTE)
         {
+            blockInteraction = false;
             cardManager.OnExitButton();
-            state = DAY_STATE.FIVE_DOOR;
+            if (state == DAY_STATE.FOUR_NOTE_NOTE)
+            {
+                state = DAY_STATE.FIVE_DOOR;
+                questionDisplay.Begin(questions[question]);
+            }
         }
     }
 
     public void ClickedOnDoor()
     {
-        if(state == DAY_STATE.FIVE_DOOR)
+        if(state == DAY_STATE.FIVE_DOOR && blockInteraction == false)
         {
             talkingWith = CharacterGOs[talkingWithN].type;
             state = DAY_STATE.SIX_TALKING;
@@ -228,7 +244,7 @@ public class TextManager : MonoBehaviour {
 
     public void MakeAction(int act)
     {
-        if(state == DAY_STATE.SEVEN_CHOOSE_ACTION)
+        if(state == DAY_STATE.SEVEN_CHOOSE_ACTION && blockInteraction == false)
         {
             state = DAY_STATE.EIGHT_ANSWER;
             actionMade = (PLAYER_ACTIONS)act;

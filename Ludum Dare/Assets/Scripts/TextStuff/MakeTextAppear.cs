@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MakeTextAppear : MonoBehaviour {
 
+    public GameObject Bubble;
     public string text;
     int currentPosition = 0;
     public float delayWithinLetters = 0.02f;
@@ -17,12 +18,18 @@ public class MakeTextAppear : MonoBehaviour {
         UIText = GetComponent<Text>();
         working = false;
         UIText.text = "";
-	}
+        Bubble.SetActive(false);
+
+    }
 
     public void Begin(string _text)
     {
         if (working == false)
         {
+            if (Bubble != null)
+            {
+                Bubble.SetActive(true);
+            }
             text = _text;
             working = true;
             currentPosition = 0;
@@ -64,6 +71,10 @@ public class MakeTextAppear : MonoBehaviour {
     {
         Skip();
         UIText.text = "";
+        if (Bubble != null)
+        {
+            Bubble.SetActive(false);
+        }
     }
 	
 	// Update is called once per frame
