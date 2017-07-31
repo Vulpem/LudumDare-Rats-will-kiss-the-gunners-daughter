@@ -147,7 +147,7 @@ public class TextManager : MonoBehaviour {
             state = DAY_STATE.SEVEN_CHOOSE_ACTION;
         }
 
-        if(state == DAY_STATE.EIGHT_ANSWER && textDisplay.working == false)
+        if(state == DAY_STATE.EIGHT_ANSWER && textDisplay.working == false && blockInteraction == false)
         {
             if (talkingWithN >= characters.Count - 1)
             {
