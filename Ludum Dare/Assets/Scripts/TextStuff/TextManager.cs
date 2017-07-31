@@ -141,8 +141,9 @@ public class TextManager : MonoBehaviour {
     {
         if(state == DAY_STATE.NIGHT)
         {
-            if(fade.Working() == false)
+            if(fade.Working() == false && blockInteraction == false)
             {
+                EndedEvent();
                 fade.Out();
                 BeginDay();
             }
@@ -530,6 +531,8 @@ public class TextManager : MonoBehaviour {
         day++;
         textDisplay.Clean();
         fade.In();
+        blockInteraction = true;
+        eventManager.LaunchEvent();
         state = DAY_STATE.NIGHT;
     }
 
@@ -538,20 +541,16 @@ public class TextManager : MonoBehaviour {
         fade.SetAlpha(1.0f);
         fade.Out();
         talkingWithN = 0;
-        power = 2;
         state = DAY_STATE.ONE_SKULL;
+
+        foreach(Character pnj in CharacterGOs)
+        {
+            pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
+        }
 
         ChooseTodayQuestion();
 
-        if (day >= 2 && question != TODAYS_QUESTION.LAST_DAY)
-        {
-            blockInteraction = true;
-            eventManager.LaunchEvent();
-        }
-        else
-        {
-            EndedEvent();
-        }
+        EndedEvent();
     }
 
     public void EndedEvent()
