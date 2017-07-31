@@ -334,6 +334,7 @@ public class TextManager : MonoBehaviour {
                 }
                 else
                 {
+                    questionDisplay.Begin(questions[question]);
                     state = DAY_STATE.FIVE_DOOR;
                 }
             }
