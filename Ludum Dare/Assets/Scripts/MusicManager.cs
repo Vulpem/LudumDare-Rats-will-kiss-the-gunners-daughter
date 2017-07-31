@@ -41,6 +41,12 @@ public class MusicManager : MonoBehaviour {
         musics = new List<AudioSource>();
     }
 
+    public void RestartMusic()
+    {
+        musics[0].Stop();
+        musics[0].Play();
+    }
+
     void Start()
     {
         AudioSource[] src = gameObject.GetComponents<AudioSource>();

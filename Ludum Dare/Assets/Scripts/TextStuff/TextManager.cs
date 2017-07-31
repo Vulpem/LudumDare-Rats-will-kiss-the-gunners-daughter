@@ -196,6 +196,7 @@ public class TextManager : MonoBehaviour {
                 EndedEvent();
                 fade.Out();
                 music.ChangeMusicVolume(1.0f);
+                music.RestartMusic();
                 BeginDay();
             }
         }
@@ -686,6 +687,7 @@ public class TextManager : MonoBehaviour {
         fade.SetAlpha(1.0f);
         fade.Out();
         music.ChangeMusicVolume(1.0f);
+        music.RestartMusic();
         talkingWithN = 0;
         state = DAY_STATE.ONE_SKULL;
         music.PlaySound(SOUNDS.bell);
@@ -741,6 +743,7 @@ public class TextManager : MonoBehaviour {
     void Win()
     {
         music.ChangeMusicVolume(1.0f);
+        music.RestartMusic();
         WinScreen.SetActive(true);
         WinScreenText.gameObject.SetActive(true);
         WinScreenText.GetComponent<MakeTextAppear>().Begin(winText);
@@ -750,6 +753,7 @@ public class TextManager : MonoBehaviour {
     void Loose()
     {
         music.ChangeMusicVolume(1.0f);
+        music.RestartMusic();
         WinScreen.SetActive(true);
         WinScreenText.gameObject.SetActive(true);
         WinScreenText.GetComponent<MakeTextAppear>().Begin(lostText);
