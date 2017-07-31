@@ -53,6 +53,9 @@ public class TextManager : MonoBehaviour {
     public GameObject dismissNight;
     public CardsManager cardManager;
     public CardsManager skullManager;
+    public Animator shinySkull;
+    public Animator shinyDoor;
+    public Animator shinyPapyrus;
     [Tooltip("List of characters")]
     public Character[] CharacterGOs;
     [HideInInspector]
@@ -122,7 +125,43 @@ public class TextManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        foreach(Character pnj in CharacterGOs)
+        if(shinySkull != null)
+        {
+            if (state == DAY_STATE.ONE_SKULL)
+            {
+                shinySkull.SetBool("play", true);
+            }
+            else
+            {
+                shinySkull.SetBool("play", false);
+            }
+        }
+
+        if (shinyDoor != null)
+        {
+            if (state == DAY_STATE.THREE_NOTE)
+            {
+                shinyDoor.SetBool("play", true);
+            }
+            else
+            {
+                shinyDoor.SetBool("play", false);
+            }
+        }
+
+        if (shinyPapyrus != null)
+        {
+            if (state == DAY_STATE.FIVE_DOOR)
+            {
+                shinyPapyrus.SetBool("play", true);
+            }
+            else
+            {
+                shinyPapyrus.SetBool("play", false);
+            }
+        }
+
+        foreach (Character pnj in CharacterGOs)
         {
             if (talkingWith != pnj.type)
             {
@@ -202,7 +241,14 @@ public class TextManager : MonoBehaviour {
             skullManager.OnExitButton();
             if (state == DAY_STATE.TWO_SKULL_NOTE)
             {
-                state = DAY_STATE.THREE_NOTE;
+                if (day == 1)
+                {
+                    state = DAY_STATE.THREE_NOTE;
+                }
+                else
+                {
+                    state = DAY_STATE.FIVE_DOOR;
+                }
             }
         }
     }
