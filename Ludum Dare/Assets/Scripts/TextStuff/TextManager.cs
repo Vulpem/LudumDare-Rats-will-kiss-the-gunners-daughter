@@ -134,37 +134,37 @@ public class TextManager : MonoBehaviour {
     {
         if(shinySkull != null)
         {
-            if (state == DAY_STATE.ONE_SKULL)
+            if (state == DAY_STATE.ONE_SKULL && blockInteraction == false)
             {
-                shinySkull.SetBool("play", true);
+                shinySkull.gameObject.SetActive(true);
             }
             else
             {
-                shinySkull.SetBool("play", false);
-            }
-        }
-
-        if (shinyDoor != null)
-        {
-            if (state == DAY_STATE.THREE_NOTE)
-            {
-                shinyDoor.SetBool("play", true);
-            }
-            else
-            {
-                shinyDoor.SetBool("play", false);
+                shinySkull.gameObject.SetActive(false);
             }
         }
 
         if (shinyPapyrus != null)
         {
-            if (state == DAY_STATE.FIVE_DOOR)
+            if (state == DAY_STATE.THREE_NOTE && blockInteraction == false)
             {
-                shinyPapyrus.SetBool("play", true);
+                shinyPapyrus.gameObject.SetActive(true);
             }
             else
             {
-                shinyPapyrus.SetBool("play", false);
+                shinyPapyrus.gameObject.SetActive(false);
+            }
+        }
+
+        if (shinyDoor != null)
+        {
+            if (state == DAY_STATE.FIVE_DOOR && blockInteraction == false)
+            {
+                shinyDoor.gameObject.SetActive(true);
+            }
+            else
+            {
+                shinyDoor.gameObject.SetActive(false);
             }
         }
 
