@@ -27,6 +27,8 @@ public class MusicManager : MonoBehaviour {
 
     List<AudioSource> musics;
 
+    public float musicMaxVolume = 0.5f;
+
     float currentVolume;
     float desiredVolume;
     bool changing = false;
@@ -84,7 +86,8 @@ public class MusicManager : MonoBehaviour {
 
     public void ChangeMusicVolume(float _volume)
     {
-        desiredVolume = _volume;
+
+        desiredVolume = Mathf.Min(_volume, musicMaxVolume);
         changing = true;
         changeSpeed = (_volume - currentVolume) / 2.0f;
     }
