@@ -29,16 +29,19 @@ public class MusicManager : MonoBehaviour {
 
     public float musicMaxVolume = 0.5f;
 
-    float currentVolume;
+    public float currentVolume;
     float desiredVolume;
     bool changing = false;
     float changeSpeed;
 
-    void Start()
+    void Awake()
     {
         sources = new List<AudioSource>();
         musics = new List<AudioSource>();
+    }
 
+    void Start()
+    {
         AudioSource[] src = gameObject.GetComponents<AudioSource>();
         if (src.Length > 0)
         {
@@ -68,7 +71,7 @@ public class MusicManager : MonoBehaviour {
 
         foreach (AudioSource s in musics)
         {
-            s.volume = musicMaxVolume;
+            s.volume = currentVolume = musicMaxVolume;
         }
     }
 
