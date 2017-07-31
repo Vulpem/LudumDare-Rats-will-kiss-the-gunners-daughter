@@ -80,8 +80,14 @@ public class MusicManager : MonoBehaviour {
         }
 
         currentVolume = musicMaxVolume;
-        musics[0].volume = Mathf.Min(musicMaxVolume, currentVolume);
-        musics[1].volume = Mathf.Min(bgMaxVolume, currentVolume);
+        if (musics.Count > 0)
+        {
+            musics[0].volume = Mathf.Min(musicMaxVolume, currentVolume);
+        }
+        if (musics.Count > 1)
+        {
+            musics[1].volume = Mathf.Min(bgMaxVolume, currentVolume);
+        }
     }
 
     void Update()
