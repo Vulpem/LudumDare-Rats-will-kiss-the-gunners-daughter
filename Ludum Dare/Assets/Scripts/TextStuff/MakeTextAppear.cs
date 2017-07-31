@@ -53,8 +53,31 @@ public class MakeTextAppear : MonoBehaviour {
             }
             else
             {
-                UIText.text += text[currentPosition];
-                currentPosition++;
+                if (text[currentPosition] != '<')
+                {
+                    UIText.text += text[currentPosition];
+                    currentPosition++;
+                }
+                else
+                {
+                    string toAdd = ""; 
+                    while(text[currentPosition] != '>' && currentPosition < text.Length)
+                    {
+                        toAdd += text[currentPosition];
+                        currentPosition++;
+                    }
+                    toAdd += text[currentPosition];
+                    currentPosition++;
+                    while (text[currentPosition] != '>' && currentPosition < text.Length)
+                    {
+                        toAdd += text[currentPosition];
+                        currentPosition++;
+                    }
+                    toAdd += text[currentPosition];
+                    currentPosition++;
+
+                    UIText.text += toAdd;
+                }
             }
 
             yield return new WaitForSeconds(delayWithinLetters);

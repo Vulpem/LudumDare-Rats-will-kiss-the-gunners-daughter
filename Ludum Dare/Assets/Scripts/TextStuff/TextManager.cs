@@ -39,6 +39,7 @@ public enum DAY_STATE
 public class TextManager : MonoBehaviour {
 
     public GameObject WinScreen;
+    public Text WinScreenText;
     Dictionary<TODAYS_QUESTION, string> questions;
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
     string[] angrySeaWolf;
@@ -682,12 +683,16 @@ public class TextManager : MonoBehaviour {
 
     void Win()
     {
-
+        WinScreen.SetActive(true);
+        WinScreenText.gameObject.SetActive(true);
+        WinScreenText.GetComponent<MakeTextAppear>().Begin(winText);
     }
 
     void Loose()
     {
-
+        WinScreen.SetActive(true);
+        WinScreenText.gameObject.SetActive(true);
+        WinScreenText.GetComponent<MakeTextAppear>().Begin(lostText);
     }
 
     //Stopped talking with someone
@@ -752,13 +757,13 @@ public class TextManager : MonoBehaviour {
             tmp = text;
         }
 
-        tmp = tmp.Replace("<rioter>", characters[TYPES.rioter].name);
-        tmp = tmp.Replace("<brute>", characters[TYPES.brute].name);
-        tmp = tmp.Replace("<sea_wolf>", characters[TYPES.sea_wolf].name);
-        tmp = tmp.Replace("<sea wolf>", characters[TYPES.sea_wolf].name);
-        tmp = tmp.Replace("<stingy>", characters[TYPES.stingy].name);
-        tmp = tmp.Replace("<comrad>", characters[TYPES.comrad].name);
-        tmp = tmp.Replace("<comrade>", characters[TYPES.comrad].name);
+        tmp = tmp.Replace("<rioter>", "<color=#51272f>" + characters[TYPES.rioter].name + "</color>");
+        tmp = tmp.Replace("<brute>", "<color=#51272f>" + characters[TYPES.brute].name + "</color>");
+        tmp = tmp.Replace("<sea_wolf>", "<color=#51272f>" + characters[TYPES.sea_wolf].name + "</color>");
+        tmp = tmp.Replace("<sea wolf>", "<color=#51272f>" + characters[TYPES.sea_wolf].name + "</color>");
+        tmp = tmp.Replace("<stingy>", "<color=#51272f>" + characters[TYPES.stingy].name + "</color>");
+        tmp = tmp.Replace("<comrad>", "<color=#51272f>" + characters[TYPES.comrad].name + "</color>");
+        tmp = tmp.Replace("<comrade>", "<color=#51272f>" + characters[TYPES.comrad].name + "</color>");
 
         textDisplay.Begin(tmp);
     }
