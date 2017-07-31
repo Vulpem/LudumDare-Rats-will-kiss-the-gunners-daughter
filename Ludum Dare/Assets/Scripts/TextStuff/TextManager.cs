@@ -85,6 +85,7 @@ public class TextManager : MonoBehaviour {
     public GameObject restingPos;
 
     [Header("Debug Info")]
+    [Range(0,4)]
     public int talkingWithN;
     public TYPES talkingWith;
     public string talkingWith_name;
@@ -596,6 +597,7 @@ public class TextManager : MonoBehaviour {
             KillPanel.GetComponent<FadeManager>().SetAlpha(0.0f);
             KillPanel.GetComponent<FadeManager>().In();
 
+            KillText.GetComponent<MakeTextAppear>().Begin(questions[TODAYS_QUESTION.LAST_DAY]);
             
             foreach(GameObject name in KillCharacterNames)
             {
@@ -606,10 +608,6 @@ public class TextManager : MonoBehaviour {
             foreach(Character pnj in CharacterGOs)
             {
                 pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
-            }
-
-            foreach (Character pnj in CharacterGOs)
-            {
                 pnj.GetComponent<FadeManager>().In();
             }
         }
@@ -661,6 +659,30 @@ public class TextManager : MonoBehaviour {
 
     //A character has recieved a click
     public void ClickedOnMe(GameObject go, int button)
+    {
+        if(state == DAY_STATE.KILL)
+        {
+            Character pnj = go.GetComponent<Character>();
+            if (pnj != null)
+            {
+                if(pnj.type == TYPES.rioter)
+                {
+                    Win();
+                }
+                else
+                {
+                    Loose();
+                }
+            }
+        }
+    }
+
+    void Win()
+    {
+
+    }
+
+    void Loose()
     {
 
     }

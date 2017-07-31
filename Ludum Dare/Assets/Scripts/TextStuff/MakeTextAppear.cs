@@ -18,7 +18,10 @@ public class MakeTextAppear : MonoBehaviour {
         UIText = GetComponent<Text>();
         working = false;
         UIText.text = "";
-        Bubble.SetActive(false);
+        if (Bubble != null)
+        {
+            Bubble.SetActive(false);
+        }
 
     }
 

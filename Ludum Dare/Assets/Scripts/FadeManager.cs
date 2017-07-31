@@ -63,7 +63,6 @@ public class FadeManager : MonoBehaviour
         if (image != null)
         {
             image.alpha = alpha;
-            return;
         }
 
         Stack<GameObject> childs = new Stack<GameObject>();
