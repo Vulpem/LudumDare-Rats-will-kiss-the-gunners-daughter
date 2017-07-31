@@ -99,6 +99,7 @@ public class TextManager : MonoBehaviour {
     [Range(0, 3)]
     public int power = 2;
     public TODAYS_QUESTION question;
+    [Range(0,5)]
     public int day = 0;
     public bool blockInteraction = false;
 
@@ -620,7 +621,7 @@ public class TextManager : MonoBehaviour {
         music.ChangeMusicVolume(0.0f);
         blockInteraction = true;
         state = DAY_STATE.NIGHT;
-        if (day < 6)
+        if (day < 5)
         {
             eventManager.LaunchEvent();
         }
