@@ -65,6 +65,11 @@ public class MusicManager : MonoBehaviour {
             m2.Play();
             musics.Add(m2);
         }
+
+        foreach (AudioSource s in musics)
+        {
+            s.volume = musicMaxVolume;
+        }
     }
 
     void Update()
@@ -95,12 +100,15 @@ public class MusicManager : MonoBehaviour {
     public void PlaySound(SOUNDS sound)
     {
         AudioSource toPlay = null;
-        foreach (AudioSource source in sources)
+        if (sources.Count > 0)
         {
-            if (source.isPlaying == false)
+            foreach (AudioSource source in sources)
             {
-                toPlay = source;
-                break;
+                if (source.isPlaying == false)
+                {
+                    toPlay = source;
+                    break;
+                }
             }
         }
         if (toPlay == null)

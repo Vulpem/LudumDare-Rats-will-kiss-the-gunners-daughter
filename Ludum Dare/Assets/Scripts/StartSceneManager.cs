@@ -85,7 +85,7 @@ using UnityEngine.UI;
         {
             VariableStorage.ints.Add("lang", (int)language);
         }
-
+        music.ChangeMusicVolume(0.0f);
         wantToLoad = true;        
     }
 
