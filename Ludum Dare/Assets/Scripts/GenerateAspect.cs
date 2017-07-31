@@ -16,7 +16,7 @@ public class GenerateAspect : MonoBehaviour {
     public AspectDatabase database;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
         head.sprite = database.GetHead();
         body.sprite = database.GetBody();
@@ -33,10 +33,5 @@ public class GenerateAspect : MonoBehaviour {
         headPostition.y = database.GetHeadPositionY(body.sprite);
         headObject.transform.localPosition = headPostition;
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+
 }

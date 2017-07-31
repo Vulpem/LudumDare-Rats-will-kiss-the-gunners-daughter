@@ -48,6 +48,8 @@ public class Character : MonoBehaviour {
     public int angryCount = 0;
 
     [HideInInspector]
+    public Vector3 scale;
+    [HideInInspector]
     public static string gettingAngry;
     [HideInInspector]
     public static string gotAngry;
@@ -60,7 +62,6 @@ public class Character : MonoBehaviour {
     [HideInInspector]
     public TextManager manager;
 
-    Vector3 scale;
     Transporter transporter;
 
     public FadeManager fade;
@@ -92,10 +93,14 @@ public class Character : MonoBehaviour {
        
     }
 
+    void Awake()
+    {
+        scale = gameObject.transform.localScale;
+    }
+
     void Start()
     {
         fade = GetComponent<FadeManager>();
-        scale = gameObject.transform.localScale;
         transporter = GetComponent<Transporter>();
         if(transporter == null)
         {

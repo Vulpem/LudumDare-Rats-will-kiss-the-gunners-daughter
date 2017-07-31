@@ -40,11 +40,14 @@ public class TextManager : MonoBehaviour {
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
     string[] angrySeaWolf;
     string noPower;
-
-    string winText;
-    string lostText;
-    string tutorial1;
-    string tutorial2;
+    [HideInInspector]
+    public string winText;
+    [HideInInspector]
+    public string lostText;
+    [HideInInspector]
+    public string tutorial1;
+    [HideInInspector]
+    public string tutorial2;
 
     LANGUAGE language;
     public DAY_STATE state;
@@ -55,10 +58,9 @@ public class TextManager : MonoBehaviour {
     PLAYER_ACTIONS actionMade = 0;
 
     [Header("Things that need to be set up Manually")]
-
     public GameObject dismissPNJ;
     public GameObject dismissNight;
-    public CardsManager cardManager;
+    public TutorialManager cardManager;
     public CardsManager skullManager;
     public Animator shinySkull;
     public Animator shinyDoor;
@@ -168,16 +170,20 @@ public class TextManager : MonoBehaviour {
             }
         }
 
-        foreach (Character pnj in CharacterGOs)
+        if (blockInteraction == false)
         {
-            if (talkingWith != pnj.type)
+            foreach (Character pnj in CharacterGOs)
             {
-                pnj.SetActive(false);
-            }
-            else
-            {
-                pnj.SetActive(true);
-                pnj.transform.position = talkingPos.transform.position;
+                if (talkingWith != pnj.type)
+                {
+                    pnj.SetActive(false);
+                }
+                else
+                {
+                    pnj.SetActive(true);
+                    pnj.transform.position = talkingPos.transform.position;
+                    pnj.transform.localScale = pnj.scale;
+                }
             }
         }
 
@@ -265,7 +271,7 @@ public class TextManager : MonoBehaviour {
         if(state >= DAY_STATE.THREE_NOTE && state != DAY_STATE.NINE_NIGHT_EVENT && blockInteraction == false)
         {
             blockInteraction = true;
-            cardManager.OnClickCard();
+            cardManager.OpenScroll();
             if (state == DAY_STATE.THREE_NOTE)
             {
                 state = DAY_STATE.FOUR_NOTE_NOTE;
@@ -275,10 +281,11 @@ public class TextManager : MonoBehaviour {
 
     public void CloseParchement()
     {
+        
         if (state >= DAY_STATE.FOUR_NOTE_NOTE)
         {
             blockInteraction = false;
-            cardManager.OnExitButton();
+            cardManager.CloseScroll();
             if (state == DAY_STATE.FOUR_NOTE_NOTE)
             {
                 state = DAY_STATE.FIVE_DOOR;
