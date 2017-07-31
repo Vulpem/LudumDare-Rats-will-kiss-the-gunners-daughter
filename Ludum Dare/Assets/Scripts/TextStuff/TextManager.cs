@@ -21,6 +21,14 @@ public enum TODAYS_QUESTION
     First_MESSAGE
 }
 
+public enum DAY_STATE
+{
+    ONE_SKULL,
+    TWO_NOTE,
+    THREE_DOOR,
+    FOUR_CONVERSATION
+}
+
 public class TextManager : MonoBehaviour {
 
     Dictionary<TODAYS_QUESTION, string> questions;
