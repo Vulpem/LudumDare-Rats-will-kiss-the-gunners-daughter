@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum LANGUAGE
 {
@@ -38,6 +39,9 @@ public enum DAY_STATE
 
 public class TextManager : MonoBehaviour {
 
+    bool endGame = false;
+    bool loadMenu = false;
+    float countEnd = 0.0f;
     public GameObject WinScreen;
     public Text WinScreenText;
     Dictionary<TODAYS_QUESTION, string> questions;
@@ -152,6 +156,37 @@ public class TextManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(endGame)
+        {
+            KillPanel.SetActive(false);
+            KillText.SetActive(false);
+
+            foreach (GameObject name in KillCharacterNames)
+            {
+                name.SetActive(false);
+            }
+            foreach (Character pnj in CharacterGOs)
+            {
+                pnj.SetActive(false);
+            }
+
+            if (WinScreenText.GetComponent<MakeTextAppear>().working == false)
+            {
+                countEnd += Time.deltaTime;
+                if (countEnd >= 0.75f && Input.GetMouseButtonDown(0))
+                {
+                    countEnd += Time.deltaTime;
+                    WinScreen.GetComponent<FadeManager>().Out();
+                    loadMenu = true;
+                }
+            }
+
+            if (loadMenu && WinScreen.GetComponent<FadeManager>().Working() == false)
+            {
+                SceneManager.LoadScene(0, LoadSceneMode.Single);
+            }
+        }
+
         if(state == DAY_STATE.NIGHT)
         {
             if(fade.Working() == false && blockInteraction == false)
@@ -669,7 +704,12 @@ public class TextManager : MonoBehaviour {
             Character pnj = go.GetComponent<Character>();
             if (pnj != null)
             {
-                if(pnj.type == TYPES.rioter)
+                foreach (Character _pnj in CharacterGOs)
+                {
+                    _pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
+                }
+
+                if (pnj.type == TYPES.rioter)
                 {
                     Win();
                 }
@@ -686,6 +726,7 @@ public class TextManager : MonoBehaviour {
         WinScreen.SetActive(true);
         WinScreenText.gameObject.SetActive(true);
         WinScreenText.GetComponent<MakeTextAppear>().Begin(winText);
+        endGame = true;
     }
 
     void Loose()
@@ -693,6 +734,7 @@ public class TextManager : MonoBehaviour {
         WinScreen.SetActive(true);
         WinScreenText.gameObject.SetActive(true);
         WinScreenText.GetComponent<MakeTextAppear>().Begin(lostText);
+        endGame = true;
     }
 
     //Stopped talking with someone
