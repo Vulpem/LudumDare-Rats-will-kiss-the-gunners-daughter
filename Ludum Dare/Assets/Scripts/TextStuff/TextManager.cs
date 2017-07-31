@@ -438,15 +438,8 @@ public class TextManager : MonoBehaviour {
         {
             foreach(TextAsset file in dayBank)
             {
-                string[] dirtyTexts = file.text.Split('\n');
-                List<string> phrases = new List<string>();
-                foreach(string str in dirtyTexts)
-                {
-                    if(str[0] != '#' && str.Length > 2)
-                    {
-                        phrases.Add(str.Substring(0, str.Length - 1));
-                    }
-                }
+                List<string> phrases = CleanPhrases(file);
+
                 TYPES type = new TYPES();
                 switch (phrases[0])
                 {
@@ -466,7 +459,7 @@ public class TextManager : MonoBehaviour {
                 if (phrases.Count > 6)
                 {
                     string lang = LanguageToString();
-                    Debug.LogError("One of the txts has more phrases than it should! Written in " + lang + "\n" + dirtyTexts[0] + dirtyTexts[1] + dirtyTexts[2]);
+                    Debug.LogError("One of the txts has more phrases than it should! Written in " + lang);
                 }
             }
             n++;
@@ -476,15 +469,7 @@ public class TextManager : MonoBehaviour {
             angrySeaWolf = new string[3];
 
             TextAsset general = Resources.Load<TextAsset>(txtRoute + "Dialogue/GeneralDialogue");
-            string[] dirtyTexts = general.text.Split('\n');
-            List<string> phrases = new List<string>();
-            foreach (string str in dirtyTexts)
-            {
-                if (str[0] != '#' && str.Length > 2)
-                {
-                    phrases.Add(str.Substring(0, str.Length - 1));
-                }
-            }
+            List<string> phrases = CleanPhrases(general);
 
             questions = new Dictionary<TODAYS_QUESTION, string>();
 
@@ -514,6 +499,46 @@ public class TextManager : MonoBehaviour {
                 Debug.LogError("General dialogues have more phrases than they should.\nText written in " + lang);
             }
         }
+    }
+
+    List<string> CleanPhrases(TextAsset bank)
+    {
+        string[] dirtyTexts = bank.text.Split('\n');
+        List<string> phrases = new List<string>();
+
+        string newPhrase = "";
+        bool toAdd = false;
+
+        foreach (string str in dirtyTexts)
+        {
+            if (str[0] != '#' && ((str.Length >= 1 && str[0] != '\n' && str[0] != '\r') || toAdd) )
+            {
+                newPhrase += str;
+                toAdd = true;
+            }
+            else
+            {
+                int n = 1;
+                for(; n < newPhrase.Length - 1; n++)
+                {
+                    if((newPhrase[newPhrase.Length - n] == '\n' || newPhrase[newPhrase.Length - n] == '\r') && (newPhrase[newPhrase.Length - n - 1] != '\n' && newPhrase[newPhrase.Length - n - 1] != '\r'))
+                    {
+                        break;
+                    }
+                }
+
+                if (toAdd)
+                {
+                    phrases.Add(newPhrase.Substring(0, newPhrase.Length - n));
+                }
+                newPhrase = "";
+                toAdd = false;
+            }
+           
+        }
+
+
+        return phrases;
     }
 
     string LanguageToString()
