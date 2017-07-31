@@ -28,6 +28,7 @@ public class MusicManager : MonoBehaviour {
     List<AudioSource> musics;
 
     public float musicMaxVolume = 0.5f;
+    public float bgMaxVolume = 0.3f;
 
     public float currentVolume;
     float desiredVolume;
@@ -69,10 +70,9 @@ public class MusicManager : MonoBehaviour {
             musics.Add(m2);
         }
 
-        foreach (AudioSource s in musics)
-        {
-            s.volume = currentVolume = musicMaxVolume;
-        }
+        currentVolume = musicMaxVolume;
+        musics[0].volume = Mathf.Min(musicMaxVolume, currentVolume);
+        musics[1].volume = Mathf.Min(bgMaxVolume, currentVolume);
     }
 
     void Update()
@@ -85,10 +85,9 @@ public class MusicManager : MonoBehaviour {
                 currentVolume = desiredVolume;
                 changing = false;
             }
-            foreach(AudioSource src in musics)
-            {
-                src.volume = currentVolume;
-            }
+
+            musics[0].volume = Mathf.Min(musicMaxVolume, currentVolume);
+            musics[1].volume = Mathf.Min(bgMaxVolume, currentVolume);
         }
     }
 
