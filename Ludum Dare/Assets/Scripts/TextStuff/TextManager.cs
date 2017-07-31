@@ -13,7 +13,7 @@ public enum LANGUAGE
 
 public enum TODAYS_QUESTION
 {
-    WHOS_TRAITOR,
+    WHOS_TRAITOR = 0,
     WHO_LIES,
     WHO_TO_TRUST,
     WOULD_YOU_LIE_TO_ME,
@@ -38,6 +38,7 @@ public enum DAY_STATE
 
 public class TextManager : MonoBehaviour {
 
+    public GameObject WinScreen;
     Dictionary<TODAYS_QUESTION, string> questions;
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
     string[] angrySeaWolf;
@@ -352,6 +353,7 @@ public class TextManager : MonoBehaviour {
 
     void ChooseTodayQuestion()
     {
+        /*
         if (day < 6)
         {
             int n = UnityEngine.Random.Range(0, 6);
@@ -366,7 +368,8 @@ public class TextManager : MonoBehaviour {
         else
         {
             question = TODAYS_QUESTION.LAST_DAY;
-        }
+        }*/
+        question = (TODAYS_QUESTION)(day);
     }
 
     void HideActions()
@@ -752,8 +755,10 @@ public class TextManager : MonoBehaviour {
         tmp = tmp.Replace("<rioter>", characters[TYPES.rioter].name);
         tmp = tmp.Replace("<brute>", characters[TYPES.brute].name);
         tmp = tmp.Replace("<sea_wolf>", characters[TYPES.sea_wolf].name);
+        tmp = tmp.Replace("<sea wolf>", characters[TYPES.sea_wolf].name);
         tmp = tmp.Replace("<stingy>", characters[TYPES.stingy].name);
         tmp = tmp.Replace("<comrad>", characters[TYPES.comrad].name);
+        tmp = tmp.Replace("<comrade>", characters[TYPES.comrad].name);
 
         textDisplay.Begin(tmp);
     }
