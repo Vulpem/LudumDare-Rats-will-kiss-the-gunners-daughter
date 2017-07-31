@@ -57,6 +57,9 @@ public class TextManager : MonoBehaviour {
     public EventManager eventManager;
     public GameObject FadeInOut;
 
+    public GameObject talkingPos;
+    public GameObject restingPos;
+
     [Header("Debug Info")]
     public TYPES talkingWith;
     public string talkingWith_name;
@@ -87,8 +90,8 @@ public class TextManager : MonoBehaviour {
         }
     }
 
-    void Start () {
-
+    void Start () {       
+       
         questionsAsked = new Dictionary<TODAYS_QUESTION, bool>();
         questionsAsked.Add(TODAYS_QUESTION.LAST_DAY, true);
 
@@ -104,6 +107,8 @@ public class TextManager : MonoBehaviour {
         SecurityCheck();
 
         GenerateCharacters();
+        LoadDialogues();
+
         blockInteraction = true;
         BeginDay();
         question = TODAYS_QUESTION.First_MESSAGE;
@@ -113,67 +118,31 @@ public class TextManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if(question == TODAYS_QUESTION.First_MESSAGE)
+        foreach(Character pnj in CharacterGOs)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (textDisplay.working)
-                {
-                    textDisplay.Skip();
-                }
-                else
-                {
-                    if (day < 5)
-                    {
-                        int n = UnityEngine.Random.Range(0, 5);
-                        while (questionsAsked.ContainsKey((TODAYS_QUESTION)(n)))
-                        {
-                            n++;
-                            if (n >= (int)TODAYS_QUESTION.LAST_DAY) { n = 0; }
-                        }
-                        question = (TODAYS_QUESTION)n;
-                        questionsAsked.Add(question, true);
-                    }
-                    else
-                    {
-                        question = TODAYS_QUESTION.LAST_DAY;
-                    }
-                    blockInteraction = false;
-                    textDisplay.Clean();
-                    delayCounter = 0.0f;
-                }
-            }
+            pnj.gameObject.transform.position = restingPos.transform.position;
         }
-
-        if (blockInteraction == false)
+        if (talkingWith != TYPES.none)
         {
-            delayCounter += Time.deltaTime;
-            ManageInputAskCrew();
-
-            if(textDisplay.UIText.text.Length < 2 && textDisplay.working == false && dayOver == false)
-            {
-                CreateText("", questions[question]);
-            }
+            characters[talkingWith].transform.position = talkingPos.transform.position;
         }
 
         HideActions();
+    }
 
-        if (dayOver == false)
-        {
-            bool endDay = true;
-            if (textDisplay.UIText.text.Length > 3 || talkingWith != TYPES.none)
-            {
-                endDay = false;
-            }
-            foreach (Character pnj in CharacterGOs)
-            {
-                if (pnj.doneForToday == false) { endDay = false; }
-            }
-            if (endDay)
-            {
-                EndDay();
-            }
-        }
+    public void ClickedOnDoor()
+    {
+
+    }
+
+    public void ClickedOnSkull()
+    {
+
+    }
+
+    public void ClickedOnParchement()
+    {
+
     }
 
     void ChooseTodayQuestion()
@@ -246,7 +215,6 @@ public class TextManager : MonoBehaviour {
             }
             characters.Add(type, c);
         }
-        LoadDialogues();
     }
 
     void LoadDialogues()
@@ -358,19 +326,6 @@ public class TextManager : MonoBehaviour {
     {
         dayOver = false;
         power = 2;
-        foreach (Character pnj in CharacterGOs)
-        {
-            if (pnj.angryCount < 2)
-            {
-                pnj.SetActive(true);
-                pnj.doneForToday = false;
-            }
-            else
-            {
-                pnj.SetActive(false);
-                pnj.doneForToday = true;
-            }
-        }
 
         ChooseTodayQuestion();
 
@@ -395,12 +350,9 @@ public class TextManager : MonoBehaviour {
     //Sets everything at start
     void SecurityCheck()
     {
-        int n = 0;
         foreach (Character pnj in CharacterGOs)
         {
             pnj.manager = this;
-            pnj.characterN = n;
-            n++;
         }
     }
 
@@ -462,11 +414,6 @@ public class TextManager : MonoBehaviour {
 
         questionableDecisions = false;
 
-       foreach (Character t in CharacterGOs)
-        {
-            t.SetActive(false);
-        }
-        pnj.SetActive(true);
         talkingWith = pnj.type;
         talkingWith_name = pnj.name;
 
@@ -494,11 +441,6 @@ public class TextManager : MonoBehaviour {
         talkingWith = TYPES.none;
         talkingWith_name = "No one";
         textDisplay.Clean();
-        foreach (Character pnj in CharacterGOs)
-        {
-            if(pnj.doneForToday) { pnj.SetActive(false); }
-            else { pnj.SetActive(true); }
-        }
     }
 
     public void MakeAction(int actionN)
