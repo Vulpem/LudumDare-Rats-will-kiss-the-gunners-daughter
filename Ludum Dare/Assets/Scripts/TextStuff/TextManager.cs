@@ -43,6 +43,7 @@ public class TextManager : MonoBehaviour {
     bool loadMenu = false;
     float countEnd = 0.0f;
     public GameObject WinScreen;
+	public GameObject LoseScreen;
     public Text WinScreenText;
     Dictionary<TODAYS_QUESTION, string> questions;
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
@@ -745,8 +746,8 @@ public class TextManager : MonoBehaviour {
         music.ChangeMusicVolume(1.0f);
         music.RestartMusic();
         WinScreen.SetActive(true);
-        WinScreenText.gameObject.SetActive(true);
-        WinScreenText.GetComponent<MakeTextAppear>().Begin(winText);
+        //WinScreenText.gameObject.SetActive(true);
+        //WinScreenText.GetComponent<MakeTextAppear>().Begin(winText);
         endGame = true;
     }
 
@@ -754,9 +755,9 @@ public class TextManager : MonoBehaviour {
     {
         music.ChangeMusicVolume(1.0f);
         music.RestartMusic();
-        WinScreen.SetActive(true);
-        WinScreenText.gameObject.SetActive(true);
-        WinScreenText.GetComponent<MakeTextAppear>().Begin(lostText);
+        LoseScreen.SetActive(true);
+        //WinScreenText.gameObject.SetActive(true);
+        //WinScreenText.GetComponent<MakeTextAppear>().Begin(lostText);
         endGame = true;
     }
 
@@ -840,5 +841,6 @@ public class TextManager : MonoBehaviour {
 
         textDisplay.Begin(tmp);
     }
+		
 }
  
