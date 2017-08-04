@@ -381,7 +381,14 @@ public class TextManager : MonoBehaviour {
             music.PlaySound(SOUNDS.door);
             talkingWith = CharacterGOs[talkingWithN].type;
             state = DAY_STATE.SIX_TALKING;
-            CreateText(characters[talkingWith].name, characters[talkingWith].bubbles[question].text);
+            if (characters[talkingWith].angryCount < 2)
+            {
+                CreateText(characters[talkingWith].name, characters[talkingWith].bubbles[question].text);
+            }
+            else
+            {
+                CreateText(characters[talkingWith].name, "...");
+            }
         }
     }
 
@@ -779,6 +786,12 @@ public class TextManager : MonoBehaviour {
             {
                 power--;
                 music.PlaySound(SOUNDS.coin);
+            }
+
+            if(pnj.type == TYPES.sea_wolf && pnj.angryCount >= 2)
+            {
+                CreateText(pnj.name, angrySeaWolf[2]);
+                return;
             }
 
             if (pnj.type == TYPES.sea_wolf && actionMade != PLAYER_ACTIONS.PEACEFUL)
