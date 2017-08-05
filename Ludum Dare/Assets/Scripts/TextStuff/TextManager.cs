@@ -34,17 +34,18 @@ public enum DAY_STATE
     EIGHT_ANSWER,
     NINE_NIGHT_EVENT,
     NIGHT,
-    KILL
+    KILL,
+    ENDGAME,
+    REVEAL
 }
 
 public class TextManager : MonoBehaviour {
 
-    bool endGame = false;
+    bool won = true;
     bool loadMenu = false;
     float countEnd = 0.0f;
     public GameObject WinScreen;
 	public GameObject LoseScreen;
-    public Text WinScreenText;
     Dictionary<TODAYS_QUESTION, string> questions;
     Dictionary<TODAYS_QUESTION, bool> questionsAsked;
     string[] angrySeaWolf;
@@ -159,35 +160,9 @@ public class TextManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if(endGame)
+        if(state == DAY_STATE.ENDGAME)
         {
-            KillPanel.SetActive(false);
-            KillText.SetActive(false);
-
-            foreach (GameObject name in KillCharacterNames)
-            {
-                name.SetActive(false);
-            }
-            foreach (Character pnj in CharacterGOs)
-            {
-                pnj.SetActive(false);
-            }
-
-            if (WinScreenText.GetComponent<MakeTextAppear>().working == false)
-            {
-                countEnd += Time.deltaTime;
-                if (countEnd >= 0.75f && Input.GetMouseButtonDown(0))
-                {
-                    countEnd += Time.deltaTime;
-                    WinScreen.GetComponent<FadeManager>().Out();
-                    loadMenu = true;
-                }
-            }
-
-            if (loadMenu && WinScreen.GetComponent<FadeManager>().Working() == false)
-            {
-                SceneManager.LoadScene(0, LoadSceneMode.Single);
-            }
+            EndGameUpdate();
         }
 
         if(state == DAY_STATE.NIGHT)
@@ -289,6 +264,39 @@ public class TextManager : MonoBehaviour {
         }
 
         HideActions();
+    }
+
+    void EndGameUpdate()
+    {
+        KillPanel.SetActive(false);
+        KillText.SetActive(false);
+
+        foreach (GameObject name in KillCharacterNames)
+        {
+            name.SetActive(false);
+        }
+        foreach (Character pnj in CharacterGOs)
+        {
+            pnj.SetActive(false);
+        }
+
+        if (WinScreen.GetComponent<FadeManager>().Working() == false)
+        {
+            countEnd += Time.deltaTime;
+            if (countEnd >= 0.75f && Input.GetMouseButtonDown(0))
+            {
+                countEnd += Time.deltaTime;
+                WinScreen.GetComponent<FadeManager>().Out();
+                loadMenu = true;
+            }
+        }
+
+        if (loadMenu && WinScreen.GetComponent<FadeManager>().Working() == false)
+        {
+            state = DAY_STATE.REVEAL;
+            KillPanel.SetActive(true);
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+        }
     }
 
     public void StartNightEvent()
@@ -753,9 +761,8 @@ public class TextManager : MonoBehaviour {
         music.ChangeMusicVolume(1.0f);
         music.RestartMusic();
         WinScreen.SetActive(true);
-        //WinScreenText.gameObject.SetActive(true);
-        //WinScreenText.GetComponent<MakeTextAppear>().Begin(winText);
-        endGame = true;
+        state = DAY_STATE.ENDGAME;
+        won = true;
     }
 
     void Loose()
@@ -763,9 +770,8 @@ public class TextManager : MonoBehaviour {
         music.ChangeMusicVolume(1.0f);
         music.RestartMusic();
         LoseScreen.SetActive(true);
-        //WinScreenText.gameObject.SetActive(true);
-        //WinScreenText.GetComponent<MakeTextAppear>().Begin(lostText);
-        endGame = true;
+        state = DAY_STATE.ENDGAME;
+        won = false;
     }
 
     //Stopped talking with someone

@@ -25,7 +25,13 @@ public class FadeManager : MonoBehaviour
 
     public bool Working()
     {
-        return (fadeIn.fade || fadeOut.fade);
+        if(fadeIn == null || fadeOut == null)
+        {
+            fadeIn = GetComponent<FadeIn>();
+            fadeOut = GetComponent<FadeOut>();
+        }
+
+        return (fadeIn.fade == true || fadeOut.fade == true);
     }
 
     public void In()
