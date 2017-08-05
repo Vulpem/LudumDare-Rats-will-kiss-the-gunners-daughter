@@ -36,11 +36,14 @@ public enum DAY_STATE
     NIGHT,
     KILL,
     ENDGAME,
-    REVEAL
+    QUITTING
 }
 
 public class TextManager : MonoBehaviour {
 
+    public GameObject revealPanel;
+    public GameObject[] RevealCharacterPositions;
+    public GameObject[] RevealCharacterNames;
     bool won = true;
     bool loadMenu = false;
     float countEnd = 0.0f;
@@ -158,9 +161,37 @@ public class TextManager : MonoBehaviour {
         }
     }
 
+    public void ToggleRevealScreen()
+    {
+        music.PlaySound(SOUNDS.paper);
+        if(revealPanel.gameObject.activeInHierarchy == true)
+        {
+            revealPanel.GetComponent<FadeManager>().Out();
+        }
+        else
+        {
+            revealPanel.GetComponent<FadeManager>().In();
+        }
+    }
+
+    public void BackToMenu()
+    {
+        state = DAY_STATE.QUITTING;
+        fade.SetAlpha(0.0f);
+        fade.In();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(state == DAY_STATE.QUITTING)
+        {
+            if(fade.Working() == false)
+            {
+                SceneManager.LoadScene(0, LoadSceneMode.Single);
+            }
+        }
+
         if(state == DAY_STATE.ENDGAME)
         {
             EndGameUpdate();
@@ -304,13 +335,6 @@ public class TextManager : MonoBehaviour {
                 WinScreen.GetComponent<FadeManager>().Out();
                 loadMenu = true;
             }
-        }
-
-        if (loadMenu && WinScreen.GetComponent<FadeManager>().Working() == false)
-        {
-            state = DAY_STATE.REVEAL;
-            KillPanel.SetActive(true);
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
     }
 
@@ -787,6 +811,8 @@ public class TextManager : MonoBehaviour {
         WinScreen.SetActive(true);
         state = DAY_STATE.ENDGAME;
         won = true;
+
+        ReadyRevealScreen();
     }
 
     void Loose()
@@ -796,6 +822,49 @@ public class TextManager : MonoBehaviour {
         LoseScreen.SetActive(true);
         state = DAY_STATE.ENDGAME;
         won = false;
+
+        ReadyRevealScreen();
+    }
+
+    void ReadyRevealScreen()
+    {
+        int n = 1;
+        foreach (Character pnj in CharacterGOs)
+        {
+            pnj.transform.SetParent(revealPanel.transform);
+
+            if (pnj.type != TYPES.rioter)
+            {
+                switch (pnj.type)
+                {
+                    case TYPES.brute: RevealCharacterNames[n].GetComponent<Text>().text = "The brute"; break;
+                    case TYPES.comrad: RevealCharacterNames[n].GetComponent<Text>().text = "The loyal comrade"; break;
+                    case TYPES.sea_wolf: RevealCharacterNames[n].GetComponent<Text>().text = "The wise sea wolf"; break;
+                    case TYPES.stingy: RevealCharacterNames[n].GetComponent<Text>().text = "The stingy"; break;
+                }
+                pnj.transform.position = RevealCharacterPositions[n].transform.position;
+                pnj.transform.localScale = RevealCharacterPositions[n].transform.localScale;
+                n++;
+                if(won)
+                {
+                    pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
+                }
+                else
+                {
+                    pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
+                }
+            }
+            else
+            {
+                RevealCharacterNames[0].GetComponent<Text>().text = "The rioter";
+                pnj.transform.position = RevealCharacterPositions[0].transform.position;
+                pnj.transform.localScale = RevealCharacterPositions[0].transform.localScale;
+                pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
+            }
+            pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
+        }
+        revealPanel.GetComponent<FadeManager>().SetAlpha(0.0f);
+        revealPanel.SetActive(false);
     }
 
     //Stopped talking with someone
