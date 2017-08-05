@@ -41,6 +41,7 @@ public enum DAY_STATE
 
 public class TextManager : MonoBehaviour {
 
+    public GameObject KillNowPopUp;
     public GameObject revealPanel;
     public GameObject[] RevealCharacterPositions;
     public GameObject[] RevealCharacterNames;
@@ -149,6 +150,11 @@ public class TextManager : MonoBehaviour {
         BeginDay();
         day = 1;
         KillBool = false;
+
+        JumpToKillButton.SetActive(false);
+        JumpToKillButton.GetComponent<FadeManager>().SetAlpha(0.0f);
+
+        KillNowPopUp.GetComponent<FadeManager>().SetAlpha(0.0f);
 
         KillPanel.SetActive(false);
 
@@ -266,11 +272,26 @@ public class TextManager : MonoBehaviour {
 
     public void JumpToKill()
     {
-        if(day > 1 && state <= DAY_STATE.EIGHT_ANSWER)
+        if (state <= DAY_STATE.EIGHT_ANSWER && blockInteraction == false)
         {
-            day = 5;
-            EndDay();
+            blockInteraction = true;
+            KillNowPopUp.GetComponent<FadeManager>().In();
         }
+    }
+
+    public void PopUpKillNo()
+    {
+        blockInteraction = false;
+        KillNowPopUp.GetComponent<FadeManager>().Out();
+    }
+
+    public void PopUpKillYes()
+    {
+        blockInteraction = false;
+
+        day = 5;
+        EndDay();
+        KillNowPopUp.SetActive(false);
     }
 
     void UpdateAnimations()
@@ -417,6 +438,10 @@ public class TextManager : MonoBehaviour {
             {
                 state = DAY_STATE.FIVE_DOOR;
                 questionDisplay.Begin(questions[question]);
+                if (day == 1)
+                {
+                    JumpToKillButton.GetComponent<FadeManager>().In();
+                }
             }
         }
     }
@@ -749,15 +774,6 @@ public class TextManager : MonoBehaviour {
         foreach(Character pnj in CharacterGOs)
         {
             pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
-        }
-
-        if(day > 1)
-        {
-            JumpToKillButton.SetActive(true);
-        }
-        else
-        {
-            JumpToKillButton.SetActive(false);
         }
 
         ChooseTodayQuestion();
