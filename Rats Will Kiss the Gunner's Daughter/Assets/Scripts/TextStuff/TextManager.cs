@@ -46,7 +46,6 @@ public class TextManager : MonoBehaviour {
     public GameObject[] RevealCharacterPositions;
     public GameObject[] RevealCharacterNames;
     bool won = true;
-    bool loadMenu = false;
     float countEnd = 0.0f;
     public GameObject JumpToKillButton;
     public GameObject WinScreen;
@@ -222,7 +221,7 @@ public class TextManager : MonoBehaviour {
 
         UpdateAnimations();
 
-        if (blockInteraction == false)
+        if (blockInteraction == false && state < DAY_STATE.KILL)
         {
             foreach (Character pnj in CharacterGOs)
             {
@@ -354,7 +353,6 @@ public class TextManager : MonoBehaviour {
             {
                 countEnd += Time.deltaTime;
                 WinScreen.GetComponent<FadeManager>().Out();
-                loadMenu = true;
             }
         }
     }
@@ -847,7 +845,7 @@ public class TextManager : MonoBehaviour {
         int n = 1;
         foreach (Character pnj in CharacterGOs)
         {
-            pnj.transform.SetParent(revealPanel.transform);
+            pnj.GetComponent<FadeManager>().linkAlpha = revealPanel;
 
             if (pnj.type != TYPES.rioter)
             {

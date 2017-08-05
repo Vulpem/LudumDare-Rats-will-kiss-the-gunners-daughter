@@ -29,7 +29,11 @@ public class FadeOut : MonoBehaviour
                 {
                     childs.Push(go.transform.GetChild(n).gameObject);
                 }
-
+                CanvasGroup group = go.GetComponent<CanvasGroup>();
+                if (group != null)
+                {
+                    group.alpha = (fadeOutTime - currentTime) / fadeOutTime;
+                }
                 Image image = go.GetComponent<Image>();
                 if (image != null)
                 {

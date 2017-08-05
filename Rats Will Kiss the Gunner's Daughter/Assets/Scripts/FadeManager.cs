@@ -1,12 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FadeManager : MonoBehaviour
 {
 
     FadeIn fadeIn;
     FadeOut fadeOut;
+
+    public GameObject linkAlpha;
+
+    void Update()
+    {
+        if (linkAlpha != null)
+        {
+            float Alpha = 1.0f;
+
+            {
+                Image image = linkAlpha.GetComponent<Image>();
+                Text text = linkAlpha.GetComponent<Text>();
+                SpriteRenderer rend = linkAlpha.GetComponent<SpriteRenderer>();
+                if (image != null)
+                {
+                    Alpha = image.color.a;
+                }
+                else if (text != null)
+                {
+                    Alpha = text.color.a;
+                }
+                else if (rend != null)
+                {
+                    Alpha = rend.material.color.a;
+                }
+            }
+
+            Stack<GameObject> childs = new Stack<GameObject>();
+            childs.Push(gameObject);
+            while (childs.Count > 0)
+            {
+                GameObject go = childs.Pop();
+                for (int n = 0; n < go.transform.childCount; n++)
+                {
+                    childs.Push(go.transform.GetChild(n).gameObject);
+                }
+
+                CanvasGroup group = go.GetComponent<CanvasGroup>();
+
+                Image image = go.GetComponent<Image>();
+                Text text = go.GetComponent<Text>();
+                if (group != null)
+                {
+                    group.alpha = Alpha;
+                }
+                if (image != null)
+                {
+                    image.color = new Color(image.color.r, image.color.g, image.color.b, Alpha);
+                }
+                else if (text != null)
+                {
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, Alpha);
+                }
+                else
+                {
+                    SpriteRenderer rend = go.GetComponent<SpriteRenderer>();
+                    if (rend != null)
+                    {
+                        rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, Alpha);
+                    }
+                }
+            }
+        }
+    }
 
     void Awake()
     {
@@ -47,7 +112,7 @@ public class FadeManager : MonoBehaviour
         fadeIn.fade = false;
     }
 
-    public void SetAlpha(float alpha)
+    public void SetAlpha(float Alpha)
     {
         if (fadeIn != null)
         {
@@ -57,7 +122,7 @@ public class FadeManager : MonoBehaviour
         {
             fadeOut.fade = false;
         }
-        if (alpha != 0.0f)
+        if (Alpha != 0.0f)
         {
             gameObject.SetActive(true);
         }
@@ -65,29 +130,40 @@ public class FadeManager : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        CanvasGroup image = gameObject.GetComponent<CanvasGroup>();
-        if (image != null)
-        {
-            image.alpha = alpha;
-        }
 
         Stack<GameObject> childs = new Stack<GameObject>();
         childs.Push(gameObject);
-
         while (childs.Count > 0)
         {
             GameObject go = childs.Pop();
-
             for (int n = 0; n < go.transform.childCount; n++)
             {
                 childs.Push(go.transform.GetChild(n).gameObject);
             }
 
-            Renderer rend = go.GetComponent<Renderer>();
-            if (rend != null)
+            CanvasGroup group = go.GetComponent<CanvasGroup>();
+            Image image = go.GetComponent<Image>();
+            Text text = go.GetComponent<Text>();
+            if (group != null)
             {
-                rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, alpha);
+                group.alpha = Alpha;
             }
-        }        
+            if (image != null)
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, Alpha);
+            }
+            else if (text != null)
+            {
+                text.color = new Color(text.color.r, text.color.g, text.color.b, Alpha);
+            }
+            else
+            {
+                SpriteRenderer rend = go.GetComponent<SpriteRenderer>();
+                if (rend != null)
+                {
+                    rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, Alpha);
+                }
+            }
+        }
     }
 }

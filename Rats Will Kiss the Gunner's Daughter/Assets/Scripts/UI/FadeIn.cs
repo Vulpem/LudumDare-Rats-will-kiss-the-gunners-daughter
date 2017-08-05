@@ -28,7 +28,11 @@ public class FadeIn : MonoBehaviour
                 {
                     childs.Push(go.transform.GetChild(n).gameObject);
                 }
-
+                CanvasGroup group = go.GetComponent<CanvasGroup>();
+                if (group != null)
+                {
+                    group.alpha = currentTime / fadeInTime;
+                }
                 Image image = go.GetComponent<Image>();
                 Text text = go.GetComponent<Text>();
                 if (image != null)
