@@ -44,6 +44,7 @@ public class TextManager : MonoBehaviour {
     bool won = true;
     bool loadMenu = false;
     float countEnd = 0.0f;
+    public GameObject JumpToKillButton;
     public GameObject WinScreen;
 	public GameObject LoseScreen;
     Dictionary<TODAYS_QUESTION, string> questions;
@@ -182,41 +183,7 @@ public class TextManager : MonoBehaviour {
             KillUpdate();
         }
 
-        if(shinySkull != null)
-        {
-            if (state == DAY_STATE.ONE_SKULL && blockInteraction == false && fade.Working() == false)
-            {
-                shinySkull.gameObject.SetActive(true);
-            }
-            else
-            {
-                shinySkull.gameObject.SetActive(false);
-            }
-        }
-
-        if (shinyPapyrus != null)
-        {
-            if (state == DAY_STATE.THREE_NOTE && blockInteraction == false && fade.Working() == false)
-            {
-                shinyPapyrus.gameObject.SetActive(true);
-            }
-            else
-            {
-                shinyPapyrus.gameObject.SetActive(false);
-            }
-        }
-
-        if (shinyDoor != null)
-        {
-            if (state == DAY_STATE.FIVE_DOOR && blockInteraction == false && fade.Working() == false)
-            {
-                shinyDoor.gameObject.SetActive(true);
-            }
-            else
-            {
-                shinyDoor.gameObject.SetActive(false);
-            }
-        }
+        UpdateAnimations();
 
         if (blockInteraction == false)
         {
@@ -264,6 +231,54 @@ public class TextManager : MonoBehaviour {
         }
 
         HideActions();
+    }
+
+    public void JumpToKill()
+    {
+        if(day > 1 && state <= DAY_STATE.EIGHT_ANSWER)
+        {
+            day = 5;
+            EndDay();
+        }
+    }
+
+    void UpdateAnimations()
+    {
+        if (shinySkull != null)
+        {
+            if (state == DAY_STATE.ONE_SKULL && blockInteraction == false && fade.Working() == false)
+            {
+                shinySkull.gameObject.SetActive(true);
+            }
+            else
+            {
+                shinySkull.gameObject.SetActive(false);
+            }
+        }
+
+        if (shinyPapyrus != null)
+        {
+            if (state == DAY_STATE.THREE_NOTE && blockInteraction == false && fade.Working() == false)
+            {
+                shinyPapyrus.gameObject.SetActive(true);
+            }
+            else
+            {
+                shinyPapyrus.gameObject.SetActive(false);
+            }
+        }
+
+        if (shinyDoor != null)
+        {
+            if (state == DAY_STATE.FIVE_DOOR && blockInteraction == false && fade.Working() == false)
+            {
+                shinyDoor.gameObject.SetActive(true);
+            }
+            else
+            {
+                shinyDoor.gameObject.SetActive(false);
+            }
+        }
     }
 
     void EndGameUpdate()
@@ -710,6 +725,15 @@ public class TextManager : MonoBehaviour {
         foreach(Character pnj in CharacterGOs)
         {
             pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
+        }
+
+        if(day > 1)
+        {
+            JumpToKillButton.SetActive(true);
+        }
+        else
+        {
+            JumpToKillButton.SetActive(false);
         }
 
         ChooseTodayQuestion();
