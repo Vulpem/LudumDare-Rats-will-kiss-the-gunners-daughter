@@ -197,11 +197,6 @@ public class TextManager : MonoBehaviour {
             }
         }
 
-        if(state == DAY_STATE.ENDGAME)
-        {
-            EndGameUpdate();
-        }
-
         if(state == DAY_STATE.NIGHT)
         {
             if(fade.Working() == false && blockInteraction == false)
@@ -332,31 +327,6 @@ public class TextManager : MonoBehaviour {
         }
     }
 
-    void EndGameUpdate()
-    {
-        KillPanel.SetActive(false);
-        KillText.SetActive(false);
-
-        foreach (GameObject name in KillCharacterNames)
-        {
-            name.SetActive(false);
-        }
-        foreach (Character pnj in CharacterGOs)
-        {
-            pnj.SetActive(false);
-        }
-
-        if (WinScreen.GetComponent<FadeManager>().Working() == false)
-        {
-            countEnd += Time.deltaTime;
-            if (countEnd >= 0.75f && Input.GetMouseButtonDown(0))
-            {
-                countEnd += Time.deltaTime;
-                WinScreen.GetComponent<FadeManager>().Out();
-            }
-        }
-    }
-
     public void StartNightEvent()
     {
         if (state == DAY_STATE.EIGHT_ANSWER && textDisplay.working == false)
@@ -370,8 +340,6 @@ public class TextManager : MonoBehaviour {
             music.ChangeMusicVolume(0.0f);
             EndDay();
         }
-
-        //TODO
     }
 
     public void ClickedOnSkull()
@@ -842,6 +810,18 @@ public class TextManager : MonoBehaviour {
 
     void ReadyRevealScreen()
     {
+        KillPanel.SetActive(false);
+        KillText.SetActive(false);
+
+        foreach (GameObject name in KillCharacterNames)
+        {
+            name.SetActive(false);
+        }
+        foreach (Character pnj in CharacterGOs)
+        {
+            pnj.SetActive(false);
+        }
+
         int n = 1;
         foreach (Character pnj in CharacterGOs)
         {
