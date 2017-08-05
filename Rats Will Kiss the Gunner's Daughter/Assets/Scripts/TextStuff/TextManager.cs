@@ -47,7 +47,6 @@ public class TextManager : MonoBehaviour {
     public GameObject[] RevealCharacterNames;
     bool won = true;
     float countEnd = 0.0f;
-    public GameObject JumpToKillButton;
     public GameObject WinScreen;
 	public GameObject LoseScreen;
     Dictionary<TODAYS_QUESTION, string> questions;
@@ -149,9 +148,6 @@ public class TextManager : MonoBehaviour {
         BeginDay();
         day = 1;
         KillBool = false;
-
-        JumpToKillButton.SetActive(false);
-        JumpToKillButton.GetComponent<FadeManager>().SetAlpha(0.0f);
 
         KillNowPopUp.GetComponent<FadeManager>().SetAlpha(0.0f);
 
@@ -404,10 +400,6 @@ public class TextManager : MonoBehaviour {
             {
                 state = DAY_STATE.FIVE_DOOR;
                 questionDisplay.Begin(questions[question]);
-                if (day == 1)
-                {
-                    JumpToKillButton.GetComponent<FadeManager>().In();
-                }
             }
         }
     }
@@ -836,17 +828,23 @@ public class TextManager : MonoBehaviour {
                     case TYPES.sea_wolf: RevealCharacterNames[n].GetComponent<Text>().text = "The wise sea wolf"; break;
                     case TYPES.stingy: RevealCharacterNames[n].GetComponent<Text>().text = "The stingy"; break;
                 }
-                pnj.transform.position = RevealCharacterPositions[n].transform.position;
                 pnj.transform.localScale = RevealCharacterPositions[n].transform.localScale;
-                n++;
+                
                 if(won)
                 {
+                    pnj.transform.position = RevealCharacterPositions[n].transform.position;
                     pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
                 }
                 else
                 {
+                    pnj.transform.position = pnj.originalPos;
+                    Vector3 newPos = RevealCharacterNames[n].transform.position;
+                    newPos.x += 10000;
+                    RevealCharacterNames[n].transform.position = newPos;
                     pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
                 }
+
+                n++;
             }
             else
             {

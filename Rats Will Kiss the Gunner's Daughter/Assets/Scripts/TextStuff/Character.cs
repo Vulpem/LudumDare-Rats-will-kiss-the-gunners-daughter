@@ -39,7 +39,6 @@ public class SpeechBubble
     }
 }
 
-[RequireComponent(typeof(Transporter))]
 public class Character : MonoBehaviour {
 
     public Text characterNameUI;
@@ -61,8 +60,6 @@ public class Character : MonoBehaviour {
 
     [HideInInspector]
     public TextManager manager;
-
-    Transporter transporter;
 
     public FadeManager fade;
     public Vector3 originalPos;
@@ -103,11 +100,6 @@ public class Character : MonoBehaviour {
     void Start()
     {
         fade = GetComponent<FadeManager>();
-        transporter = GetComponent<Transporter>();
-        if(transporter == null)
-        {
-            transporter = gameObject.AddComponent<Transporter>();
-        }
     }
 
     public void SetName(string _name)

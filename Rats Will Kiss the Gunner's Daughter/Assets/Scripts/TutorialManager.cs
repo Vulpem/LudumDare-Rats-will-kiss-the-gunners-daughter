@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour {
 
     void Update()
     {
-        if (globalPanel.activeInHierarchy)
+        if (globalPanel.activeInHierarchy && manager.state < DAY_STATE.NIGHT)
         {
             for (int n = 0; n < manager.CharacterGOs.Length; n++)
             {

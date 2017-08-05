@@ -76,13 +76,13 @@ public class FadeManager : MonoBehaviour
     void Awake()
     {
         fadeIn = GetComponent<FadeIn>();
-        if(fadeIn == null)
+        if (fadeIn == null)
         {
             fadeIn = gameObject.AddComponent<FadeIn>();
         }
 
         fadeOut = GetComponent<FadeOut>();
-        if(fadeOut == null)
+        if (fadeOut == null)
         {
             fadeOut = gameObject.AddComponent<FadeOut>();
         }
@@ -90,7 +90,7 @@ public class FadeManager : MonoBehaviour
 
     public bool Working()
     {
-        if(fadeIn == null || fadeOut == null)
+        if (fadeIn == null || fadeOut == null)
         {
             fadeIn = GetComponent<FadeIn>();
             fadeOut = GetComponent<FadeOut>();
@@ -101,15 +101,15 @@ public class FadeManager : MonoBehaviour
 
     public void In()
     {
-        gameObject.SetActive(true);
-        fadeIn.fade = true;
-        fadeOut.fade = false;
+            gameObject.SetActive(true);
+            fadeIn.fade = true;
+            fadeOut.fade = false;
     }
 
     public void Out()
     {
-        fadeOut.fade = true;
-        fadeIn.fade = false;
+            fadeOut.fade = true;
+            fadeIn.fade = false;
     }
 
     public void SetAlpha(float Alpha)
@@ -165,5 +165,35 @@ public class FadeManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public float GetAlpha()
+    {
+        GameObject go = gameObject;
+
+        CanvasGroup group = go.GetComponent<CanvasGroup>();
+        Image image = go.GetComponent<Image>();
+        Text text = go.GetComponent<Text>();
+        if (group != null)
+        {
+            return group.alpha;
+        }
+        if (image != null)
+        {
+            return image.color.a;
+        }
+        else if (text != null)
+        {
+            return text.color.a;
+        }
+        else
+        {
+            SpriteRenderer rend = go.GetComponent<SpriteRenderer>();
+            if (rend != null)
+            {
+                return rend.material.color.a;
+            }
+        }
+        return 0.0f;
     }
 }
