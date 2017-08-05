@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c73f0ce1bd14d284b8aeca37203c44f3
-timeCreated: 1501485516
+guid: d4a0f86a681059d4ab867d42d1e32323
+timeCreated: 1501964401
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,12 +9,13 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: superscript
+  fontName: Volter2
   fontNames:
-  - superscript
-  fallbackFontReferences: []
+  - Volter2
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 98a31a6daca20bd48bd28b129599a5c0, type: 3}
   customCharacters: 
-  fontRenderingMode: 2
+  fontRenderingMode: 0
   ascentCalculationMode: 1
   userData: 
   assetBundleName: 
