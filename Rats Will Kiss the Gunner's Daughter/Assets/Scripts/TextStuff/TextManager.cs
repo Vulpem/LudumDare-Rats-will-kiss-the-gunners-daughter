@@ -262,7 +262,7 @@ public class TextManager : MonoBehaviour {
 
     public void JumpToKill()
     {
-        if (state <= DAY_STATE.EIGHT_ANSWER && blockInteraction == false)
+        if (state <= DAY_STATE.EIGHT_ANSWER)
         {
             blockInteraction = true;
             KillNowPopUp.GetComponent<FadeManager>().In();
