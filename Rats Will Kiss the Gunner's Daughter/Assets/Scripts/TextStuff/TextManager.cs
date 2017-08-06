@@ -41,6 +41,7 @@ public enum DAY_STATE
 
 public class TextManager : MonoBehaviour {
 
+    bool fastTransition = false;
     public GameObject KillNowPopUp;
     public GameObject revealPanel;
     public GameObject[] RevealCharacterPositions;
@@ -278,10 +279,10 @@ public class TextManager : MonoBehaviour {
     public void PopUpKillYes()
     {
         blockInteraction = false;
-
+        fastTransition = true;
         day = 5;
         EndDay();
-        KillNowPopUp.SetActive(false);
+        //KillNowPopUp.SetActive(false);
     }
 
     void UpdateAnimations()
@@ -679,24 +680,24 @@ public class TextManager : MonoBehaviour {
     void KillUpdate()
     {
         int n = 0;
-        if (fade.Working() == false && KillBool == false)
+        if ((fade.Working() == false || fastTransition) && KillBool == false)
         {
+            fade.SetAlpha(1.0f);
             KillBool = true;
             KillPanel.GetComponent<FadeManager>().SetAlpha(0.0f);
             KillPanel.GetComponent<FadeManager>().In();
 
-            KillText.GetComponent<MakeTextAppear>().Begin(questions[TODAYS_QUESTION.LAST_DAY]);
-            
-            foreach(GameObject name in KillCharacterNames)
-            {
-                name.GetComponent<Text>().text = CharacterGOs[n].name;
-                n++;
-            }
-
-            foreach(Character pnj in CharacterGOs)
+            foreach (Character pnj in CharacterGOs)
             {
                 pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
                 pnj.GetComponent<FadeManager>().In();
+            }
+            KillText.GetComponent<MakeTextAppear>().Begin(questions[TODAYS_QUESTION.LAST_DAY]);
+
+            foreach (GameObject name in KillCharacterNames)
+            {
+                name.GetComponent<Text>().text = CharacterGOs[n].name;
+                n++;
             }
         }
         n = 0;
