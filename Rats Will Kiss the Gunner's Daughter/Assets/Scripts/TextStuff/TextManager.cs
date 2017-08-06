@@ -815,43 +815,30 @@ public class TextManager : MonoBehaviour {
             pnj.SetActive(false);
         }
 
-        int n = 1;
         foreach (Character pnj in CharacterGOs)
         {
             pnj.GetComponent<FadeManager>().linkAlpha = revealPanel;
+            pnj.transform.localScale = RevealCharacterPositions[(int)(pnj.type)].transform.localScale;
 
             if (pnj.type != TYPES.rioter)
             {
-                switch (pnj.type)
-                {
-                    case TYPES.brute: RevealCharacterNames[n].GetComponent<Text>().text = "The brute"; break;
-                    case TYPES.comrad: RevealCharacterNames[n].GetComponent<Text>().text = "The loyal comrade"; break;
-                    case TYPES.sea_wolf: RevealCharacterNames[n].GetComponent<Text>().text = "The wise sea wolf"; break;
-                    case TYPES.stingy: RevealCharacterNames[n].GetComponent<Text>().text = "The stingy"; break;
-                }
-                pnj.transform.localScale = RevealCharacterPositions[n].transform.localScale;
-                
                 if(won)
                 {
-                    pnj.transform.position = RevealCharacterPositions[n].transform.position;
+                    pnj.transform.position = RevealCharacterPositions[(int)(pnj.type)].transform.position;
                     pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
                 }
                 else
                 {
                     pnj.transform.position = pnj.originalPos;
-                    Vector3 newPos = RevealCharacterNames[n].transform.position;
+                    Vector3 newPos = RevealCharacterNames[(int)(pnj.type)].transform.position;
                     newPos.x += 10000;
-                    RevealCharacterNames[n].transform.position = newPos;
+                    RevealCharacterNames[(int)(pnj.type)].transform.position = newPos;
                     pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
                 }
-
-                n++;
             }
             else
             {
-                RevealCharacterNames[0].GetComponent<Text>().text = "The rioter";
-                pnj.transform.position = RevealCharacterPositions[0].transform.position;
-                pnj.transform.localScale = RevealCharacterPositions[0].transform.localScale;
+                pnj.transform.position = RevealCharacterPositions[(int)(pnj.type)].transform.position;
                 pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
             }
             pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
