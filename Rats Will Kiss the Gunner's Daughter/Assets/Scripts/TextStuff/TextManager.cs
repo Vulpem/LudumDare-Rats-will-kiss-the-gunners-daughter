@@ -391,7 +391,6 @@ public class TextManager : MonoBehaviour {
 
     public void CloseParchement()
     {
-        
         if (state >= DAY_STATE.FOUR_NOTE_NOTE)
         {
             music.PlaySound(SOUNDS.paper);

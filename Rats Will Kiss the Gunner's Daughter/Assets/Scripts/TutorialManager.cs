@@ -84,5 +84,6 @@ public class TutorialManager : MonoBehaviour {
 
         manager.blockInteraction = false;
         globalPanel.SetActive(false);
+        manager.KillNowPopUp.SetActive(false);
     }
 }
