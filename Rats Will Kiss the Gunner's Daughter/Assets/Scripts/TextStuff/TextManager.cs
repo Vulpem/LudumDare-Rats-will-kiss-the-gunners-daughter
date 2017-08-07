@@ -808,6 +808,7 @@ public class TextManager : MonoBehaviour {
         KillPanel.SetActive(false);
         KillText.SetActive(false);
 
+        int n = 0;
         foreach (GameObject name in KillCharacterNames)
         {
             name.SetActive(false);
@@ -847,6 +848,20 @@ public class TextManager : MonoBehaviour {
         }
         revealPanel.GetComponent<FadeManager>().SetAlpha(0.0f);
         revealPanel.SetActive(false);
+
+        foreach(GameObject text in RevealCharacterNames)
+        {
+            string tmp = text.GetComponent<Text>().text;
+            switch (n)
+            {
+                case 0: text.GetComponent<Text>().text = tmp.Replace("<name>", characters[TYPES.rioter].name); break;
+                case 1: text.GetComponent<Text>().text = tmp.Replace("<name>", characters[TYPES.brute].name); break;
+                case 2: text.GetComponent<Text>().text = tmp.Replace("<name>", characters[TYPES.sea_wolf].name); break;
+                case 3: text.GetComponent<Text>().text = tmp.Replace("<name>", characters[TYPES.stingy].name); break;
+                case 4: text.GetComponent<Text>().text = tmp.Replace("<name>", characters[TYPES.comrad].name); break;
+            }
+            n++;
+        }
     }
 
     //Stopped talking with someone
