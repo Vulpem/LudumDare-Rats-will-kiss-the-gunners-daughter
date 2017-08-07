@@ -266,7 +266,10 @@ public class TextManager : MonoBehaviour {
         if (state <= DAY_STATE.EIGHT_ANSWER)
         {
             blockInteraction = true;
-            KillNowPopUp.GetComponent<FadeManager>().In();
+            if (KillNowPopUp.activeInHierarchy == false || KillNowPopUp.GetComponent<FadeManager>().GetAlpha() < 0.9f)
+            {
+                KillNowPopUp.GetComponent<FadeManager>().In();
+            }
         }
     }
 
