@@ -8,13 +8,13 @@ Captain?
 Oh, I'm sorry. i've got work to do, I can't talk right now.
 
 #Violent answer
-Why you hittin’ me sir?!? Stop, pleaaase, stop! It’s <rioter> that’s always sayin’ bad, ugly things about you, monsignore!
+Why you hittin’ me sir?!? Stop, pleaaase, stop! I didn't know anything about a mutiny, sir! Nothing!
 
 #Peaceful answer
-I don’t wanna say nothin’ bad about nobody, but <rioter> always looks at me funny...
+A mutineer, sir? I know nothing about a mutiny. One of the lads is trying to betray you?
 
 #Briving answer
-Whoa, some coins! If I tell ya the truth, I get a weird vibe from <rioter>... I ain’t so sure he ain’t a bad guy.
+Whoa, some coins! If I tell ya the truth, I know nothing about a mutiny, sir. One of the lads is trying to betray you?
 
 
 #Write theese instead of an actual name to reffer to someone. Be careful with ortography!
