@@ -813,10 +813,6 @@ public class TextManager : MonoBehaviour {
         {
             name.SetActive(false);
         }
-        foreach (Character pnj in CharacterGOs)
-        {
-            pnj.SetActive(false);
-        }
 
         foreach (Character pnj in CharacterGOs)
         {
@@ -844,7 +840,6 @@ public class TextManager : MonoBehaviour {
                 pnj.transform.position = RevealCharacterPositions[(int)(pnj.type)].transform.position;
                 pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
             }
-            pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
         }
         revealPanel.GetComponent<FadeManager>().SetAlpha(0.0f);
         revealPanel.SetActive(false);

@@ -15,12 +15,21 @@ public class FadeManager : MonoBehaviour
     {
         if (linkAlpha != null)
         {
-            float Alpha = 1.0f;
-
+            float Alpha = -1.0f;
+            Stack<GameObject> toCheck = new Stack<GameObject>();
+            toCheck.Push(linkAlpha);
+            while (Alpha < 0.0f)
             {
-                Image image = linkAlpha.GetComponent<Image>();
-                Text text = linkAlpha.GetComponent<Text>();
-                SpriteRenderer rend = linkAlpha.GetComponent<SpriteRenderer>();
+                GameObject go = toCheck.Pop();
+
+                for(int n = 0; n < go.transform.childCount; n++)
+                {
+                    toCheck.Push(go.transform.GetChild(n).gameObject);
+                }
+
+                Image image = go.GetComponent<Image>();
+                Text text = go.GetComponent<Text>();
+                SpriteRenderer rend = go.GetComponent<SpriteRenderer>();
                 if (image != null)
                 {
                     Alpha = image.color.a;
@@ -32,6 +41,10 @@ public class FadeManager : MonoBehaviour
                 else if (rend != null)
                 {
                     Alpha = rend.material.color.a;
+                }
+                if(toCheck.Count == 0)
+                {
+                    Alpha = 0.0f;
                 }
             }
 
