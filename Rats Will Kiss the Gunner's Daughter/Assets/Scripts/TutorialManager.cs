@@ -45,7 +45,7 @@ public class TutorialManager : MonoBehaviour {
 	
     public void TogglePage()
     {
-        if (globalPanel.activeInHierarchy)
+        if (globalPanel.activeInHierarchy && manager.KillNowPopUp.activeInHierarchy == false)
         {
             page1 = !page1;
 
