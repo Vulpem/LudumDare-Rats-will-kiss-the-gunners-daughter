@@ -821,18 +821,14 @@ public class TextManager : MonoBehaviour {
 
             if (pnj.type != TYPES.rioter)
             {
-                if(won)
+                pnj.transform.position = RevealCharacterPositions[(int)(pnj.type)].transform.position;
+                pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
+                if (!won)
                 {
-                    pnj.transform.position = RevealCharacterPositions[(int)(pnj.type)].transform.position;
-                    pnj.GetComponent<FadeManager>().SetAlpha(1.0f);
-                }
-                else
-                {
-                    pnj.transform.position = pnj.originalPos;
                     Vector3 newPos = RevealCharacterNames[(int)(pnj.type)].transform.position;
                     newPos.x += 10000;
                     RevealCharacterNames[(int)(pnj.type)].transform.position = newPos;
-                    pnj.GetComponent<FadeManager>().SetAlpha(0.0f);
+                    pnj.GetComponent<Transporter>().SetColor(new Color(0.3f, 0.3f, 0.3f));
                 }
             }
             else

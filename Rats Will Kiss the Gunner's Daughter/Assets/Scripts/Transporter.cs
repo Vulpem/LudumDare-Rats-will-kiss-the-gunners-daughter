@@ -61,7 +61,7 @@ public class Transporter : MonoBehaviour
 
     }
 
-    void SetColor(Color col)
+    public void SetColor(Color col)
     {
         Stack<GameObject> childs = new Stack<GameObject>();
         childs.Push(gameObject);
@@ -78,7 +78,8 @@ public class Transporter : MonoBehaviour
             Renderer rend = toTint.GetComponent<Renderer>();
             if (rend != null)
             {
-                rend.material.color = col;
+                Color c = new Color(col.r, col.g, col.b, rend.material.color.a);
+                rend.material.color = c;
             }
         }
     }
